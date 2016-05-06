@@ -1,0 +1,95 @@
+<ion-view title="Process">
+  <ion-content class="padding">
+
+    <div id="coordinate" class="list">
+      <div class="item item-divider">Postion</div>
+      <div class="item item-text-wrap">
+        <div class="row">
+          <div class="col col-10">X</div>
+          <div class="col col-40">{{ div_pos_x }}</div>
+          <div class="col col-10">Y</div>
+          <div class="col col-40">{{div_pos_y}}</div>
+        </div>
+        <div class="row">
+          <div class="col col-10">U</div>
+          <div class="col col-40">{{div_pos_u}}</div>
+          <div class="col col-10">V</div>
+          <div class="col col-40">{{div_pos_v}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list">
+      <div class="item item-divider">
+        <span>speed value:</span>
+        <!--<span ng-bind="getSpeed"></span>-->
+        <span>{{getSpeed}}</span>
+      </div>
+      <div class="item range range-positive">
+        <i>0</i><i class="icon ion-minus-round"></i>
+        <input type="range" id="speed" ng-model="getSpeed"  min="1" max="10" onchange="speedChange();">
+        <i class="icon ion-plus"></i><i>9</i>
+      </div>
+    </div>
+    <div class="row">
+      <!-- 开发版本使用的为ng-mousedown和ng-mouseup，但是在手机端不好用，正式版改为改为 on-touch和on-release-->
+      <!-- 开发版本-->
+      <!--<div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"-->
+                <!--ng-mousedown="xNegPointMove();" ng-mouseup="stopPointMove();">x-</button></div>-->
+      <!--<div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"-->
+                <!--ng-mousedown="xPosPointMove();" ng-mouseup="stopPointMove();">x+</button></div>-->
+      <!--<div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"-->
+                <!--ng-mousedown="yNegPointMove();" ng-mouseup="stopPointMove();">y-</button></div>-->
+      <!--<div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"-->
+                <!--ng-mousedown="yPosPointMove();" ng-mouseup="stopPointMove();">y+</button></div>-->
+
+      <!-- 正式版本-->
+      <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
+      on-touch="xNegPointMove();" on-release="stopPointMove();">x-</button></div>
+      <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
+      on-touch="xPosPointMove();" on-release="stopPointMove();">x+</button></div>
+      <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
+      on-touch="yNegPointMove();" on-release="stopPointMove();">y-</button></div>
+      <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
+      on-touch="yPosPointMove();" on-release="stopPointMove();">y+</button></div>
+
+    </div>
+    <div class="row">
+      <!-- 开发版本-->
+      <!--<div class="col">-->
+        <!--<button class="button icon-left ion-chevron-left button-royal button-small"-->
+                <!--ng-mousedown="uNegPointMove();" ng-mouseup="stopPointMove();">u- -->
+        <!--</button>-->
+      <!--</div>-->
+      <!--<div class="col">-->
+        <!--<button class="button icon-right ion-chevron-right button-calm button-small"-->
+                <!--ng-mousedown="uPosPointMove();" ng-mouseup="stopPointMove();">u+-->
+        <!--</button>-->
+      <!--</div>-->
+      <!--<div class="col">-->
+        <!--<button class="button icon-left ion-chevron-left button-royal button-small"-->
+                <!--ng-mousedown="vNegPointMove();" ng-mouseup="stopPointMove();">v- -->
+        <!--</button>-->
+      <!--</div>-->
+      <!--<div class="col">-->
+        <!--<button class="button icon-right ion-chevron-right button-calm button-small"-->
+                <!--ng-mousedown="vPosPointMove();" ng-mouseup="stopPointMove();">v+-->
+        <!--</button>-->
+      <!--</div>-->
+
+      <!-- 正式版本-->
+      <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
+      on-touch="uNegPointMove();" on-release="stopPointMove();">u-</button></div>
+      <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
+      on-touch="uPosPointMove();" on-release="stopPointMove();">u+</button></div>
+      <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
+      on-touch="vNegPointMove();" on-release="stopPointMove();">v-</button></div>
+      <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
+      on-touch="vPosPointMove();" on-release="stopPointMove();">v+</button></div>
+    </div>
+    <!--<div>
+      <a class="button" ng-click="refreshIp();">刷新IP</a>
+    </div>-->
+
+  </ion-content>
+</ion-view>

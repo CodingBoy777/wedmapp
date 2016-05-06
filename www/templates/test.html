@@ -1,0 +1,22 @@
+<ion-view title="test">
+  <ion-content class="padding">
+    <h3>测试专用</h3>
+
+
+    <div class="list">
+      <div class="item item-divider">开关</div>
+      <ion-toggle ng-model="toggleWaterPump" ng-change="">水泵</ion-toggle>
+      <ion-toggle ng-model="toggleHighFrequence" ng-change="">高频</ion-toggle>
+      <ion-toggle ng-model="toggleWireTransport" ng-change="">运丝</ion-toggle>
+      <ion-toggle ng-model="toggleWireSpeed" ng-change="">丝速</ion-toggle>
+      <ion-toggle ng-checked="true" ng-model="toggleCurrent" ng-change="">current</ion-toggle>
+
+      <div>{{toggleWaterPump}}</div>
+    </div>
+
+    <div>
+      <button ng-click="getIOState();">获取IO状态</button>
+    </div>
+  </ion-content>
+</ion-view>
+

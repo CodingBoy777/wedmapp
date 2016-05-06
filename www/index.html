@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="ionicApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title>EDMapp text</title>
+
+
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="lib/ionic/css/ionic.min.css">
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+  <link href="css/ionic.app.css" rel="stylesheet">
+  -->
+
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="lib/ionic/js/angular/angular.min.js"></script>
+
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+
+  <!--<script src="angular-socket-io-master/socket.min.js"></script>-->
+  <script src="angular-socket-io-master/socket.js"></script>
+  <script src="angular-socket-io-master/mock/socket-io.js"></script>
+  <script src="angular-socket-io-master/socket.js"></script>
+
+
+  <!-- your app's js -->
+  <script src="js/script.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/functions.js"></script>
+  <script src="js/cmdType.js"></script>
+  <script src="js/infoType.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/bufferHandle.js"></script>
+  <script src="js/variables.js"></script>
+
+
+
+
+  <!--<script>-->
+  <!--function getSpeed(){-->
+  <!--var a=document.getElementById("getSpeed").innerHTML = speed.value;-->
+  <!--console.log(a);-->
+  <!--}-->
+  <!--</script>-->
+
+  <!--编写一个动态加载端口io。js的函数-->
+<!--  <script>
+    function reloadJs(id,newJs){
+      var oldJs = document.getElementById(id);
+      if(oldJs) oldJs.parentNode.removeChild(oldJs);
+      var scriptObj = document.createElement("script");
+      scriptObj.src = newJs;
+      scriptObj.type = "text/javascript";
+      scriptObj.id   = id;
+      document.getElementsByTagName('head')[0].appendChild(scriptObj);
+    }
+  </script>-->
+
+</head>
+<body>
+
+<ion-nav-bar class="nav-title-slide-ios7 bar-positive">
+  <ion-nav-back-button class="button-icon ion-arrow-left-c">
+  </ion-nav-back-button>
+</ion-nav-bar>
+<div ng-controller="MainCtrl">
+  <ion-nav-view animation="slide-left-right"></ion-nav-view>
+</div>
+
+
+<!--<script src="http://192.168.31.217:66/socket.io/socket.io.js"></script>-->
+<!--<script src="http://10.189.133.199:66/socket.io/socket.io.js"></script>-->
+<!--<script id="ipScript" type="text/javascript"  src="http://0.0.0.0:66/socket.io/socket.io.js"></script>-->
+
+</body>
+</html>

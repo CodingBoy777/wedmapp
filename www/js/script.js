@@ -1,4 +1,4 @@
-angular.module('ionicApp', ['ionic', 'btford.socket-io', 'ionicApp.controllers','ionicApp.services'])
+angular.module('ionicApp', ['ionic',  'ionicApp.controllers','ionicApp.services'])
 
   .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 

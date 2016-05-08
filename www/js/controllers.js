@@ -4,8 +4,8 @@ angular.module('ionicApp.controllers', [])
     $rootScope.toggleWaterPump = false;
     $rootScope.toggleHighFrequence = true;
     $rootScope.toggleWireTransport = false;
-    $rootScope.toggleWireSpeed = false;
-    $rootScope.toggleCurrent = true;
+    $rootScope.wireSpeedValue = 0;
+    $rootScope.currentValue = 0;
 
     $rootScope.div_pos_x = numFormat(0);
     $rootScope.div_pos_y = numFormat(0);
@@ -193,11 +193,11 @@ angular.module('ionicApp.controllers', [])
         var dataview = toDataView(data.data);
         if(data.type=='IOstate') {
           var iostatus = dataview.getUint16(6, true); //低位开始读取
-          var outputValue = iostatus;
+          outputValue = iostatus;
           ioInfo.highfrequence = iostatus>>13&0x01;
           ioInfo.waterPump = iostatus>>4&0x01;
           ioInfo.wireTransport = iostatus>>5&0x01;
-          //ioInfo.wireSpeed = SpeedLevel.wireSpeed.indexOf(iostatus>>1&0x03);
+          ioInfo.wireSpeed = SpeedLevel.wireSpeed.indexOf(iostatus>>1&0x03);
           var current = iostatus>>8&0xf;
           current = current.toString(2);
           while(current.length<4) {
@@ -230,21 +230,36 @@ angular.module('ionicApp.controllers', [])
             else{
               $rootScope.toggleWireTransport = true;
             }
-            if(ioInfo.wireSpeed == 0){
-              $rootScope.toggleWireSpeed = false;
-            }
-            else{
-              $rootScope.toggleWireSpeed = true;
-            }
-            if(ioInfo.current == 0){
-              $rootScope.toggleCurrent = false;
-            }
-            else{
-              $rootScope.toggleCurrent = true;
-            }
+
+            $rootScope.wireSpeedValue = ioInfo.wireSpeed;
+            $rootScope.currentValue = ioInfo.current;
+
           });
         }
+
+        if(data.type=='SelDiv') {
+          var selector = dataview.getUint8(4);
+          var div = dataview.getInt32(8,true);
+          var index = SpeedLevel.INNER.indexOf(div)+1;
+          console.log(selector,SpeedLevel.INNER.indexOf(div));
+          if(selector == 0) {
+            /*outerelements.value = index;
+            outerelements.dispatchEvent(new Event('change'));
+            $('#machinespeedlevel').text(index);*/
+
+            console.log("外部速度待完善");
+          }else {
+            /*innerelements.value = index;
+            innerelements.dispatchEvent(new Event('change'));
+            $('#speedlevel').text(index);*/
+
+            console.log("内部速度待完善" + index);
+          }
+        }
+
       };
+
+      //以下是info口的状态
 
       //每隔n秒获取坐标
       var resGetCoor = setInterval(function () {
@@ -329,8 +344,12 @@ angular.module('ionicApp.controllers', [])
 
     //获取IO状态
     $scope.getIOState = function(){
-      console.log(JSON.stringify({'cmd': 'getIOState'}));
       resCmdWebSocket.send(JSON.stringify({'cmd': 'getIOState'}));
+
+    }
+
+    $scope.getSelDiv = function(){
+      resCmdWebSocket.send(JSON.stringify({'cmd': 'getSelDiv'}));
 
     }
 

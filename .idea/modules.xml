@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/EDMapp.iml" filepath="$PROJECT_DIR$/.idea/EDMapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/wedmapp.iml" filepath="$PROJECT_DIR$/.idea/wedmapp.iml" />
     </modules>
   </component>
 </project>

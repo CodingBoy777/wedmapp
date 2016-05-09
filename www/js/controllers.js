@@ -26,16 +26,6 @@ angular.module('ionicApp.controllers', [])
 
     $scope.getSpeed = 2;//设置速度初始值
 
-    //刷新IP地址
-    /*$scope.refreshIp= function () {
-      //socket = io.connect($rootScope.ipLocation);
-      resCmdWebSocket.close();
-      resCmdWebSocket = new WebSocket("ws://"+ipAddress+":8080");
-      resCmdWebSocket.onopen = function(){
-        console.log('chengogong!');
-        alert("刷新成功！");
-      };
-    };*/
     speedChange = function(){
 
       console.log(JSON.stringify({'cmd':'setInnerSpeed', level: speed.value}));
@@ -151,7 +141,8 @@ angular.module('ionicApp.controllers', [])
 
   })
 
-  .controller('settingsCtrl', function ($scope,$rootScope, edmData) {
+  .controller('settingsCtrl', function ($scope,$rootScope, edmData, $timeout) {
+
     $scope.setIpAddress = function(){
       ipAddress = document.getElementById("ipInput").value;
       webIpAddress = "ws://" + ipAddress;
@@ -175,18 +166,23 @@ angular.module('ionicApp.controllers', [])
         console.log('cmd succeed!');
         document.getElementById("information").innerHTML += "cmd connect success"+ "<br />" + webIpAddress + ":8080" + "</br>";
         flagCmdConnect = 1;
+        resCmdWebSocket.send(JSON.stringify({'cmd': 'getIOState'}));
+        resCmdWebSocket.send(JSON.stringify({'cmd': 'getSelDiv'}));
+
         //alert("connection success");
       };
 
       //检查是否连接成功
       setTimeout(function () {
         if (flagInfoConnect == 1 && flagCmdConnect == 1) {
-          alert("connection success");
+          console.log("connection success");
+          document.getElementById("information").innerHTML += "全部连接成功"+ "<br />";
+          document.getElementById("machineStatus").innerHTML = "已连接";
         }
         else {
           alert("connection failed");
         }
-      }, 10);
+      }, 500);
 
       resCmdWebSocket.onmessage = function(){
         var data = JSON.parse(event.data);
@@ -211,30 +207,79 @@ angular.module('ionicApp.controllers', [])
           //setTimeout(updateIO(ioInfo),2);
           console.log(ioInfo);
 
-          $rootScope.$apply(function(){
-            if(ioInfo.highfrequence == 0){
-              $rootScope.toggleHighFrequence = false;
-            }
-            else{
-              $rootScope.toggleHighFrequence = true;
-            }
+          $timeout(function(){
             if(ioInfo.waterPump == 0){
-              $rootScope.toggleWaterPump = false;
+              $rootScope.toggleWaterPump = "false";
+              document.getElementById("waterPumpStatus").innerHTML = "关";
             }
             else{
               $rootScope.toggleWaterPump = true;
+              document.getElementById("waterPumpStatus").innerHTML = "开";
             }
+            if(ioInfo.highfrequence == 0){
+              $rootScope.toggleHighFrequence = false;
+              console.log("toggleHighFrequence动了");
+              document.getElementById("highFrequenceStatus").innerHTML = "关";
+            }
+            else{
+              $rootScope.toggleHighFrequence = true;
+              document.getElementById("highFrequenceStatus").innerHTML = "开";
+            }
+
             if(ioInfo.wireTransport == 0){
               $rootScope.toggleWireTransport = false;
+              document.getElementById("wireTransportStatus").innerHTML = "关";
             }
             else{
               $rootScope.toggleWireTransport = true;
+              document.getElementById("wireTransportStatus").innerHTML = "开";
             }
 
             $rootScope.wireSpeedValue = ioInfo.wireSpeed;
+            document.getElementById("wireSpeedStatus").innerHTML = ioInfo.wireSpeed;
             $rootScope.currentValue = ioInfo.current;
+            document.getElementById("currentStatus").innerHTML = ioInfo.current;
+            $rootScope.$apply();
+          },10);
+
+
+         /* $rootScope.$apply(function(){
+            if(ioInfo.waterPump == 0){
+              $rootScope.toggleWaterPump = false;
+              console.log("toggleWaterPump动了" + $rootScope.toggleWaterPump);
+              document.getElementById("waterPumpStatus").innerHTML = "关";
+            }
+            else{
+              $rootScope.toggleWaterPump = true;
+              document.getElementById("waterPumpStatus").innerHTML = "开";
+            }
+            if(ioInfo.highfrequence == 0){
+              $rootScope.toggleHighFrequence = false;
+              console.log("toggleHighFrequence动了");
+              document.getElementById("highFrequenceStatus").innerHTML = "关";
+            }
+            else{
+              $rootScope.toggleHighFrequence = true;
+              document.getElementById("highFrequenceStatus").innerHTML = "开";
+            }
+
+            if(ioInfo.wireTransport == 0){
+              $rootScope.toggleWireTransport = false;
+              document.getElementById("wireTransportStatus").innerHTML = "关";
+            }
+            else{
+              $rootScope.toggleWireTransport = true;
+              document.getElementById("wireTransportStatus").innerHTML = "开";
+            }
+
+            $rootScope.wireSpeedValue = ioInfo.wireSpeed;
+            document.getElementById("wireSpeedStatus").innerHTML = ioInfo.wireSpeed;
+            $rootScope.currentValue = ioInfo.current;
+            document.getElementById("currentStatus").innerHTML = ioInfo.current;
 
           });
+          $rootScope.$apply();*/
+
         }
 
         if(data.type=='SelDiv') {
@@ -321,37 +366,17 @@ angular.module('ionicApp.controllers', [])
 
   })
 
+  .controller('processCtrl', function ($scope, edmData, $rootScope) {
+    console.log('processCtrl');
+    $scope.setPWM = function () {
+      console.log(pulseWidthValue.value + "<br>" + ratioValue.value);
+      resCmdWebSocket.send(JSON.stringify({'cmd': 'setPWM', ratio: ratioValue.value, pulseWidth: pulseWidthValue.value}));
+    }
+
+  })
+
   .controller('testCtrl', function ($scope, edmData, $rootScope) {
     console.log('testCtrl');
-    //下面是测试 可以删除可以留着
-   /* console.log(CMD.FRAME_GET_POS);
-    //var CMD = edmData.all();
-    var buffPos = new ArrayBuffer(256);
-    buffPos = bufferHandle.getBufferHead(0, CMD.FRAME_GET_POS);
-    buffPos = bufferHandle.getBufferTail(buffPos);
-    var testBuffer = new Uint8Array(buffPos);
-    console.log(buffPos);
-    console.log(testBuffer);
-    console.log(CMD.FRAME_GET_POS);
-    edmData.inputBuffer(testBuffer);
-    */
-    setTimeout(function(){
-      $scope.$apply(function(){
-        $scope.toggleWaterPump=true;
-      });
-    },5);
-
-
-    //获取IO状态
-    $scope.getIOState = function(){
-      resCmdWebSocket.send(JSON.stringify({'cmd': 'getIOState'}));
-
-    }
-
-    $scope.getSelDiv = function(){
-      resCmdWebSocket.send(JSON.stringify({'cmd': 'getSelDiv'}));
-
-    }
 
 
 

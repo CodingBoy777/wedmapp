@@ -4,16 +4,16 @@
 
     <div class="list">
       <div class="item item-divider">开关</div>
-      <ion-toggle ng-model="toggleWaterPump" ng-change="">水泵</ion-toggle>
-      <ion-toggle ng-model="toggleHighFrequence" ng-change="">高频</ion-toggle>
-      <ion-toggle ng-model="toggleWireTransport" ng-change="">运丝</ion-toggle>
+      <ion-toggle id="toggleWaterPumpValue" ng-model="$root.toggleWaterPump" ng-change="">水泵</ion-toggle>
+      <ion-toggle id="toggleHighFrequence" ng-model="$root.toggleHighFrequence" ng-change="">高频</ion-toggle>
+      <ion-toggle id="toggleWireTransport" ng-model="$root.toggleWireTransport" ng-change="">运丝</ion-toggle>
     </div>
 
     <div class="list">
       <div class="item item-divider">运丝速度</div>
-      <div class="item" ng-bind="wireSpeedValue"></div>
+      <div class="item" ng-bind="$root.wireSpeedValue"></div>
       <div class="item item-divider">电流</div>
-      <div class="item" ng-bind="currentValue"></div>
+      <div class="item" ng-bind="$root.currentValue"></div>
     </div>
 
     <div>

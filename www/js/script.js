@@ -35,7 +35,6 @@ angular.module('ionicApp', ['ionic',  'ionicApp.controllers','ionicApp.services'
       })
 
 
-
       .state('tabs.prepare', {
         url: "/prepare",
         views: {
@@ -65,6 +64,16 @@ angular.module('ionicApp', ['ionic',  'ionicApp.controllers','ionicApp.services'
         }
       })
 
+      .state('tabs.process', {
+        url: "/process",
+        views: {
+          'process-tab': {
+            templateUrl: "templates/process.html",
+            controller: 'processCtrl'
+          }
+        }
+      })
+
       .state('tabs.test', {
         url: "/test",
         views: {
@@ -81,12 +90,12 @@ angular.module('ionicApp', ['ionic',  'ionicApp.controllers','ionicApp.services'
         templateUrl: "templates/event.html"
       })
 
-      .state('event.check', {
-        url: "/check",
+      .state('event.settings', {
+        url: "/settings",
         views: {
           'menuContent': {
-            templateUrl: "templates/check.html",
-            controller: 'checkCtrl'
+            templateUrl: "templates/settings.html",
+            controller: 'settingsCtrl'
           }
         }
       });

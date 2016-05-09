@@ -1,0 +1,33 @@
+<ion-view title="Process">
+  <ion-content class="padding">
+
+    显示当前文件的内容或者图形，<br>
+    加工参数的设置，包括脉宽、占空比、电流、丝速、速度<br>
+    暂停/开始按钮，停止按钮，加工进度<br>
+
+
+
+    <div class="list list-inset">
+      <div class="item">显示当前文件的内容或者图形</div>
+    </div>
+
+    <div class="list list-inset">
+      <div class="item item-divider">
+        设置脉宽与占空比
+      </div>
+      <label  class="item item-input">
+        <input type="text" id="pulseWidthValue" placeholder="pulseWidth">
+        <input type="text" id="ratioValue" placeholder="ratio">%
+        <button class="button" on-touch="setPWM();">确认</button>
+      </label>
+    </div>
+
+
+    <div class="row">
+      <div class="col"><button class="button ion-play  button-royal"on-touch="" ></button></div>
+      <div class="col"><button class="button ion-pause  button-royal"on-touch="" ></button></div>
+      <div class="col"><button class="button ion-stop  button-royal"on-touch="" ></button></div>
+    </div>
+
+  </ion-content>
+</ion-view>

@@ -11,6 +11,7 @@
     <file url="file://$PROJECT_DIR$/www/templates/check.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/templates/facts.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/templates/prepare.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/templates/process.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/templates/settings.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/templates/test.html" charset="UTF-8" />
   </component>

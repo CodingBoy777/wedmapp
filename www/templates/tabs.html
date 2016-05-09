@@ -19,7 +19,7 @@
       <ion-tab title="主页" icon="ion-home" href="#/tab/home">
         <ion-nav-view name="home-tab"></ion-nav-view>
       </ion-tab>
-      <ion-tab title="准备" icon="ion-play" ui-sref="tabs.prepare">
+      <ion-tab title="准备" icon="ion-settings" ui-sref="tabs.prepare">
         <ion-nav-view name="prepare-tab"></ion-nav-view>
       </ion-tab>
       <ion-tab title="IP连接" icon="ion-gear-b" ui-sref="tabs.settings">
@@ -27,6 +27,9 @@
       </ion-tab>
       <ion-tab title="文件" icon="ion-folder" ui-sref="tabs.files">
         <ion-nav-view name="files-tab"></ion-nav-view>
+      </ion-tab>
+      <ion-tab title="加工" icon="ion-play" ui-sref="tabs.process">
+        <ion-nav-view name="process-tab"></ion-nav-view>
       </ion-tab>
       <ion-tab title="测试" icon="ion-compose" ui-sref="tabs.test">
         <ion-nav-view name="test-tab"></ion-nav-view>
@@ -46,11 +49,10 @@
     </ion-header-bar>
     <ion-content>
       <ul class="list">
-        <ion-item href="#/event/check" class="item" menu-toggle="left">Check-in</ion-item>
+        <ion-item href="#/event/settings" class="item" menu-toggle="left">settings</ion-item>
 
-        <ion-item href="#/event/attendees" class="item" menu-toggle="left">Attendees</ion-item>
       </ul>
-      <a class="item" href="#/check" menu-toggle="left">ddd</a>
+      <a class="item" >test</a>
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>

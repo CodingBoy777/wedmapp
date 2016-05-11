@@ -45,7 +45,7 @@ angular.module('ionicApp', ['ionic',  'ionicApp.controllers','ionicApp.services'
         }
       })
 
-      .state('tabs.settings', {
+      /*.state('tabs.settings', {
         url: "/settings",
         views: {
           'settings-tab': {
@@ -53,7 +53,8 @@ angular.module('ionicApp', ['ionic',  'ionicApp.controllers','ionicApp.services'
             controller: 'settingsCtrl'
           }
         }
-      })
+      })*/
+
       .state('tabs.files', {
         url: "/files",
         views: {

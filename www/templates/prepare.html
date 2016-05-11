@@ -2,7 +2,7 @@
   <ion-content class="padding">
 
     <div id="coordinate" class="list">
-      <div class="item item-divider">Postion</div>
+      <div class="item item-divider">坐标Postion</div>
       <div class="item item-text-wrap">
         <div class="row">
           <div class="col col-10">X</div>
@@ -21,13 +21,13 @@
 
     <div class="list">
       <div class="item item-divider">
-        <span>speed value:</span>
-        <span>{{getSpeed}}</span>
+        <span>手动速度:</span>
+        <span>{{$root.getSpeed}}</span>
       </div>
       <div class="item range range-positive">
-        <i>0</i><i class="icon ion-minus-round"></i>
-        <input type="range" id="speed" ng-model="getSpeed"  min="1" max="10" onchange="speedChange();">
-        <i class="icon ion-plus"></i><i>9</i>
+        <i>1</i><i class="icon ion-minus-round"></i>
+        <input type="range" id="speed" ng-model="$root.getSpeed"  min="1" max="10" onchange="speedChange();">
+        <i class="icon ion-plus"></i><i>10</i>
       </div>
     </div>
     <div class="row">
@@ -59,17 +59,18 @@
     <br>
 
     <div class="row">
-      <ion-toggle id="toggleWaterPumpValue" ng-model="$root.toggleWaterPump" ng-change="">水泵</ion-toggle>
-      <ion-toggle id="toggleHighFrequence" ng-model="$root.toggleHighFrequence" ng-change="">高频</ion-toggle>
-      <ion-toggle id="toggleWireTransport" ng-model="$root.toggleWireTransport" ng-change="">运丝</ion-toggle>
+      <div class="col"><ion-toggle id="toggleWaterPumpValue" ng-model="$root.toggleWaterPump" onchange="waterPumpChange();">水泵</ion-toggle></div>
+      <div class="col"><ion-toggle id="toggleHighFrequence" ng-model="$root.toggleHighFrequence" onchange="highFrequenceChange();">高频</ion-toggle></div>
+    </div>
+    <div class="row">
+      <div class="col"><ion-toggle id="toggleWireTransport" ng-model="$root.toggleWireTransport" onchange="wireTransportChange();">运丝</ion-toggle></div>
+      <div class="col"><ion-toggle id="toggleAxisUnlock" ng-model="$root.toggleAxisUnlock" onchange="axisUnlockChange();">解锁</ion-toggle></div>
+    </div>
+    <div class="row">
+      <div class="col col-50"><ion-toggle id="toggleStartWire" ng-model="$root.toggleStartWire" onchange="startWireChange();">上丝</ion-toggle></div>
     </div>
 
-    <div class="list">
-      <div class="item item-divider">运丝速度</div>
-      <div class="item" ng-bind="$root.wireSpeedValue"></div>
-      <div class="item item-divider">电流</div>
-      <div class="item" ng-bind="$root.currentValue"></div>
-    </div>
+
 
 
   </ion-content>

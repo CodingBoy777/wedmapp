@@ -30,7 +30,7 @@ angular.module('ionicApp.controllers', [])
   .controller('prepareCtrl', function ($scope, $rootScope, edmData, $timeout) {
 
 
-
+    console.log('prepareCtrl');
     speedChange = function(){
 
       console.log(JSON.stringify({'cmd':'setInnerSpeed', level: speed.value}));
@@ -141,7 +141,7 @@ angular.module('ionicApp.controllers', [])
 
   })
 
-  .controller('settingsCtrl', function ($scope,$rootScope, edmData, $timeout) {
+  .controller('ipSettingCtrl', function ($scope,$rootScope, edmData, $timeout) {
 
     $scope.setIpAddress = function(){
       ipAddress = document.getElementById("ipInput").value;
@@ -360,10 +360,7 @@ angular.module('ionicApp.controllers', [])
     };
 
   })
-  .controller('filesCtrl', function ($scope, edmData, $rootScope) {
-    console.log('filesCtrl');
 
-  })
 
   .controller('processCtrl', function ($scope, edmData, $rootScope) {
     console.log('processCtrl');

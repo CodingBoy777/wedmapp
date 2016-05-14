@@ -5,7 +5,7 @@
       <ion-nav-back-button   class="button-icon ion-arrow-left-a">
       </ion-nav-back-button>
       <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()">
+        <button class="button button-icon button-clear ion-android-settings" ng-click="toggleLeft()">
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
@@ -16,10 +16,10 @@
         -->
     <ion-tabs class="tabs-icon-bottom tabs-positive">
 
-      <ion-tab title="主页" icon="ion-home" href="#/tab/home">
+      <ion-tab title="主页" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/tab/home">
         <ion-nav-view name="home-tab"></ion-nav-view>
       </ion-tab>
-      <ion-tab title="准备" icon="ion-settings" ui-sref="tabs.prepare">
+      <ion-tab title="准备" icon-off="ion-ios-settings" icon-on="ion-ios-settings-strong" ui-sref="tabs.prepare">
         <ion-nav-view name="prepare-tab"></ion-nav-view>
       </ion-tab>
 
@@ -27,13 +27,13 @@
         <ion-nav-view name="settings-tab"></ion-nav-view>
       </ion-tab>-->
 
-      <ion-tab title="文件" icon="ion-folder" ui-sref="tabs.files">
+      <ion-tab title="文件" icon-off="ion-ios-folder-outline" icon="ion-ios-folder" ui-sref="tabs.files">
         <ion-nav-view name="files-tab"></ion-nav-view>
       </ion-tab>
-      <ion-tab title="加工" icon="ion-play" ui-sref="tabs.process">
+      <ion-tab title="加工" icon-off="ion-ios-play-outline" icon-on="ion-ios-play" ui-sref="tabs.process">
         <ion-nav-view name="process-tab"></ion-nav-view>
       </ion-tab>
-      <ion-tab title="测试" icon="ion-compose" ui-sref="tabs.test">
+      <ion-tab title="测试" icon-off="ion-ios-compose-outline" icon-on="ion-ios-compose" ui-sref="tabs.test">
         <ion-nav-view name="test-tab"></ion-nav-view>
         <!--<ion-nav-view name="check-tab"></ion-nav-view>-->
 
@@ -51,7 +51,7 @@
     </ion-header-bar>
     <ion-content>
       <ul class="list">
-        <ion-item href="#/event/settings" class="item" menu-toggle="left">IP设置</ion-item>
+        <ion-item href="#/event/ipSetting" class="item" menu-toggle="left">IP设置</ion-item>
 
       </ul>
       <a class="item" >test</a>

@@ -13,21 +13,25 @@
         "cordova-plugin-crosswalk-webview": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         },
-        "cordova-plugin-device": {
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         },
-        "cordova-plugin-statusbar": {
+        "cordova-plugin-file": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         },
-        "cordova-plugin-whitelist": {
+        "cordova-plugin-vibration": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         },
-        "ionic-plugin-keyboard": {
+        "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
+        }
+    }
 }

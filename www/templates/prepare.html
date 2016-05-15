@@ -2,7 +2,7 @@
   <ion-content class="padding">
 
     <div id="coordinate" class="list">
-      <div class="item item-divider">坐标Postion</div>
+      <div class="item item-divider">机械坐标</div>
       <div class="item item-text-wrap">
         <div class="row">
           <div class="col col-10">X</div>
@@ -30,33 +30,35 @@
         <i class="icon ion-plus"></i><i>10</i>
       </div>
     </div>
-    <div class="row">
+    <div class="list">
+      <div class="item item-text-wrap">
+        <div class="row">
 
-      <!-- 正式版本-->
-      <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
-      on-touch="xNegPointMove();" on-release="stopPointMove();">x-</button></div>
-      <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
-      on-touch="xPosPointMove();" on-release="stopPointMove();">x+</button></div>
-      <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
-      on-touch="yNegPointMove();" on-release="stopPointMove();">y-</button></div>
-      <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
-      on-touch="yPosPointMove();" on-release="stopPointMove();">y+</button></div>
+          <!-- 正式版本-->
+          <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
+          on-touch="xNegPointMove();" on-release="stopPointMove();">x-</button></div>
+          <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
+          on-touch="xPosPointMove();" on-release="stopPointMove();">x+</button></div>
+          <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
+          on-touch="yNegPointMove();" on-release="stopPointMove();">y-</button></div>
+          <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
+          on-touch="yPosPointMove();" on-release="stopPointMove();">y+</button></div>
 
+        </div>
+        <div class="row">
+
+          <!-- 正式版本-->
+          <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
+          on-touch="uNegPointMove();" on-release="stopPointMove();">u-</button></div>
+          <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
+          on-touch="uPosPointMove();" on-release="stopPointMove();">u+</button></div>
+          <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
+          on-touch="vNegPointMove();" on-release="stopPointMove();">v-</button></div>
+          <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
+          on-touch="vPosPointMove();" on-release="stopPointMove();">v+</button></div>
+        </div>
+      </div>
     </div>
-    <div class="row">
-
-      <!-- 正式版本-->
-      <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
-      on-touch="uNegPointMove();" on-release="stopPointMove();">u-</button></div>
-      <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
-      on-touch="uPosPointMove();" on-release="stopPointMove();">u+</button></div>
-      <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
-      on-touch="vNegPointMove();" on-release="stopPointMove();">v-</button></div>
-      <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
-      on-touch="vPosPointMove();" on-release="stopPointMove();">v+</button></div>
-    </div>
-
-    <br>
 
     <div class="row">
       <div class="col"><ion-toggle id="toggleWaterPumpValue" ng-model="$root.toggleWaterPump" onchange="waterPumpChange();">水泵</ion-toggle></div>
@@ -69,7 +71,6 @@
     <div class="row">
       <div class="col col-50"><ion-toggle id="toggleStartWire" ng-model="$root.toggleStartWire" onchange="startWireChange();">上丝</ion-toggle></div>
     </div>
-
 
 
 

@@ -177,10 +177,10 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
                   // add cancel code..
                 },
                 buttonClicked: function(index) {
-                    if(index==0) {
+                    if(index === 0) {
                         $scope.renameFile(file);
                     }
-                    if(index==1) {
+                    if(index === 1) {
                         $scope.stickTopFile(file);
                     }
                     return true;

@@ -243,6 +243,7 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
         });
     };
 
+    // 置顶文件
     $scope.stickTopFile = function (file) {
         $scope.filelist.splice($scope.filelist.indexOf(file), 1);
         $scope.filelist.unshift(file);
@@ -250,10 +251,27 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
         $scope.showToast(file.name + '已置顶');
     };
 
-    $scope.doImport = function() {
-        var alertPopup = $ionicPopup.alert({
-            title: '导入文件列表',
-            template: 'Being Developed!'
+    // 同步文件列表
+    $scope.synchroniseFilelist = function() {
+        window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory + "aWEDM/files/", function(dirEntry) {
+            var directoryReader = dirEntry.createReader();
+            directoryReader.readEntries(function(entries) {
+                // alert("INFO: Listing entries");
+                var i;
+                var newfilelist = new Array(entries.length);
+                for(i=0; i<entries.length; i++) {
+                    newfilelist[i] = {};
+                    newfilelist[i].name = entries[i].name;
+                    // alert(newfilelist[i].name);         
+                }
+                // alert(JSON.stringify(newfilelist));
+                $scope.filelist = newfilelist;
+                $scope.writeJsonFile();
+                $scope.showToast('文件列表已更新');
+            }, function(error) {
+                alert("Failed to list directory files: " + error.code);
+            });
         });
+
     };
 });

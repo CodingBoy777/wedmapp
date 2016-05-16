@@ -29,15 +29,12 @@ angular.module('ionicApp.controllers', [])
 
   .controller('prepareCtrl', function ($scope, $rootScope, edmData, $timeout) {
 
-
     console.log('prepareCtrl');
     speedChange = function(){
-
       console.log(JSON.stringify({'cmd':'setInnerSpeed', level: speed.value}));
       resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: speed.value}));
 
     };
-
 
 
     //x轴正向移动
@@ -135,8 +132,6 @@ angular.module('ionicApp.controllers', [])
         resCmdWebSocket.send(JSON.stringify({'cmd': 'SetWireReplace','value': 1}));
       }
     };
-
-
 
 
   })
@@ -259,7 +254,6 @@ angular.module('ionicApp.controllers', [])
             $rootScope.$apply();
           },10);
 
-
         }
 
         if(data.type=='SelDiv') {
@@ -282,7 +276,6 @@ angular.module('ionicApp.controllers', [])
             console.log("内部速度");
           }
         }
-
       };
 
       resCmdWebSocket.onclose = function(){
@@ -360,7 +353,6 @@ angular.module('ionicApp.controllers', [])
     };
 
   })
-
 
   .controller('processCtrl', function ($scope, edmData, $rootScope) {
     console.log('processCtrl');
@@ -467,6 +459,63 @@ angular.module('ionicApp.controllers', [])
   .controller('testCtrl', function ($scope, edmData, $rootScope) {
     console.log('testCtrl');
 
+    var load_prg = document.getElementById('load_prg');
+    var new_prg = document.getElementById("new_prg");
+    var btns = document.getElementsByClassName("btns")[0];
+    var text = document.getElementsByClassName("text")[0];
+    var preContainer = document.getElementById("preContainer");
+
+    load_prg.onchange = function() {
+      if(this.files.length) {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function()
+        {
+          var str = this.result;
+          //code.innerText = str;
+          highlight(str);
+          var myInterpreter = new gcodeInterpreter(str);
+          var result = myInterpreter.interpreter();
+          toIdealShape(result, shape, paintScale);
+        };
+        reader.readAsText(file);
+      }
+    }
+
+    function highlight(str) {
+      preContainer.innerHTML = '<pre data-language="gcode">/**start**/&#10'+ str + '&#10/**end**/'; //&lt;gcode&gt;&#10
+      //JSHL();
+      preContainer.scrollTop = preContainer.scrollHeight + 'px';
+    }
+
+    function getWidth () {
+      return document.getElementById("graphicsStage").offsetWidth
+    }
+    function getHeight () {
+      return document.getElementById("graphicsStage").offsetHeight
+    }
+
+//console.log(getWidth(),getHeight())
+    window.onresize = function(){
+      stage.setWidth(getWidth());
+      stage.setHeight(getHeight());
+    }
+
+    var stage = new Kinetic.Stage({
+      container: "graphicsStage", //<div>��id
+      //container: "testImage", //<div>��id
+      colour: "red",
+      width: getWidth(), //��������̨���
+      height: getHeight() //��������̨�߶�
+    });
+
+//console.log(stage.getWidth(),stage.getHeight())
+    var shape = new Kinetic.Layer({
+      offsetX: -100.5,//Math.floor(-stage.getWidth() / 2) - 0.5,
+      offsetY: -100.5,//Math.floor(-stage.getHeight() / 2) - 0.5,
+      id: "shape"
+    })
+    stage.add(shape);
 
 
   })

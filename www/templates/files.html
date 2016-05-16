@@ -1,22 +1,24 @@
 <ion-view view-title="FILES">
 	<ion-content>
-		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
-        </ion-refresher>
-        <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
-            <ion-item ng-repeat="file in filelist" item="item" class="item-remove-animate" file-on-tap="onFileTap(file)" file-on-hold="onFileHold(file)">
-                	{{ file.name }}
-                <ion-delete-button class="ion-minus-circled" ng-click="deleteFile(file)">
-                </ion-delete-button>
-                <!-- <ion-option-button class="button-balanced" ng-click="openFile(file)">
-                    打开
-                </ion-option-button>
-                <ion-option-button class="button-calm" ng-click="renameFile(file)">
-                    重命名
-                </ion-option-button> -->
-                <ion-reorder-button class="ion-navicon" on-reorder="moveFile(file, $fromIndex, $toIndex)"></ion-reorder-button>
-            </ion-item>
-        </ion-list>
-        
+
+    <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+      <ion-item ng-repeat="file in filelist" item="item" class="item-remove-animate" file-on-tap="onFileTap(file)"
+                file-on-hold="onFileHold(file)">
+        {{ file.name }}
+        <ion-delete-button class="ion-minus-circled" ng-click="deleteFile(file)">
+        </ion-delete-button>
+        <!-- <ion-option-button class="button-balanced" ng-click="openFile(file)">
+            打开
+        </ion-option-button>
+        <ion-option-button class="button-calm" ng-click="renameFile(file)">
+            重命名
+        </ion-option-button> -->
+        <ion-reorder-button class="ion-navicon" on-reorder="moveFile(file, $fromIndex, $toIndex)"></ion-reorder-button>
+      </ion-item>
+    </ion-list>
 	</ion-content>
     <nav mfb-menu position="br" effect="slidein-spring" label="展开/收起" active-icon="ion-android-close" resting-icon="ion-more" toggling-method="click" menu-state="data.showMfb" main-action="isCloseMfb()">
         <button mfb-button mfb-button-close icon="ion-android-add" label="新建" ng-click="newFile()"></button>

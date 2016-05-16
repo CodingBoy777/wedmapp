@@ -2,6 +2,10 @@
  * Created by allon on 2016/04/05
  */
 
+
+
+var paintScale = 0.002;
+
 var socket;
 var posInfo={
   x : 0,

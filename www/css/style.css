@@ -3,6 +3,23 @@
  * Action Sheets for Android
  * --------------------------------------------------
  */
+
+/*文件模块编辑区样式*/
+#fileTextarea {
+    background-color: #f8f8f8;
+    
+    width: 95%;
+    height: 198px;
+
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 5px;
+
+    border: solid 1px #886aea;
+
+    color: black;
+}
+
 .platform-android .action-sheet-backdrop.active
 {
     background-color: rgba(0, 0, 0, .1);

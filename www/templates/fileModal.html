@@ -1,0 +1,19 @@
+<ion-view>
+  <ion-nav-title>{{fileTitle}}</ion-nav-title>
+  <ion-content class="padding">
+    <!-- textarea样式见css/style.css -->
+    <textarea ng-model="fileContentUser" id="fileTextarea">
+    </textarea>
+    <div class="row">
+      <div class="col">
+        <button class="button button-assertive button-small" ng-click="clearFileContent()">&nbsp;&nbsp;&nbsp;&nbsp;清空&nbsp;&nbsp;&nbsp;&nbsp;</button>
+      </div>
+      <div class="col">
+        <button class="button button-royal button-small" ng-click="resetFileContent()">&nbsp;&nbsp;&nbsp;&nbsp;重置&nbsp;&nbsp;&nbsp;&nbsp;</button>
+      </div>
+      <div class="col">
+        <button class="button button-balanced button-small" ng-click="saveFileContent(fileContentUser)">&nbsp;&nbsp;&nbsp;&nbsp;保存&nbsp;&nbsp;&nbsp;&nbsp;</button>
+      </div>  
+    </div>
+  </ion-content>
+</ion-view>

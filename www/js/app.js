@@ -1,4 +1,4 @@
-angular.module('ionicApp', ['ionic', 'ngCordova', 'ng-mfb', 'ionicApp.controllers', 'ionicApp.filesCtrl', 'ionicApp.services', 'ionicApp.directives'])
+angular.module('ionicApp', ['ionic', 'ngCordova', 'ng-mfb', 'ionicApp.controllers', 'ionicApp.filesCtrl', 'ionicApp.fileModalCtrl', 'ionicApp.services', 'ionicApp.directives'])
   .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -90,18 +90,29 @@ angular.module('ionicApp', ['ionic', 'ngCordova', 'ng-mfb', 'ionicApp.controller
         }
       })
 
-      .state('event', {
+      .state('events', {
         url: "/event",
         abstract: true,
-        templateUrl: "templates/event.html"
+        templateUrl: "templates/events.html"
       })
 
-      .state('event.ipSetting', {
+      .state('events.ipSetting', {
         url: "/ipSetting",
         views: {
-          'menuContent': {
+          'ipSetting-event': {
             templateUrl: "templates/ipSetting.html",
             controller: 'ipSettingCtrl'
+          }
+        }
+      })
+
+      .state('events.fileModal', {
+        cache: false,
+        url: "/fileModal",
+        views: {
+          'fileModal-event': {
+            templateUrl: "templates/fileModal.html",
+            controller: 'fileModalCtrl'
           }
         }
       });

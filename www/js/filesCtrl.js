@@ -1,6 +1,7 @@
 angular.module('ionicApp.filesCtrl', ['ionic'])
-.controller('filesCtrl', function ($scope, $timeout, $cordovaVibration, $cordovaToast, $cordovaFile, $ionicPopup, $ionicActionSheet) {
-
+.controller('filesCtrl', function ($scope, $rootScope, $timeout, $cordovaVibration, $cordovaToast, $cordovaFile, $ionicPopup, $ionicActionSheet,  $state) {
+    console.log('filesCtrl');
+    console.log('请在设备上测试本模块');
     $scope.filelist = [];
     $scope.data = {
         showDelete: false,
@@ -106,7 +107,7 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
                             // success
                             $scope.filelist.unshift($scope.newfile);
                             $scope.writeJsonFile();
-                            $scope.showToast($scope.newfile.name + '已新建');            
+                            $scope.showToast($scope.newfile.name + '文件已新建');            
                             
                         }, function (error) {
                             // error
@@ -131,7 +132,7 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
                 $scope.filelist.splice($scope.filelist.indexOf(file), 1);
                 $scope.writeJsonFile();
                 $scope.vibration(100);
-                $scope.showToast(file.name + '已删除');
+                $scope.showToast(file.name + '文件已删除');
             }, function (error) {
                 // error
                 alert(JSON.stringify(error));
@@ -142,20 +143,6 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
         $scope.filelist.splice(fromIndex, 1);
         $scope.filelist.splice(toIndex, 0, file);
         $scope.writeJsonFile();
-    };
-
-    $scope.onFileTap = function(file) {
-        if(!($scope.data.showDelete || $scope.data.showReorder)) {
-            $scope.data.showMfb = closed;
-            $scope.openFile(file);
-        }         
-    };
-
-    $scope.openFile = function (file) {
-        var alertPopup = $ionicPopup.alert({
-            title: '打开' + file.name + '文件',
-            template: 'Being Developed!'
-        });
     };
 
     $scope.onFileHold = function(file) {
@@ -199,8 +186,6 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
             buttons: [
             { text: '取消',
                 onTap: function(e) {
-                    // console.log('你取消了' + file.name +'的重命名操作');
-                    // $scope.closeOptbtns();
                 }
             },
             {
@@ -225,7 +210,7 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
                             $cordovaFile.moveFile(cordova.file.externalRootDirectory + "aWEDM/files/", file.name, cordova.file.externalRootDirectory + "aWEDM/files/", $scope.renamefile.name)
                                 .then(function (success) {
                                     // success
-                                    $scope.showToast(file.name + '已更名为' + $scope.renamefile.name);
+                                    $scope.showToast(file.name + '文件已更名为' + $scope.renamefile.name);
                                     file.name = $scope.renamefile.name;
                                     $scope.writeJsonFile(); 
                                                                      
@@ -273,5 +258,39 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
             });
         });
 
+    };
+
+    $scope.onFileTap = function(file) {
+        if(!($scope.data.showDelete || $scope.data.showReorder)) {
+            $scope.data.showMfb = closed;
+            $scope.openFile(file);
+        }         
+    };
+
+    $scope.openFile = function (file) {
+        /*$ionicModal.fromTemplateUrl('templates/fileModal.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal;
+        });
+        $scope.openFileModal = function() {
+            $scope.modal.hide();
+        };
+        $scope.closeFileModal = function() {
+            $scope.modal.hide();
+        };*/
+        
+        $rootScope.fileTitle = file.name;
+        $cordovaFile.readAsText(cordova.file.externalRootDirectory + "aWEDM/files/", $rootScope.fileTitle)
+            .then(function (success) {
+                // success
+                $rootScope.fileContentUser = success;
+                // $rootScope.fileContentMaster = success;
+            }, function (error) {
+                // error
+                alert(JSON.stringify(error));
+            });
+        $state.go('events.fileModal');
     };
 });

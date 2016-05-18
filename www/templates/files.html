@@ -5,8 +5,7 @@
     </ion-refresher>
 
     <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
-      <ion-item ng-repeat="file in filelist" item="item" class="item-remove-animate" file-on-tap="onFileTap(file)"
-                file-on-hold="onFileHold(file)">
+      <ion-item ng-repeat="file in filelist" item="item" class="item-remove-animate" file-on-tap="onFileTap(file)" file-on-hold="onFileHold(file)">
         {{ file.name }}
         <ion-delete-button class="ion-minus-circled" ng-click="deleteFile(file)">
         </ion-delete-button>

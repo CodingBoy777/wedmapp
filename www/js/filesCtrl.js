@@ -22,8 +22,8 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
         $timeout(function () {
             $scope.$broadcast('scroll.refreshComplete');
         }, 500);
-        $scope.data.showReorder = false; 
-        $scope.data.showDelete = false; 
+        $scope.data.showReorder = false;
+        $scope.data.showDelete = false;
         $scope.data.showMfb = closed;
         $scope.showToast('文件列表已刷新');
     };
@@ -86,7 +86,7 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
             subTitle: '以.3b结尾',
             scope: $scope,
             buttons: [
-            {   
+            {
                 text: '取消',
                 onTap: function(e) {
                     // console.log('你取消了新建文件操作');
@@ -107,16 +107,16 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
                             // success
                             $scope.filelist.unshift($scope.newfile);
                             $scope.writeJsonFile();
-                            $scope.showToast($scope.newfile.name + '文件已新建');            
-                            
+                            $scope.showToast($scope.newfile.name + '文件已新建');
+
                         }, function (error) {
                             // error
                             $scope.vibration(100);
-                            $scope.showToast($scope.newfile.name + '文件已存在');                       
+                            $scope.showToast($scope.newfile.name + '文件已存在');
                         });
-                    
+
                     return $scope.newfile.name;
-                    
+
                 }
                 }
             },
@@ -136,7 +136,7 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
             }, function (error) {
                 // error
                 alert(JSON.stringify(error));
-            });    
+            });
     };
 
     $scope.moveFile = function (file, fromIndex, toIndex) {
@@ -212,8 +212,8 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
                                     // success
                                     $scope.showToast(file.name + '文件已更名为' + $scope.renamefile.name);
                                     file.name = $scope.renamefile.name;
-                                    $scope.writeJsonFile(); 
-                                                                     
+                                    $scope.writeJsonFile();
+
                                 }, function (error) {
                                     // error
                                     alert(JSON.stringify(error));
@@ -247,7 +247,7 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
                 for(i=0; i<entries.length; i++) {
                     newfilelist[i] = {};
                     newfilelist[i].name = entries[i].name;
-                    // alert(newfilelist[i].name);         
+                    // alert(newfilelist[i].name);
                 }
                 // alert(JSON.stringify(newfilelist));
                 $scope.filelist = newfilelist;
@@ -264,7 +264,7 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
         if(!($scope.data.showDelete || $scope.data.showReorder)) {
             $scope.data.showMfb = closed;
             $scope.openFile(file);
-        }         
+        }
     };
 
     $scope.openFile = function (file) {
@@ -280,17 +280,58 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
         $scope.closeFileModal = function() {
             $scope.modal.hide();
         };*/
-        
+
         $rootScope.fileTitle = file.name;
         $cordovaFile.readAsText(cordova.file.externalRootDirectory + "aWEDM/files/", $rootScope.fileTitle)
             .then(function (success) {
                 // success
                 $rootScope.fileContentUser = success;
                 // $rootScope.fileContentMaster = success;
+
+
             }, function (error) {
                 // error
                 alert(JSON.stringify(error));
             });
         $state.go('events.fileModal');
+
+      $timeout(function(){
+
+        var stage = new Kinetic.Stage({
+          container: "graphicsStage", //<div>��id
+          //container: "testImage", //<div>��id
+          colour: "red",
+          width: 1000, //��������̨���
+          height: 1000 //��������̨�߶�
+        });
+
+//console.log(stage.getWidth(),stage.getHeight())
+        var shape = new Kinetic.Layer({
+          offsetX: -100.5,//Math.floor(-stage.getWidth() / 2) - 0.5,
+          offsetY: -100.5,//Math.floor(-stage.getHeight() / 2) - 0.5,
+          id: "shape"
+        })
+        stage.add(shape);
+
+
+        var str = $rootScope.fileContentUser;
+        //highlight(str);
+        var myInterpreter = new gcodeInterpreter(str);
+        var result = myInterpreter.interpreter();
+        toIdealShape(result, shape, paintScale);
+
+        window.onresize = function(){
+          stage.setWidth(100);
+          stage.setHeight(100);
+        }
+
+
+
+      },500);
+
+
     };
+
+
+
 });

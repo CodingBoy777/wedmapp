@@ -1,6 +1,8 @@
 angular.module('ionicApp.controllers', [])
   .controller('MainCtrl', function ($scope, $ionicSideMenuDelegate, $rootScope) {
 
+    $rootScope.fileContentUser = null;
+
     $rootScope.machineSpeedLevel = 1;//加工速度
     $rootScope.getSpeed = 2;// 手动速度 设置速度初始值
 
@@ -354,14 +356,39 @@ angular.module('ionicApp.controllers', [])
 
   })
 
-  .controller('processCtrl', function ($scope, edmData, $rootScope) {
+  .controller('processCtrl', function ($scope, edmData, $rootScope, $ionicPopup) {
     console.log('processCtrl');
 
     $scope.setPWM = function () {
-      console.log(pulseWidthValue.value + "<br>" + ratioValue.value);
+      var myPopup = $ionicPopup.show({
+        template: ' 脉宽：<input type="text" id="pulseWidthValue" >' +
+        '占空比：<input type="text" id="ratioValue" >',
+        title: '<b>设置脉宽与占空比</b>',
+        //subTitle: 'Please use normal things',
+        scope: $rootScope,
+        buttons: [
+          {
+            text: '<b>Save</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+              if (!(ratioValue.value&&pulseWidthValue.value)){
+                // 不允许用户关闭，除非输入两个值
+                e.preventDefault();
+              } else {
+                $rootScope.pulseWidthValue = pulseWidthValue.value;
+                $rootScope.ratioValue = ratioValue.value;
+                myPopup.close();
+              }
+            }
+          },
+          { text: 'Cancel' }
+        ]
+      });
+      console.log($rootScope.pulseWidthValue + "</br>" + $rootScope.ratioValue);
       if(!resCmdWebSocketOpen) return;
       resCmdWebSocket.send(JSON.stringify({'cmd': 'setPWM', ratio: ratioValue.value, pulseWidth: pulseWidthValue.value}));
     };
+
 
 
     machineSpeedLevelChange = function () {

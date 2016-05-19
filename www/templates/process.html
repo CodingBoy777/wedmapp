@@ -10,11 +10,18 @@
       <div class="item item-divider">
         脉宽与占空比
       </div>
-      <label  class="item item-input">
-        <input type="text" id="pulseWidthValue" placeholder="pulseWidth">
-        <input type="text" id="ratioValue" placeholder="ratio">%
-        <button class="button" on-touch="setPWM();">确认</button>
-      </label>
+      <div class="list list-inset">
+        <div class="item item-divider">
+          脉宽与占空比
+        </div>
+        <div class="item" on-touch="setPWM();">
+          <div class="row">
+            <div class="col">脉宽：{{$root.pulseWidthValue}}</div>
+            <div class="col">占空比：{{$root.ratioValue}}</div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
 

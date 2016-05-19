@@ -1,4 +1,9 @@
 <ion-view>
+  <ion-nav-buttons  side="left">
+    <a class="button button-icon ion-arrow-left-a"  href="#/tab/files">
+    </a>
+  </ion-nav-buttons>
+
   <ion-nav-title>{{fileTitle}}</ion-nav-title>
   <ion-content class="padding">
     <!-- textarea样式见css/style.css -->
@@ -13,7 +18,12 @@
       </div>
       <div class="col">
         <button class="button button-balanced button-small" ng-click="saveFileContent(fileContentUser)">&nbsp;&nbsp;&nbsp;&nbsp;保存&nbsp;&nbsp;&nbsp;&nbsp;</button>
-      </div>  
+      </div>
     </div>
+
+    <div id="graphicsStage">
+      <br><br><br><br><br><br><br><br><br><br>
+    </div>
+
   </ion-content>
 </ion-view>

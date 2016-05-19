@@ -871,6 +871,7 @@ function codeToJson(array){
   else{
     paintScale = (yValueMax - yValueMin)/100000*0.003;
   }
+
   return jsonArray;
 }
 

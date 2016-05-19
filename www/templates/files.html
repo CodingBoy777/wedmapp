@@ -1,4 +1,5 @@
 <ion-view view-title="FILES">
+
 	<ion-content>
 
     <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()">
@@ -18,6 +19,7 @@
         <ion-reorder-button class="ion-navicon" on-reorder="moveFile(file, $fromIndex, $toIndex)"></ion-reorder-button>
       </ion-item>
     </ion-list>
+
 	</ion-content>
     <nav mfb-menu position="br" effect="slidein-spring" label="展开/收起" active-icon="ion-android-close" resting-icon="ion-more" toggling-method="click" menu-state="data.showMfb" main-action="isCloseMfb()">
         <button mfb-button mfb-button-close icon="ion-android-add" label="新建" ng-click="newFile()"></button>

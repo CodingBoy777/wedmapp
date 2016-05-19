@@ -327,7 +327,7 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
 
 
 
-      },500);
+      },1000);
 
 
     };

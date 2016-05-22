@@ -42,8 +42,10 @@ angular.module('ionicApp.controllers', [])
 
       contextCoord.lineWidth = 0.1;
       contextCoord.moveTo(0,0);
-      contextCoord.lineTo(10,20);
-      contextCoord.stroke();
+
+      //contextCoord.lineTo(10,20);
+      //contextCoord.stroke();
+
     }
 
 

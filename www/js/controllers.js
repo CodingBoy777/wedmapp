@@ -1,6 +1,9 @@
 angular.module('ionicApp.controllers', [])
   .controller('MainCtrl', function ($scope, $ionicSideMenuDelegate, $rootScope) {
 
+    var coordPaint = null;
+    var contextCoord = null;
+
     $rootScope.fileContentUser = null;
 
     $rootScope.machineSpeedLevel = 1;//加工速度
@@ -14,10 +17,10 @@ angular.module('ionicApp.controllers', [])
     $rootScope.wireSpeedValue = 0;
     $rootScope.currentValue = 0;
 
-    $rootScope.div_pos_x = numFormat(0);
-    $rootScope.div_pos_y = numFormat(0);
-    $rootScope.div_pos_u = numFormat(0);
-    $rootScope.div_pos_v = numFormat(0);
+    $rootScope.div_pos_x = parseFloat(numFormat(0));
+    $rootScope.div_pos_y = parseFloat(numFormat(0));
+    $rootScope.div_pos_u = parseFloat(numFormat(0));
+    $rootScope.div_pos_v = parseFloat(numFormat(0));
 
     $scope.toggleLeft = function () {
       $ionicSideMenuDelegate.toggleLeft();
@@ -26,6 +29,27 @@ angular.module('ionicApp.controllers', [])
 
   .controller('HomeTabCtrl', function ($scope,edmData,$rootScope) {
     console.log('HomeTabCtrl');
+
+    coordPaint = document.getElementById("coordPaint");
+    if(coordPaint && coordPaint.getContext){
+      contextCoord = coordPaint.getContext("2d");
+
+      contextCoord.translate(150,75);
+
+      contextCoord.beginPath();
+
+      //contextCoord.scale(10,10);
+
+      contextCoord.lineWidth = 0.1;
+      contextCoord.moveTo(0,0);
+      contextCoord.lineTo(10,20);
+      contextCoord.stroke();
+    }
+
+
+
+
+
 
   })
 
@@ -333,6 +357,10 @@ angular.module('ionicApp.controllers', [])
               $rootScope.div_pos_y = numFormat(posInfo.y);
               $rootScope.div_pos_u = numFormat(posInfo.u);
               $rootScope.div_pos_v = numFormat(posInfo.v);
+
+              contextCoord.lineTo($rootScope.div_pos_x*1000,$rootScope.div_pos_y*1000);
+              contextCoord.stroke();
+
               $scope.$apply();
               //updataCoor(posInfo);
               //updataIO(iostatus);
@@ -486,63 +514,91 @@ angular.module('ionicApp.controllers', [])
   .controller('testCtrl', function ($scope, edmData, $rootScope) {
     console.log('testCtrl');
 
-    var load_prg = document.getElementById('load_prg');
-    var new_prg = document.getElementById("new_prg");
-    var btns = document.getElementsByClassName("btns")[0];
-    var text = document.getElementsByClassName("text")[0];
-    var preContainer = document.getElementById("preContainer");
+    var coordPaint = document.getElementById("coordPaint");
+    if(coordPaint && coordPaint.getContext){
+      var context = coordPaint.getContext("2d");
+      context.beginPath();
+      context.lineWidth = 1;
+      context.moveTo(0,0);
+      var i=0,j=0;
+      for(i=0;i<20;i++){
+        context.lineTo(10*i,i*i);
 
-    load_prg.onchange = function() {
-      if(this.files.length) {
-        var file = this.files[0];
-        var reader = new FileReader();
-        reader.onload = function()
-        {
-          var str = this.result;
-          //code.innerText = str;
-          highlight(str);
-          var myInterpreter = new gcodeInterpreter(str);
-          var result = myInterpreter.interpreter();
-          toIdealShape(result, shape, paintScale);
-        };
-        reader.readAsText(file);
       }
+      context.stroke();
     }
 
-    function highlight(str) {
-      preContainer.innerHTML = '<pre data-language="gcode">/**start**/&#10'+ str + '&#10/**end**/'; //&lt;gcode&gt;&#10
-      //JSHL();
-      preContainer.scrollTop = preContainer.scrollHeight + 'px';
-    }
 
-    function getWidth () {
-      return document.getElementById("graphicsStage").offsetWidth
-    }
-    function getHeight () {
-      return document.getElementById("graphicsStage").offsetHeight
-    }
 
-//console.log(getWidth(),getHeight())
-    window.onresize = function(){
-      stage.setWidth(getWidth());
-      stage.setHeight(getHeight());
-    }
 
-    var stage = new Kinetic.Stage({
-      container: "graphicsStage", //<div>��id
-      //container: "testImage", //<div>��id
-      colour: "red",
-      width: getWidth(), //��������̨���
-      height: getHeight() //��������̨�߶�
-    });
 
-//console.log(stage.getWidth(),stage.getHeight())
-    var shape = new Kinetic.Layer({
-      offsetX: -100.5,//Math.floor(-stage.getWidth() / 2) - 0.5,
-      offsetY: -100.5,//Math.floor(-stage.getHeight() / 2) - 0.5,
-      id: "shape"
-    })
-    stage.add(shape);
+
+
+
+
+
+
+
+
+
+
+//    var load_prg = document.getElementById('load_prg');
+//    var new_prg = document.getElementById("new_prg");
+//    var btns = document.getElementsByClassName("btns")[0];
+//    var text = document.getElementsByClassName("text")[0];
+//    var preContainer = document.getElementById("preContainer");
+//
+//    load_prg.onchange = function() {
+//      if(this.files.length) {
+//        var file = this.files[0];
+//        var reader = new FileReader();
+//        reader.onload = function()
+//        {
+//          var str = this.result;
+//          //code.innerText = str;
+//          highlight(str);
+//          var myInterpreter = new gcodeInterpreter(str);
+//          var result = myInterpreter.interpreter();
+//          toIdealShape(result, shape, paintScale);
+//        };
+//        reader.readAsText(file);
+//      }
+//    }
+//
+//    function highlight(str) {
+//      preContainer.innerHTML = '<pre data-language="gcode">/**start**/&#10'+ str + '&#10/**end**/'; //&lt;gcode&gt;&#10
+//      //JSHL();
+//      preContainer.scrollTop = preContainer.scrollHeight + 'px';
+//    }
+//
+//    function getWidth () {
+//      return document.getElementById("graphicsStage").offsetWidth
+//    }
+//    function getHeight () {
+//      return document.getElementById("graphicsStage").offsetHeight
+//    }
+//
+////console.log(getWidth(),getHeight())
+//    window.onresize = function(){
+//      stage.setWidth(getWidth());
+//      stage.setHeight(getHeight());
+//    }
+//
+//    var stage = new Kinetic.Stage({
+//      container: "graphicsStage", //<div>��id
+//      //container: "testImage", //<div>��id
+//      colour: "red",
+//      width: getWidth(), //��������̨���
+//      height: getHeight() //��������̨�߶�
+//    });
+//
+////console.log(stage.getWidth(),stage.getHeight())
+//    var shape = new Kinetic.Layer({
+//      offsetX: -100.5,//Math.floor(-stage.getWidth() / 2) - 0.5,
+//      offsetY: -100.5,//Math.floor(-stage.getHeight() / 2) - 0.5,
+//      id: "shape"
+//    })
+//    stage.add(shape);
 
 
   })

@@ -1,8 +1,16 @@
 /**
  * Created by allon on 2016/04/05
  */
+var findEdgeType = 0;
+var findEdgeDir = 0;
+var isfindEdgeStart = 0;
 
-
+var settings = {
+  findEdgeSpeed:[200,40],
+  rollBack: 400,
+  ignoreDistance: 40,
+  innerSpeed: [1800, 947, 642, 486, 391, 327, 246, 219, 197, 120]
+};
 
 var paintScale = 0.002;
 

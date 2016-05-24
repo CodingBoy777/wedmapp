@@ -34,17 +34,14 @@ angular.module('ionicApp.controllers', [])
     if(coordPaint && coordPaint.getContext){
       contextCoord = coordPaint.getContext("2d");
 
-      contextCoord.translate(150,75);
+      contextCoord.translate(5,5);
 
       contextCoord.beginPath();
-
-      //contextCoord.scale(10,10);
-
-      contextCoord.lineWidth = 0.1;
       contextCoord.moveTo(0,0);
 
-      //contextCoord.lineTo(10,20);
-      //contextCoord.stroke();
+      contextCoord.lineWidth = 1;
+
+      contextCoord.stroke();
 
     }
 
@@ -59,8 +56,39 @@ angular.module('ionicApp.controllers', [])
 
     console.log('prepareCtrl');
     speedChange = function(){
-      console.log(JSON.stringify({'cmd':'setInnerSpeed', level: speed.value}));
-      resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: speed.value}));
+      var resSpeedValue;
+      if(speed.value == 1){
+        resSpeedValue=40;
+      }
+      else if(speed.value == 2){
+        resSpeedValue=76;
+      }
+      else if(speed.value == 3){
+        resSpeedValue=112;
+      }
+      else if(speed.value == 4){
+        resSpeedValue=148;
+      }
+      else if(speed.value == 5){
+        resSpeedValue=184;
+      }
+      else if(speed.value == 6){
+        resSpeedValue=220;
+      }
+      else if(speed.value == 7){
+        resSpeedValue=292;
+      }
+      else if(speed.value == 8){
+        resSpeedValue=328;
+      }
+      else if(speed.value == 9){
+        resSpeedValue=364;
+      }
+      else if(speed.value == 10){
+        resSpeedValue=400;
+      }
+      console.log(JSON.stringify({'cmd':'setInnerSpeed', level: resSpeedValue}));
+      resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: resSpeedValue}));
 
     };
 
@@ -161,11 +189,106 @@ angular.module('ionicApp.controllers', [])
       }
     };
 
+    $scope.xSubf = function () {
+      findEdgeDir = 1;
+    };
+    $scope.xAddf = function () {
+      findEdgeDir = 0;
+    };
+    $scope.ySubf = function () {
+      findEdgeDir = 3;
+    };
+    $scope.yAddf = function () {
+      findEdgeDir = 2;
+    };
+
+
+    $scope.typeEdge = function () {
+      findEdgeType = 0;
+    };
+    $scope.typeMid = function () {
+      findEdgeType = 1;
+    };
+    $scope.typeCenter = function () {
+      findEdgeType = 2;
+    };
+
+
+    $scope.findEdgeStart = function(){
+
+      if(isfindEdgeStart==0)
+      {
+        isfindEdgeStart = 1;
+
+        var rollBack = settings.rollBack;
+        var ignoreDistance = settings.ignoreDistance;
+        if(!resCmdWebSocketOpen) return;
+        outputValue= (CmdGPIOOutType.OUT12_SHORTEDGE_SW)|outputValue;
+        resCmdWebSocket.send(JSON.stringify({'cmd': 'setIOOutput','value': outputValue}));
+        setTimeout(function(){
+          resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: settings.findEdgeSpeed[0]}));
+        },20);
+        if(findEdgeDir==0)
+        {
+          resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: findEdgeType, axis: "x", dir: 1,
+            findEdgeFirstSpeed: settings.findEdgeSpeed[0], findEdgeSecondSpeed: settings.findEdgeSpeed[1],
+            rollBack: settings.rollBack, ignoreDistance: settings.ignoreDistance}));
+        } else if(findEdgeDir==1)
+        {
+          resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: findEdgeType, axis: "x", dir: -1,
+            findEdgeFirstSpeed: settings.findEdgeSpeed[0], findEdgeSecondSpeed: settings.findEdgeSpeed[1],
+            rollBack: settings.rollBack, ignoreDistance: settings.ignoreDistance}));
+        } else if(findEdgeDir==2)
+        {
+          resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: findEdgeType, axis: "y", dir: 1,
+            findEdgeFirstSpeed: settings.findEdgeSpeed[0], findEdgeSecondSpeed: settings.findEdgeSpeed[1],
+            rollBack: settings.rollBack, ignoreDistance: settings.ignoreDistance}));
+        } else if(findEdgeDir==3)
+        {
+          resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: findEdgeType, axis: "y", dir: -1,
+            findEdgeFirstSpeed: settings.findEdgeSpeed[0], findEdgeSecondSpeed: settings.findEdgeSpeed[1],
+            rollBack: settings.rollBack, ignoreDistance: settings.ignoreDistance}));
+        }
+      }
+      else
+      {
+        isfindEdgeStart = 0;
+        if(!resCmdWebSocketOpen) return;
+        resCmdWebSocket.send(JSON.stringify({'cmd':'stopPointMove'}));
+        setTimeout(function(){
+          outputValue = outputValue & 0xffffefff;
+          resCmdWebSocket.send(JSON.stringify({'cmd': 'setIOOutput','value': outputValue}));
+        },20)
+        setTimeout(function(){
+          var value = $rootScope.getSpeed;
+          var speed = settings.innerSpeed[value-1];
+          resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: speed}));
+        },40)
+      }
+
+    };
+
+    $scope.findEdgeStop = function(){
+
+      if(!resCmdWebSocketOpen) return;
+      resCmdWebSocket.send(JSON.stringify({'cmd':'stopPointMove'}));
+      setTimeout(function(){
+        outputValue = outputValue & 0xffffefff;
+        resCmdWebSocket.send(JSON.stringify({'cmd': 'setIOOutput','value': outputValue}));
+      },20)
+      setTimeout(function(){
+        var value = $rootScope.getSpeed;
+        var speed = settings.innerSpeed[value-1];
+        resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: speed}));
+      },40)
+    }
+
 
   })
 
   .controller('ipSettingCtrl', function ($scope,$rootScope, edmData, $timeout) {
 
+    var paintFlag = 0;
     $scope.setIpAddress = function(){
       ipAddress = document.getElementById("ipInput").value;
       webIpAddress = "ws://" + ipAddress;
@@ -215,7 +338,7 @@ angular.module('ionicApp.controllers', [])
         else {
           alert("connection failed");
         }
-      }, 1500);
+      }, 1000);
 
       resCmdWebSocket.onmessage = function(){
         var data = JSON.parse(event.data);
@@ -284,26 +407,33 @@ angular.module('ionicApp.controllers', [])
 
         }
 
-        if(data.type=='SelDiv') {
+
+
+        if(data.type=='SelDiv')
+        {
           var selector = dataview.getUint8(4);
-          var div = dataview.getInt32(8,true);
-          var index = SpeedLevel.INNER.indexOf(div)+1;
-          if(selector == 0) {
-            /*outerelements.value = index;
-            outerelements.dispatchEvent(new Event('change'));
-            $('#machinespeedlevel').text(index);*/
+          setTimeout(function(){
+            if(selector==0) {
+              //外分速度。暂时没写
+            }else {
+              //内分速度
+              var div = 72000/dataview.getInt32(8,true);
+              var index ;
+              for(var i=0; i<10; i++)
+              {
+                if(Math.abs((parseInt(div)-parseInt(SpeedLevel.innerSpeed[i])))<1)
+                {
+                  //因为当发下去的速度不能被72000或者400整除的时候，获取到的分频值就会和本地设置不完全一致，但是应该不会超过1
+                  index = i+1;
+                  break;
+                }
+              }
+              $rootScope.getSpeed = index;
+            }
+          }, 20)
 
-            $rootScope.machineSpeedLevel = index;
-            console.log("外部速度");
-          }else {
-            /*innerelements.value = index;
-            innerelements.dispatchEvent(new Event('change'));
-            $('#speedlevel').text(index);*/
+        }//存在疑问  留待检查！！！
 
-            $rootScope.getSpeed = index;
-            console.log("内部速度");
-          }
-        }
       };
 
       resCmdWebSocket.onclose = function(){
@@ -360,8 +490,16 @@ angular.module('ionicApp.controllers', [])
               $rootScope.div_pos_u = numFormat(posInfo.u);
               $rootScope.div_pos_v = numFormat(posInfo.v);
 
-              contextCoord.lineTo($rootScope.div_pos_x*1000,$rootScope.div_pos_y*1000);
-              contextCoord.stroke();
+              if(paintFlag == 0){
+                contextCoord.moveTo($rootScope.div_pos_x*3,$rootScope.div_pos_y*3);
+                paintFlag =1;
+              }
+              if(paintFlag == 1){
+                contextCoord.lineTo($rootScope.div_pos_x*3,$rootScope.div_pos_y*3);
+                console.log($rootScope.div_pos_x*3,$rootScope.div_pos_y*3);
+                contextCoord.stroke();
+              }
+
 
               $scope.$apply();
               //updataCoor(posInfo);
@@ -423,8 +561,41 @@ angular.module('ionicApp.controllers', [])
 
     machineSpeedLevelChange = function () {
       console.log($rootScope.machineSpeedLevel);
+
+      var resMachineSpeedValue;
+      if($rootScope.machineSpeedLevel == 1){
+        resMachineSpeedValue=40;
+      }
+      else if($rootScope.machineSpeedLevel == 2){
+        resMachineSpeedValue=76;
+      }
+      else if($rootScope.machineSpeedLevel == 3){
+        resMachineSpeedValue=112;
+      }
+      else if($rootScope.machineSpeedLevel == 4){
+        resMachineSpeedValue=148;
+      }
+      else if($rootScope.machineSpeedLevel == 5){
+        resMachineSpeedValue=184;
+      }
+      else if($rootScope.machineSpeedLevel == 6){
+        resMachineSpeedValue=220;
+      }
+      else if($rootScope.machineSpeedLevel == 7){
+        resMachineSpeedValue=292;
+      }
+      else if($rootScope.machineSpeedLevel == 8){
+        resMachineSpeedValue=328;
+      }
+      else if($rootScope.machineSpeedLevel == 9){
+        resMachineSpeedValue=364;
+      }
+      else if($rootScope.machineSpeedLevel == 10){
+        resMachineSpeedValue=400;
+      }
+
       if(!resCmdWebSocketOpen) return;
-      resCmdWebSocket.send(JSON.stringify({'cmd':'setOuterSpeed', level: $rootScope.machineSpeedLevel}));
+      resCmdWebSocket.send(JSON.stringify({'cmd':'setOuterSpeed', level: resMachineSpeedValue}));
 
     };
 

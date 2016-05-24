@@ -72,6 +72,32 @@
       <div class="col col-50"><ion-toggle id="toggleStartWire" ng-model="$root.toggleStartWire" onchange="startWireChange();">上丝</ion-toggle></div>
     </div>
 
+    <div class="list">
+      <div class="item item-divider">工件找边</div>
+
+      <div class="item">
+        <div class="row">
+          <div class="col"><button class="button  button-royal button-small" on-touch="xSubf();">X-</button></div>
+          <div class="col"><button class="button  button-calm button-small" on-touch="xAddf();">X+</button></div>
+          <div class="col"><button class="button  button-royal button-small" on-touch="ySubf();">Y-</button></div>
+          <div class="col"><button class="button  button-calm button-small" on-touch="yAddf();">Y+</button></div>
+        </div>
+
+        <div class="row">
+          <div class="col"><button class="button  button-royal button-small" on-touch="typeEdge();">找  边</button></div>
+          <div class="col"><button class="button  button-royal button-small" on-touch="typeMid();">找中点</button></div>
+          <div class="col"><button class="button  button-royal button-small" on-touch="typeCenter();">找圆心</button></div>
+        </div>
+
+        <div class="row">
+          <div class="col"><button class="button" on-touch="findEdgeStart();">开始找边</button></div>
+          <div class="col"><button class="button" on-touch="findEdgeStop();">停止找边</button></div>
+        </div>
+
+      </div>
+    </div>
+
+
 
 
   </ion-content>

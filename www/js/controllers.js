@@ -1,6 +1,6 @@
 angular.module('ionicApp.controllers', [])
   .controller('MainCtrl', function ($scope, $ionicSideMenuDelegate, $rootScope) {
-
+    
     var coordPaint = null;
     var contextCoord = null;
 
@@ -27,8 +27,12 @@ angular.module('ionicApp.controllers', [])
     };
   })
 
-  .controller('HomeTabCtrl', function ($scope,edmData,$rootScope) {
+  .controller('HomeTabCtrl', function ($scope,edmData,$rootScope, $timeout, $cordovaSplashscreen) {
     console.log('HomeTabCtrl');
+
+    $timeout(function () {
+        $cordovaSplashscreen.show();
+    }, 50);
 
     coordPaint = document.getElementById("coordPaint");
     if(coordPaint && coordPaint.getContext){

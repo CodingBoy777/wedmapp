@@ -1,21 +1,21 @@
 angular.module('ionicApp.fileModalCtrl', ['ionic'])
-.controller('fileModalCtrl', function ($scope, $rootScope, $cordovaToast, $cordovaFile) {
-  /*
-  fileModal.html的cache已禁用（在app.js里设置），即每次看到fileModal.html都是重新加载的。
-  在textarea编辑后，$rootScope.fileContentUser的值并不改变（尽管ng-model="fileContentUser"），
-  但fileModal.html上的fileContentUser是改变的。
-  画图需要获取textarea编辑后的值，用带参数的函数，像下面的$scope.saveFileContent(fileContentUser)。
-  $rootScope.fileContentUser和fileModal.html上的fileContentUser的类型都是String，换行是\r\n。
-  */
+.controller('fileModalCtrl', function ($scope, $rootScope, $cordovaToast, $cordovaFile, $cordovaVibration) {
+
+  $scope.vibration = function(time) {
+      $cordovaVibration.vibrate(time);
+  };
+
   $scope.showToast = function(message) {
     	$cordovaToast.showShortBottom(message);
   };
 
   $scope.clearFileContent = function() {
+      $scope.vibration(200);
       document.getElementById('fileTextarea').value = "";
   };
 
 	$scope.resetFileContent = function() {
+      $scope.vibration(200);
       document.getElementById('fileTextarea').value = $rootScope.fileContentUser;
   };
 

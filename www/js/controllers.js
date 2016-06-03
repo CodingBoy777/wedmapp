@@ -28,6 +28,7 @@ angular.module('ionicApp.controllers', [])
     $scope.toggleLeft = function () {
       $ionicSideMenuDelegate.toggleLeft();
     };
+
   })
 
   .controller('HomeTabCtrl', function ($scope,edmData,$rootScope, $timeout, $cordovaSplashscreen) {
@@ -36,6 +37,7 @@ angular.module('ionicApp.controllers', [])
     $timeout(function () {
         $cordovaSplashscreen.show();
     }, 50);
+
 
     //coordPaint = document.getElementById("coordPaint");
     //if(coordPaint && coordPaint.getContext){
@@ -51,10 +53,6 @@ angular.module('ionicApp.controllers', [])
     //  contextCoord.stroke();
     //
     //}
-
-
-
-
 
 
   })
@@ -293,14 +291,14 @@ angular.module('ionicApp.controllers', [])
 
   })
 
-  .controller('ipSettingCtrl', function ($scope,$rootScope, edmData, $timeout) {
+  .controller('ipSettingCtrl', function ($scope, $rootScope, edmData, $timeout, $ionicPopup) {
 
     console.log("ipSettingCtrl");
     var paintFlag = 0;
     $scope.setIpAddress = function(){
       ipAddress = document.getElementById("ipInput").value;
       webIpAddress = "ws://" + ipAddress;
-      document.getElementById("information").innerHTML += "IP设置为" + ipAddress + "</br>"+ "请点击连接按钮" + "</br>";
+      document.getElementById("information").innerHTML += "IP已设置为" + ipAddress + "</br>"+ "请点击连接按钮" + "</br>";
       console.log("ws://" + ipAddress + ":8080");
     };
 
@@ -315,7 +313,7 @@ angular.module('ionicApp.controllers', [])
       resInfoWebSocket.onopen = function(){
         console.log('info succeed!');
         resCmdWebSocketOpen = true;
-        document.getElementById("information").innerHTML += "info connect success"+ "<br />" + webIpAddress + ":8081" + "</br>";
+        document.getElementById("information").innerHTML += "状态端口连接成功"+ "<br />" + webIpAddress + ":8081" + "</br>";
         flagInfoConnect = 1;
         //alert("connection success");
       };
@@ -328,11 +326,10 @@ angular.module('ionicApp.controllers', [])
       resCmdWebSocket.onopen = function(){
         console.log('cmd succeed!');
         resInfoWebSocketOpen = true;
-        document.getElementById("information").innerHTML += "cmd connect success"+ "<br />" + webIpAddress + ":8080" + "</br>";
+        document.getElementById("information").innerHTML += "命令端口连接成功"+ "<br />" + webIpAddress + ":8080" + "</br>";
         flagCmdConnect = 1;
         resCmdWebSocket.send(JSON.stringify({'cmd': 'getIOState'}));
         resCmdWebSocket.send(JSON.stringify({'cmd': 'getSelDiv'}));
-
         //alert("connection success");
       };
 
@@ -344,7 +341,14 @@ angular.module('ionicApp.controllers', [])
           document.getElementById("machineStatus").innerHTML = "已连接";
         }
         else {
-          alert("connection failed");
+          $ionicPopup.alert({
+            title: '连接失败',
+            template: '请检查IP和端口是否正确',
+            buttons: [{
+              text: '好的',
+              type: 'button-positive'
+            }]
+          });
         }
       }, 1000);
 
@@ -374,35 +378,35 @@ angular.module('ionicApp.controllers', [])
           setTimeout(function(){
             if(ioInfo.waterPump == 0){
               $rootScope.toggleWaterPump = "false";
-              document.getElementById("waterPumpStatus").innerHTML = "关";
+              document.getElementById("waterPumpStatus").innerHTML = "已关闭";
             }
             else{
               $rootScope.toggleWaterPump = true;
-              document.getElementById("waterPumpStatus").innerHTML = "开";
+              document.getElementById("waterPumpStatus").innerHTML = "已打开";
             }
             if(ioInfo.highfrequence == 0){
               $rootScope.toggleHighFrequence = false;
-              document.getElementById("highFrequenceStatus").innerHTML = "关";
+              document.getElementById("highFrequenceStatus").innerHTML = "已关闭";
             }
             else{
               $rootScope.toggleHighFrequence = true;
-              document.getElementById("highFrequenceStatus").innerHTML = "开";
+              document.getElementById("highFrequenceStatus").innerHTML = "已打开";
             }
 
             if(ioInfo.wireTransport == 0){
               $rootScope.toggleWireTransport = false;
-              document.getElementById("wireTransportStatus").innerHTML = "关";
+              document.getElementById("wireTransportStatus").innerHTML = "已关闭";
             }
             else{
               $rootScope.toggleWireTransport = true;
-              document.getElementById("wireTransportStatus").innerHTML = "开";
+              document.getElementById("wireTransportStatus").innerHTML = "已打开";
             }
             if($rootScope.toggleAxisUnlock == 0){
-              document.getElementById("axisUnlockStatus").innerHTML = "关";
+              document.getElementById("axisUnlockStatus").innerHTML = "已关闭";
             }
             else{
 
-              document.getElementById("axisUnlockStatus").innerHTML = "开";
+              document.getElementById("axisUnlockStatus").innerHTML = "已打开";
             }
 
 

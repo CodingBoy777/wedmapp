@@ -1,12 +1,6 @@
 <ion-view title="主页">
-  <ion-content class="padding" >
-    <!-- <h3 align="center">Welcome to WEDM App</h3> -->
-    <!-- <p>
-      连接状态；<br>
-      机床的加工状态，加工时候显示加工进度<br>
-      机床io状态（加工状态时候io无法设置）；<br>
-      此处的io显示是否加入设置我们可以商量一下，具体是在准备页设置，还是复用。<br>
-    </p>-->
+
+  <ion-content>
 
     <div class="list list-inset">
       <div class="item">机床状态：<span id="machineStatus" style="text-align:right;"><b>未连接</b> </span></div>
@@ -26,32 +20,20 @@
       </div>
       <div class="item">
         <div class="row">
-          <div class="col">水泵：<span id="waterPumpStatus">关</span></div>
-          <div class="col">高频：<span id="highFrequenceStatus">关</span></div>
+          <div class="col">水泵：<b><span id="waterPumpStatus">已关闭</span></b></div>
+          <div class="col">高频：<b><span id="highFrequenceStatus">已关闭</span></b></div>
         </div>
         <div class="row">
-          <div class="col">运丝：<span id="wireTransportStatus">关</span></div>
-          <div class="col">解锁：<span id="axisUnlockStatus">关</span></div>
+          <div class="col">运丝：<b><span id="wireTransportStatus">已关闭</span></b></div>
+          <div class="col">解锁：<b><span id="axisUnlockStatus">已关闭</span></b></div>
         </div>
         <div class="row">
-          <div class="col">运丝速度：<span id="wireSpeedStatus">0</span></div>
-          <div class="col">电流：<span id="currentStatus">0</span></div>
+          <div class="col">运丝速度：<b><span id="wireSpeedStatus">0</span></b></div>
+          <div class="col">电流：<b><span id="currentStatus">0</span></b></div>
         </div>
       </div>
     </div>
 
-    <!--<div style="text-align:center;" ><img src="img/edm.jpg" height="150"  alt="EDM" ></div>
-    <p align="center">这里可以写上团队介绍、APP介绍等信息</p>
-    <p align="center">点击跟多信息按钮可以看到更多的信息</p>
-    <p></p>
-
-    <p>
-      <a class="button icon icon-right ion-chevron-right" href="#/tab/facts">更多信息</a>
-    </p>
-    <div id="result"></div>
-    <br>-->
-
-
-
   </ion-content>
+
 </ion-view>

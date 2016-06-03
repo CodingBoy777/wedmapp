@@ -22,6 +22,9 @@
         "cordova-plugin-file": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
+        },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         },
@@ -35,9 +38,6 @@
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
-        },
-        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         }
     },

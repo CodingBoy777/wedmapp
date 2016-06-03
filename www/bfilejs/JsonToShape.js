@@ -44,7 +44,7 @@ function drawArc(x, y, r, startA, spanA, clockwise, scale) { //理想轨迹的�
         y:-y* scale,
         innerRadius: r* scale,
         outerRadius: r* scale,
-        stroke: 'blue',
+        stroke: 'red',
         strokeWidth: 1,
         rotationDeg: startA,
         angle: spanA,
@@ -56,7 +56,7 @@ function drawArc(x, y, r, startA, spanA, clockwise, scale) { //理想轨迹的�
 function drawLine(x0, y0, x1, y1 ,scale) {
     var line = new Kinetic.Line({
         points: [x0*scale,-y0*scale,x1*scale,-y1*scale],
-        stroke: 'blue',
+        stroke: 'red',
         strokeWidth: 1,
         listening: false
     })

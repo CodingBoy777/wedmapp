@@ -2,23 +2,18 @@
   <ion-content class="padding">
 
 
-    <div class="list list-inset">
-      <div class="item">显示当前文件的内容或者图形<br><br><br></div>
-    </div>
+    <!--<div class="list list-inset">-->
+      <!--<div class="item">显示当前文件的内容或者图形<br><br><br></div>-->
+    <!--</div>-->
 
     <div class="list list-inset">
       <div class="item item-divider">
         脉宽与占空比
       </div>
-      <div class="list list-inset">
-        <div class="item item-divider">
-          脉宽与占空比
-        </div>
-        <div class="item" on-touch="setPWM();">
-          <div class="row">
-            <div class="col">脉宽：{{$root.pulseWidthValue}}</div>
-            <div class="col">占空比：{{$root.ratioValue}}</div>
-          </div>
+      <div class="item" on-touch="setPWM();">
+        <div class="row">
+          <div class="col">脉宽：{{$root.pulseWidthValue}}</div>
+          <div class="col">占空比：{{$root.ratioValue}}</div>
         </div>
       </div>
 

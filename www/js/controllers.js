@@ -1,6 +1,6 @@
 angular.module('ionicApp.controllers', [])
   .controller('MainCtrl', function ($scope, $ionicSideMenuDelegate, $rootScope) {
-    
+
     var coordPaint = null;
     var contextCoord = null;
 
@@ -8,6 +8,9 @@ angular.module('ionicApp.controllers', [])
 
     $rootScope.machineSpeedLevel = 1;//加工速度
     $rootScope.getSpeed = 2;// 手动速度 设置速度初始值
+
+    $rootScope.pulseWidthValue = 0;
+    $rootScope.ratioValue = 0;
 
     $rootScope.toggleAxisUnlock = false;
     $rootScope.toggleStartWire = false;
@@ -292,6 +295,7 @@ angular.module('ionicApp.controllers', [])
 
   .controller('ipSettingCtrl', function ($scope,$rootScope, edmData, $timeout) {
 
+    console.log("ipSettingCtrl");
     var paintFlag = 0;
     $scope.setIpAddress = function(){
       ipAddress = document.getElementById("ipInput").value;
@@ -691,27 +695,80 @@ angular.module('ionicApp.controllers', [])
   .controller('testCtrl', function ($scope, edmData, $rootScope) {
     console.log('testCtrl');
 
-    var coordPaint = document.getElementById("coordPaint");
-    if(coordPaint && coordPaint.getContext){
-      var context = coordPaint.getContext("2d");
-      context.beginPath();
-      context.lineWidth = 1;
-      context.moveTo(0,0);
-      var i=0,j=0;
-      for(i=0;i<20;i++){
-        context.lineTo(10*i,i*i);
-
-      }
-      context.stroke();
-    }
-
-
-
-
-
-
-
-
+    //var testPaint = document.getElementById("testPaint");
+    //if(testPaint && testPaint.getContext){
+    //  var context = testPaint.getContext("2d");
+    //
+    //  context.beginPath();
+    //  context.strokeStyle = "red"
+    //  context.lineWidth =2;
+    //
+    //  //context.translate(125,125);
+    //  context.moveTo(0,0);
+    //  context.lineTo(100,0);
+    //
+    //  context.fillRect(10,10,50,50);
+    //  var imgData = context.getImageData(0, 0, 125, 125);
+    //  context.clearRect(0,0,125,125);
+    //  context.scale(2,2);
+    //  context.putImageData(imgData, 0, 80);
+    //  context.lineTo(100,20);
+    //
+    //  //context.lineWidth = 1;
+    //  //context.moveTo(0,0);
+    //  //context.fillRect(10,10,30,30);
+    //  context.stroke();
+    //  context.closePath();
+    //
+    //
+    //  context.beginPath();
+    //  context.clearRect(0,0,125,125);
+    //  context.scale(0.5,0.5);
+    //  context.putImageData(imgData, 0, 0);
+    //
+    //
+    //  context.closePath();
+    //
+    //
+    //  //var imageData = context.getImageData(0,0,100,100);
+    //
+    //  //context.clearRect(-125,-125,250,250);
+    //
+    //  //context.scale(2,2);
+    //  //context.putImageData(imageData,0,0);
+    //  //context.fill();
+    //
+    //
+    //
+    //}
+    //
+    //var testStage = new Kinetic.Stage({
+    //  container: "kineticTest",
+    //  width : 250,
+    //  height : 250
+    //});
+    //var layer = new Kinetic.Layer();
+    //var shape = new Kinetic.Shape();
+    //var rect = {
+    //  x : 20, //矩形左上角x坐标
+    //  y : 15, //矩形左上角y坐标
+    //  width : 100, //矩形的宽度
+    //  height : 100, //矩形的高度
+    //  fill : "red", //矩形的填充色
+    //  stroke : "black", //矩形边缘线的颜色
+    //  strokeWidth : 4 //矩形边缘线的宽度
+    //};
+    //
+    //layer.add(shape);
+    //
+    ////layer.transitionTo({
+    ////  scale : 2,
+    ////  duration:2
+    ////});
+    //testStage.add(layer);
+    //
+    //
+    //testStage.draw();
 
 
 
@@ -779,6 +836,91 @@ angular.module('ionicApp.controllers', [])
 
 
   })
+
+  .controller('speedSettingCtrl', function ($scope, $rootScope, $timeout, $ionicPopup,$state) {
+    console.log('speedSettingCtrl');
+
+    innerSpeed1Change = function () {
+      settings.innerSpeed[0] = innerSpeed1.value;
+    };
+    innerSpeed2Change = function () {
+      settings.innerSpeed[1] = innerSpeed2.value;
+    };
+    innerSpeed3Change = function () {
+      settings.innerSpeed[2] = innerSpeed3.value;
+    };
+    innerSpeed4Change = function () {
+      settings.innerSpeed[3] = innerSpeed4.value;
+    };
+    innerSpeed5Change = function () {
+      settings.innerSpeed[4] = innerSpeed5.value;
+    };
+    innerSpeed6Change = function () {
+      settings.innerSpeed[5] = innerSpeed6.value;
+    };
+    innerSpeed7Change = function () {
+      settings.innerSpeed[6] = innerSpeed7.value;
+    };
+    innerSpeed8Change = function () {
+      settings.innerSpeed[7] = innerSpeed8.value;
+    };
+    innerSpeed9Change = function () {
+      settings.innerSpeed[8] = innerSpeed9.value;
+    };
+    innerSpeed10Change = function () {
+      settings.innerSpeed[9] = innerSpeed10.value;
+    };
+
+
+    machineSpeed1Change = function () {
+      settings.outerSpeed[0] = machineSpeed1.value;
+    };
+    machineSpeed2Change = function () {
+      settings.outerSpeed[1] = machineSpeed2.value;
+    };
+    machineSpeed3Change = function () {
+      settings.outerSpeed[2] = machineSpeed3.value;
+    };
+    machineSpeed4Change = function () {
+      settings.outerSpeed[3] = machineSpeed4.value;
+    };
+    machineSpeed5Change = function () {
+      settings.outerSpeed[4] = machineSpeed5.value;
+    };
+    machineSpeed6Change = function () {
+      settings.outerSpeed[5] = machineSpeed6.value;
+    };
+    machineSpeed7Change = function () {
+      settings.outerSpeed[6] = machineSpeed7.value;
+    };
+    machineSpeed8Change = function () {
+      settings.outerSpeed[7] = machineSpeed8.value;
+    };
+    machineSpeed9Change = function () {
+      settings.outerSpeed[8] = machineSpeed9.value;
+    };
+    machineSpeed10Change = function () {
+      settings.outerSpeed[9] = machineSpeed10.value;
+    };
+
+    firstSpeedChange = function () {
+      settings.findEdgeSpeed[0] = firstSpeed.value;
+    };
+    secondSpeedChange = function () {
+      settings.findEdgeSpeed[1] = secondSpeed.value;
+    };
+    rollBackChange = function () {
+      settings.rollBack = rollBackValue.value;
+    };
+    ignoreDistanceChange = function () {
+      settings.ignoreDistance = ignoreDistanceValue.value;
+    }
+
+
+
+
+  })
+
   .controller('checkCtrl', function ($scope, edmData, $rootScope) {
     console.log('checkCtrl');
 

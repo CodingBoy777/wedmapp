@@ -14,7 +14,7 @@ angular.module('ionicApp', ['ionic', 'ngCordova', 'ng-mfb', 'ionicApp.controller
       }
     });
   })
-  
+
   .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     $ionicConfigProvider.tabs.style('standard'); // Tab风格
@@ -50,15 +50,7 @@ angular.module('ionicApp', ['ionic', 'ngCordova', 'ng-mfb', 'ionicApp.controller
         }
       })
 
-      /*.state('tabs.settings', {
-        url: "/settings",
-        views: {
-          'settings-tab': {
-            templateUrl: "templates/settings.html",
-            controller: 'settingsCtrl'
-          }
-        }
-      })*/
+
 
       .state('tabs.files', {
         url: "/files",
@@ -80,12 +72,13 @@ angular.module('ionicApp', ['ionic', 'ngCordova', 'ng-mfb', 'ionicApp.controller
         }
       })
 
-      .state('tabs.test', {
-        url: "/test",
+
+      .state('tabs.ipSetting', {
+        url: "/ipSetting",
         views: {
-          'test-tab': {
-            templateUrl: "templates/test.html",
-            controller: 'testCtrl'
+          'ipSetting-tab': {
+            templateUrl: "templates/ipSetting.html",
+            controller: 'ipSettingCtrl'
           }
         }
       })
@@ -96,12 +89,14 @@ angular.module('ionicApp', ['ionic', 'ngCordova', 'ng-mfb', 'ionicApp.controller
         templateUrl: "templates/events.html"
       })
 
-      .state('events.ipSetting', {
-        url: "/ipSetting",
+
+      .state('events.speedSetting', {
+        cache: false,
+        url: "/speedSetting",
         views: {
-          'ipSetting-event': {
-            templateUrl: "templates/ipSetting.html",
-            controller: 'ipSettingCtrl'
+          'speedSetting-event': {
+            templateUrl: "templates/speedSetting.html",
+            controller: 'speedSettingCtrl'
           }
         }
       })

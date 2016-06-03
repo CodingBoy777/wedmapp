@@ -3,47 +3,7 @@
         "installed": [],
         "uninstalled": []
     },
-    "config_munge": {
-        "files": {}
-    },
-    "installed_plugins": {
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
-        },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
-        },
-        "cordova-plugin-vibration": {
-            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
-        },
-        "cordova-plugin-x-toast": {
-            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
-        },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
-<<<<<<< HEAD
-=======
-        },
-        "cordova-plugin-crosswalk-webview": {
-            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
->>>>>>> d3e1701090c236c164147b09573d9d688705da5c
-        }
-    },
-    "dependent_plugins": {
-        "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
-        }
-    }
+    "config_munge": {},
+    "installed_plugins": {},
+    "dependent_plugins": {}
 }

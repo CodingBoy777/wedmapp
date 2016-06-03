@@ -299,7 +299,7 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
 
         var stage = new Kinetic.Stage({
           container: "graphicsStage", //<div>��id
-          //container: "testImage", //<div>��id
+          //container: "testImage", <div>��id
           colour: "red",
           width: 1000, //��������̨���
           height: 1000 //��������̨�߶�
@@ -310,7 +310,7 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
           offsetX: -100.5,//Math.floor(-stage.getWidth() / 2) - 0.5,
           offsetY: -100.5,//Math.floor(-stage.getHeight() / 2) - 0.5,
           id: "shape"
-        })
+        });
         stage.add(shape);
 
 
@@ -323,7 +323,7 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
         window.onresize = function(){
           stage.setWidth(100);
           stage.setHeight(100);
-        }
+        };
 
 
 

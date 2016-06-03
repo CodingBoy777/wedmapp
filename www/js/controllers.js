@@ -37,20 +37,20 @@ angular.module('ionicApp.controllers', [])
         $cordovaSplashscreen.show();
     }, 50);
 
-    coordPaint = document.getElementById("coordPaint");
-    if(coordPaint && coordPaint.getContext){
-      contextCoord = coordPaint.getContext("2d");
-
-      contextCoord.translate(5,5);
-
-      contextCoord.beginPath();
-      contextCoord.moveTo(0,0);
-
-      contextCoord.lineWidth = 1;
-
-      contextCoord.stroke();
-
-    }
+    //coordPaint = document.getElementById("coordPaint");
+    //if(coordPaint && coordPaint.getContext){
+    //  contextCoord = coordPaint.getContext("2d");
+    //
+    //  contextCoord.translate(5,5);
+    //
+    //  contextCoord.beginPath();
+    //  contextCoord.moveTo(0,0);
+    //
+    //  contextCoord.lineWidth = 1;
+    //
+    //  contextCoord.stroke();
+    //
+    //}
 
 
 
@@ -498,15 +498,15 @@ angular.module('ionicApp.controllers', [])
               $rootScope.div_pos_u = numFormat(posInfo.u);
               $rootScope.div_pos_v = numFormat(posInfo.v);
 
-              if(paintFlag == 0){
-                contextCoord.moveTo($rootScope.div_pos_x*3,$rootScope.div_pos_y*3);
-                paintFlag =1;
-              }
-              if(paintFlag == 1){
-                contextCoord.lineTo($rootScope.div_pos_x*3,$rootScope.div_pos_y*3);
-                console.log($rootScope.div_pos_x*3,$rootScope.div_pos_y*3);
-                contextCoord.stroke();
-              }
+              //if(paintFlag == 0){
+              //  contextCoord.moveTo($rootScope.div_pos_x*3,$rootScope.div_pos_y*3);
+              //  paintFlag =1;
+              //}
+              //if(paintFlag == 1){
+              //  contextCoord.lineTo($rootScope.div_pos_x*3,$rootScope.div_pos_y*3);
+              //  console.log($rootScope.div_pos_x*3,$rootScope.div_pos_y*3);
+              //  contextCoord.stroke();
+              //}
 
 
               $scope.$apply();

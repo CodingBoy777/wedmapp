@@ -7,22 +7,36 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
+        },
         "cordova-plugin-file": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
+        },
         "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         },
         "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
-        }
-    },
-    "dependent_plugins": {
-        "cordova-plugin-compat": {
+        },
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         }
-    }
+    },
+    "dependent_plugins": {}
 }

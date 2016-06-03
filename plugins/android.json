@@ -15,6 +15,9 @@
         },
         "cordova-plugin-vibration": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         }
     },
     "dependent_plugins": {

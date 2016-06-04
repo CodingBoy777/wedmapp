@@ -157,4 +157,34 @@ angular.module('ionicApp.processCtrl', ['ionic'])
       console.log("set current %d", resCurrentLevel);
     };
 
+    $scope.wireSpeedDisplay = function () {
+      if(document.getElementById("wireSpeedDispaly").style.display == "none"){
+        document.getElementById("wireSpeedDispaly").style.display = "block";
+      }
+      else{
+        document.getElementById("wireSpeedDispaly").style.display = "none";
+      }
+    };
+
+    $scope.machineSpeedDispaly = function () {
+      if(document.getElementById("machineSpeedDispaly").style.display == "none"){
+        document.getElementById("machineSpeedDispaly").style.display = "block";
+      }
+      else{
+        document.getElementById("machineSpeedDispaly").style.display = "none";
+      }
+    };
+    $scope.currentValueDispaly = function () {
+      if(document.getElementById("currentValueDispaly").style.display == "none"){
+        document.getElementById("currentValueDispaly").style.display = "block";
+      }
+      else{
+        document.getElementById("currentValueDispaly").style.display = "none";
+      }
+    }
+
+
+
+
+
   });

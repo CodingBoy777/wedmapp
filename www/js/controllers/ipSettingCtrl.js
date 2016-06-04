@@ -118,6 +118,7 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
             }
 
 
+
             $rootScope.wireSpeedValue = ioInfo.wireSpeed;
             document.getElementById("wireSpeedStatus").innerHTML = ioInfo.wireSpeed;
             $rootScope.currentValue = ioInfo.current;

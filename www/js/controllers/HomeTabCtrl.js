@@ -1,5 +1,5 @@
 angular.module('ionicApp.HomeTabCtrl', ['ionic'])
-  .controller('HomeTabCtrl', function ($scope,edmData,$rootScope, $timeout, $cordovaSplashscreen) {
+  .controller('HomeTabCtrl', function ($scope, edmData, $rootScope) {
     console.log('HomeTabCtrl');
 
     /*$timeout(function () {

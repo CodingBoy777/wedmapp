@@ -1,4 +1,7 @@
-angular.module('ionicApp', ['ionic', 'ngCordova', 'ng-mfb', 'ionicApp.controllers', 'ionicApp.filesCtrl', 'ionicApp.fileModalCtrl', 'ionicApp.services', 'ionicApp.directives'])
+angular.module('ionicApp', ['ionicApp.HomeTabCtrl', 'ionicApp.prepareCtrl','ionicApp.processCtrl',
+  'ionicApp.filesCtrl', 'ionicApp.fileModalCtrl','ionicApp.ipSettingCtrl','ionicApp.speedSettingCtrl',
+  'ionicApp.testCtrl','ionicApp.checkCtrl', 'ionic', 'ngCordova', 'ng-mfb', 'ionicApp.controllers',
+  'ionicApp.services', 'ionicApp.directives'])
   .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

@@ -1,64 +1,19 @@
-<ion-side-menus>
+<ion-tabs class="tabs-icon-bottom tabs-positive">
 
-  <ion-side-menu-content edge-drag-threshold="true">
-    <ion-nav-bar class="bar-positive">
-      <ion-nav-back-button   class="button-icon ion-android-menu">
-      </ion-nav-back-button>
-      <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-ios-gear" ng-click="toggleLeft()">
-        </button>
-      </ion-nav-buttons>
-    </ion-nav-bar>
-
-    <!--
-        在这里加上tab
-
-        -->
-    <ion-tabs class="tabs-icon-bottom tabs-positive">
-
-      <ion-tab title="监控" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/home">
-        <ion-nav-view name="home-tab"></ion-nav-view>
-      </ion-tab>
-      <ion-tab title="准备" icon-off="ion-ios-settings" icon-on="ion-ios-settings-strong" ui-sref="tabs.prepare">
-        <ion-nav-view name="prepare-tab"></ion-nav-view>
-      </ion-tab>
-
-      <!--<ion-tab title="IP连接" icon="ion-gear-b" ui-sref="tabs.settings">
-        <ion-nav-view name="settings-tab"></ion-nav-view>
-      </ion-tab>-->
-
-      <ion-tab title="文件" icon-off="ion-ios-folder-outline" icon-on="ion-ios-folder" ui-sref="tabs.files">
-        <ion-nav-view name="files-tab"></ion-nav-view>
-      </ion-tab>
-      <ion-tab title="加工" icon-off="ion-ios-play-outline" icon-on="ion-ios-play" ui-sref="tabs.process">
-        <ion-nav-view name="process-tab"></ion-nav-view>
-      </ion-tab>
-      <ion-tab title="IP连接" icon="icon ion-link" ui-sref="tabs.ipSetting">
-        <ion-nav-view name="ipSetting-tab"></ion-nav-view>
-      </ion-tab>
+  <ion-tab title="监控" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/app/tabs/home">
+    <ion-nav-view name="home-tab"></ion-nav-view>
+  </ion-tab>
+  <ion-tab title="准备" icon-off="ion-ios-settings" icon-on="ion-ios-settings-strong" ui-sref="app.tabs.prepare">
+    <ion-nav-view name="prepare-tab"></ion-nav-view>
+  </ion-tab>
+  <ion-tab title="文件" icon-off="ion-ios-folder-outline" icon-on="ion-ios-folder" ui-sref="app.tabs.files">
+    <ion-nav-view name="files-tab"></ion-nav-view>
+  </ion-tab>
+  <ion-tab title="加工" icon-off="ion-ios-play-outline" icon-on="ion-ios-play" ui-sref="app.tabs.process">
+    <ion-nav-view name="process-tab"></ion-nav-view>
+  </ion-tab>
 
 
-    </ion-tabs>
+</ion-tabs>
 
-    <!-- <ion-nav-view name="menuContent"></ion-nav-view> -->
-  </ion-side-menu-content>
 
-  <ion-side-menu side="left" width="120">
-    <ion-header-bar class="bar-calm">
-      <h1 class="title">设置</h1>
-    </ion-header-bar>
-    <ion-content>
-      <ul class="list">
-        <!--<ion-item href="#/event/ipSetting" class="item item-icon-right" menu-toggle="left">-->
-          <!--<i class="icon ion-chevron-right"></i>-->
-          <!--IP设置-->
-        <!--</ion-item>-->
-        <ion-item href="#/event/speedSetting" class="item item-icon-right" menu-toggle="left" >
-          <i class="icon ion-chevron-right"></i>
-          档位
-        </ion-item>
-      </ul>
-      <!-- <a class="item" >test</a> -->
-    </ion-content>
-  </ion-side-menu>
-</ion-side-menus>

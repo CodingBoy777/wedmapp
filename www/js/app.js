@@ -26,13 +26,40 @@ angular.module('ionicApp', ['ionicApp.mainCtrl', 'ionicApp.HomeTabCtrl', 'ionicA
     $ionicConfigProvider.navBar.positionSecondaryButtons('right'); //次要操作按钮位置
 
     $stateProvider
-      .state('tabs', {
-        url: "/tab",
+      .state('app', {
+        url: "/app",
         abstract: true,
-        templateUrl: "templates/tabs.html"
+        templateUrl: "templates/menu.html"
+      })
+      .state('app.tabs', {
+        url: "/tabs",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/tabs.html"
+            //controller: 'HomeTabCtrl'
+          }
+        }
+      })
+      .state('app.ipSetting', {
+        url: "/ipSetting",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/ipSetting.html",
+            controller: 'ipSettingCtrl'
+          }
+        }
+      })
+      .state('app.speedSetting', {
+        url: "/speedSetting",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/speedSetting.html",
+            controller: 'speedSettingCtrl'
+          }
+        }
       })
 
-      .state('tabs.home', {
+      .state('app.tabs.home', {
         url: "/home",
         views: {
           'home-tab': {
@@ -41,8 +68,7 @@ angular.module('ionicApp', ['ionicApp.mainCtrl', 'ionicApp.HomeTabCtrl', 'ionicA
           }
         }
       })
-
-      .state('tabs.prepare', {
+      .state('app.tabs.prepare', {
         url: "/prepare",
         views: {
           'prepare-tab': {
@@ -54,7 +80,7 @@ angular.module('ionicApp', ['ionicApp.mainCtrl', 'ionicApp.HomeTabCtrl', 'ionicA
 
 
 
-      .state('tabs.files', {
+      .state('app.tabs.files', {
         url: "/files",
         views: {
           'files-tab': {
@@ -64,7 +90,7 @@ angular.module('ionicApp', ['ionicApp.mainCtrl', 'ionicApp.HomeTabCtrl', 'ionicA
         }
       })
 
-      .state('tabs.process', {
+      .state('app.tabs.process', {
         url: "/process",
         views: {
           'process-tab': {
@@ -75,35 +101,18 @@ angular.module('ionicApp', ['ionicApp.mainCtrl', 'ionicApp.HomeTabCtrl', 'ionicA
       })
 
 
-      .state('tabs.ipSetting', {
-        url: "/ipSetting",
-        views: {
-          'ipSetting-tab': {
-            templateUrl: "templates/ipSetting.html",
-            controller: 'ipSettingCtrl'
-          }
-        }
-      })
 
-      .state('events', {
+
+      .state('app.events', {
         url: "/event",
         abstract: true,
         templateUrl: "templates/events.html"
       })
 
 
-      .state('events.speedSetting', {
-        cache: false,
-        url: "/speedSetting",
-        views: {
-          'speedSetting-event': {
-            templateUrl: "templates/speedSetting.html",
-            controller: 'speedSettingCtrl'
-          }
-        }
-      })
 
-      .state('events.fileModal', {
+
+      .state('app.events.fileModal', {
         cache: false,
         url: "/fileModal",
         views: {
@@ -114,6 +123,6 @@ angular.module('ionicApp', ['ionicApp.mainCtrl', 'ionicApp.HomeTabCtrl', 'ionicA
         }
       });
 
-    $urlRouterProvider.otherwise("/tab/home");
+    $urlRouterProvider.otherwise("/app/tabs/home");
 
   });

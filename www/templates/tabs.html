@@ -1,3 +1,10 @@
+<ion-nav-bar class="bar-positive">
+
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()">
+    </button>
+  </ion-nav-buttons>
+</ion-nav-bar>
 <ion-tabs class="tabs-icon-bottom tabs-positive">
 
   <ion-tab title="监控" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/app/tabs/home">
@@ -12,7 +19,6 @@
   <ion-tab title="加工" icon-off="ion-ios-play-outline" icon-on="ion-ios-play" ui-sref="app.tabs.process">
     <ion-nav-view name="process-tab"></ion-nav-view>
   </ion-tab>
-
 
 </ion-tabs>
 

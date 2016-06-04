@@ -1,5 +1,5 @@
 angular.module('ionicApp.ipSettingCtrl', ['ionic'])
-  .controller('ipSettingCtrl', function ($scope, $rootScope, edmData, $timeout, $ionicPopup) {
+  .controller('ipSettingCtrl', function ($scope, $rootScope, edmData, $timeout, $ionicPopup,$state) {
 
     console.log("ipSettingCtrl");
     var paintFlag = 0;
@@ -233,5 +233,7 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
         console.log("resInfoWebSocket关闭" + "<br>");
       };
     };
+
+
 
   });

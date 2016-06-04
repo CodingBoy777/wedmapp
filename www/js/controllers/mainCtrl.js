@@ -1,5 +1,5 @@
 angular.module('ionicApp.mainCtrl', [])
-  .controller('mainCtrl', function ($scope, $ionicSideMenuDelegate, $rootScope) {
+  .controller('mainCtrl', function ($scope, $ionicSideMenuDelegate, $rootScope,$state) {
 
     var coordPaint = null;
     var contextCoord = null;
@@ -20,10 +20,19 @@ angular.module('ionicApp.mainCtrl', [])
     $rootScope.wireSpeedValue = 0;
     $rootScope.currentValue = 0;
 
-    $rootScope.div_pos_x = parseFloat(numFormat(0));
-    $rootScope.div_pos_y = parseFloat(numFormat(0));
-    $rootScope.div_pos_u = parseFloat(numFormat(0));
-    $rootScope.div_pos_v = parseFloat(numFormat(0));
+    //$rootScope.div_pos_x = parseFloat(numFormat(0));
+    //$rootScope.div_pos_y = parseFloat(numFormat(0));
+    //$rootScope.div_pos_u = parseFloat(numFormat(0));
+    //$rootScope.div_pos_v = parseFloat(numFormat(0));
+    $rootScope.div_pos_x = numFormat(0);
+    $rootScope.div_pos_y = numFormat(0);
+    $rootScope.div_pos_u = numFormat(0);
+    $rootScope.div_pos_v = numFormat(0);
+
+
+    $scope.returnHome = function () {
+      $state.go('app.tabs.home');
+    }
 
     $scope.toggleLeft = function () {
       $ionicSideMenuDelegate.toggleLeft();

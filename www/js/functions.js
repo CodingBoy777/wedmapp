@@ -54,6 +54,7 @@ function toDataView(buffer) {
 
 //数据格式化
 function numFormat(num) {
+  num = parseFloat(num);
   var result = (num/1000).toFixed(3).toString();
   var index = result.indexOf(".");
   if(result<0)

@@ -293,7 +293,7 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
                 // error
                 alert(JSON.stringify(error));
             });
-        $state.go('events.fileModal');
+        $state.go('app.fileModal');
 
       $timeout(function(){
 

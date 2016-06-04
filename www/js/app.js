@@ -33,6 +33,7 @@ angular.module('ionicApp', ['ionicApp.mainCtrl', 'ionicApp.HomeTabCtrl', 'ionicA
       })
       .state('app.tabs', {
         url: "/tabs",
+        abstract: true,
         views: {
           'menuContent': {
             templateUrl: "templates/tabs.html"
@@ -55,6 +56,16 @@ angular.module('ionicApp', ['ionicApp.mainCtrl', 'ionicApp.HomeTabCtrl', 'ionicA
           'menuContent': {
             templateUrl: "templates/speedSetting.html",
             controller: 'speedSettingCtrl'
+          }
+        }
+      })
+      .state('app.fileModal', {
+        cache: false,
+        url: "/fileModal",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/fileModal.html",
+            controller: 'fileModalCtrl'
           }
         }
       })
@@ -110,18 +121,17 @@ angular.module('ionicApp', ['ionicApp.mainCtrl', 'ionicApp.HomeTabCtrl', 'ionicA
       })
 
 
-
-
-      .state('app.events.fileModal', {
-        cache: false,
-        url: "/fileModal",
-        views: {
-          'fileModal-event': {
-            templateUrl: "templates/fileModal.html",
-            controller: 'fileModalCtrl'
-          }
-        }
-      });
+      //.state('app.events.fileModal', {
+      //  cache: false,
+      //  url: "/fileModal",
+      //  views: {
+      //    'fileModal-event': {
+      //      templateUrl: "templates/fileModal.html",
+      //      controller: 'fileModalCtrl'
+      //    }
+      //  }
+      //})
+    ;
 
     $urlRouterProvider.otherwise("/app/tabs/home");
 

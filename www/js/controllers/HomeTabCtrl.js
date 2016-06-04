@@ -2,9 +2,9 @@ angular.module('ionicApp.HomeTabCtrl', ['ionic'])
   .controller('HomeTabCtrl', function ($scope,edmData,$rootScope, $timeout, $cordovaSplashscreen) {
     console.log('HomeTabCtrl');
 
-    $timeout(function () {
+    /*$timeout(function () {
       $cordovaSplashscreen.show();
-    }, 50);
+    }, 50);*/
 
 
     //coordPaint = document.getElementById("coordPaint");

@@ -29,8 +29,8 @@ var resCmdWebSocket;
 var resCmdWebSocketOpen;
 var resInfoWebSocket;
 var resInfoWebSocketOpen;
-var ipAddress = "192.168.5.101";
-var webIpAddress = "ws://192.168.5.101";
+var ipAddress = "192.168.5.217";
+var webIpAddress = "ws://192.168.5.217";
 
 var ioInfo={
   highfrequence: 0,

@@ -60,7 +60,7 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
         }
       }, 1000);
 
-      resCmdWebSocket.onmessage = function(){
+      resCmdWebSocket.onmessage = function(event){
         var data = JSON.parse(event.data);
         var dataview = toDataView(data.data);
         if(data.type=='IOstate') {
@@ -138,17 +138,8 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
             }else {
               //内分速度
               var div = 72000/dataview.getInt32(8,true);
-              var index ;
-              for(var i=0; i<10; i++)
-              {
-                if(Math.abs((parseInt(div)-parseInt(SpeedLevel.innerSpeed[i])))<1)
-                {
-                  //因为当发下去的速度不能被72000或者400整除的时候，获取到的分频值就会和本地设置不完全一致，但是应该不会超过1
-                  index = i+1;
-                  break;
-                }
-              }
-              $rootScope.getSpeed = index;
+              console.log((dataview.getInt32(8,true)));
+              //$rootScope.getSpeed = parseInt(div);
             }
           }, 20)
 

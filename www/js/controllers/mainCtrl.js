@@ -1,5 +1,5 @@
-angular.module('ionicApp.controllers', [])
-  .controller('MainCtrl', function ($scope, $ionicSideMenuDelegate, $rootScope) {
+angular.module('ionicApp.mainCtrl', [])
+  .controller('mainCtrl', function ($scope, $ionicSideMenuDelegate, $rootScope) {
 
     var coordPaint = null;
     var contextCoord = null;

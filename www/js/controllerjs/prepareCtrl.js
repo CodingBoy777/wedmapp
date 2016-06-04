@@ -3,39 +3,41 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
 
     console.log('prepareCtrl');
     speedChange = function(){
-      var resSpeedValue;
-      if(speed.value == 1){
-        resSpeedValue=40;
-      }
-      else if(speed.value == 2){
-        resSpeedValue=76;
-      }
-      else if(speed.value == 3){
-        resSpeedValue=112;
-      }
-      else if(speed.value == 4){
-        resSpeedValue=148;
-      }
-      else if(speed.value == 5){
-        resSpeedValue=184;
-      }
-      else if(speed.value == 6){
-        resSpeedValue=220;
-      }
-      else if(speed.value == 7){
-        resSpeedValue=292;
-      }
-      else if(speed.value == 8){
-        resSpeedValue=328;
-      }
-      else if(speed.value == 9){
-        resSpeedValue=364;
-      }
-      else if(speed.value == 10){
-        resSpeedValue=400;
-      }
-      console.log(JSON.stringify({'cmd':'setInnerSpeed', level: resSpeedValue}));
-      resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: resSpeedValue}));
+      //var resSpeedValue;
+
+      //if(speed.value == 1){
+      //  resSpeedValue=40;
+      //}
+      //else if(speed.value == 2){
+      //  resSpeedValue=76;
+      //}
+      //else if(speed.value == 3){
+      //  resSpeedValue=112;
+      //}
+      //else if(speed.value == 4){
+      //  resSpeedValue=148;
+      //}
+      //else if(speed.value == 5){
+      //  resSpeedValue=184;
+      //}
+      //else if(speed.value == 6){
+      //  resSpeedValue=220;
+      //}
+      //else if(speed.value == 7){
+      //  resSpeedValue=292;
+      //}
+      //else if(speed.value == 8){
+      //  resSpeedValue=328;
+      //}
+      //else if(speed.value == 9){
+      //  resSpeedValue=364;
+      //}
+      //else if(speed.value == 10){
+      //  resSpeedValue=400;
+      //}
+
+      console.log(JSON.stringify({'cmd':'setInnerSpeed', level: speed.value}));
+      resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: speed.value}));
 
     };
 

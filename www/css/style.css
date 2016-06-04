@@ -83,3 +83,16 @@
 {
     padding-left: 56px;
 }
+
+/*图片水平居中*/
+.img-align-center
+{
+    display: inline;
+    text-align: center;
+}
+/*文字水平和垂直居中*/
+.text-center
+{
+    margin: auto;
+    text-align: center;
+}

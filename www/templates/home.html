@@ -1,57 +1,58 @@
-<ion-view title="监控">
+<ion-view title="状态">
 
   <ion-content>
-  <ul class="list">
-    <li class="item">
-      <div class="row">
-        <div class="col col-10">X</div>
-        <div class="col col-40">{{ $root.div_pos_x }}</div>
-        <div class="col col-10">Y</div>
-        <div class="col col-40">{{$root.div_pos_y}}</div>
-      </div>
-      <div class="row">
-        <div class="col col-10">U</div>
-        <div class="col col-40">{{$root.div_pos_u}}</div>
-        <div class="col col-10">V</div>
-        <div class="col col-40">{{$root.div_pos_v}}</div>
-      </div>
-    </li>
-
-    <!-- <div class="list list-inset">
+    <div class="list card">
       <div class="item item-divider">
-        机床IO状态
+        <b>机械坐标</b>
       </div>
       <div class="item">
         <div class="row">
-          <div class="col">水泵：<b><span id="waterPumpStatus">已关闭</span></b></div>
-          <div class="col">高频：<b><span id="highFrequenceStatus">已关闭</span></b></div>
+          <div class="col col-10">X</div>
+          <div class="col col-40">{{ $root.div_pos_x }}</div>
+          <div class="col col-10">Y</div>
+          <div class="col col-40">{{$root.div_pos_y}}</div>
         </div>
         <div class="row">
-          <div class="col">运丝：<b><span id="wireTransportStatus">已关闭</span></b></div>
-          <div class="col">解锁：<b><span id="axisUnlockStatus">已关闭</span></b></div>
-        </div>
-        <div class="row">
-          <div class="col">运丝速度：<b><span id="wireSpeedStatus">0</span></b></div>
-          <div class="col">电流：<b><span id="currentStatus">0</span></b></div>
+          <div class="col col-10">U</div>
+          <div class="col col-40">{{$root.div_pos_u}}</div>
+          <div class="col col-10">V</div>
+          <div class="col col-40">{{$root.div_pos_v}}</div>
         </div>
       </div>
-    </div> -->
 
-    <li class="item">
-      <div class="row">
-        <div class="col">
-          <div margin-right="auto" margin-left="auto">IO状态</div>
+      <!-- <div class="list list-inset">
+        <div class="item item-divider">
+          机床IO状态
         </div>
-        <div class="col"><img src="../img/btn-move-axis-not.png" width="65px" /></div>
-        <div class="col"><img src="../img/btn-move-frequency-not.png" width="65px" /></div>
+        <div class="item">
+          <div class="row">
+            <div class="col">水泵：<b><span id="waterPumpStatus">已关闭</span></b></div>
+            <div class="col">高频：<b><span id="highFrequenceStatus">已关闭</span></b></div>
+          </div>
+          <div class="row">
+            <div class="col">运丝：<b><span id="wireTransportStatus">已关闭</span></b></div>
+            <div class="col">解锁：<b><span id="axisUnlockStatus">已关闭</span></b></div>
+          </div>
+          <div class="row">
+            <div class="col">运丝速度：<b><span id="wireSpeedStatus">0</span></b></div>
+            <div class="col">电流：<b><span id="currentStatus">0</span></b></div>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="item">
+        <div class="row">
+          <div class="col text-center"><b>IO状态</b></div>
+          <div class="col img-align-center"><img ng-src="../img/btn-move-axis-not.png" style="width: 65px"></div>
+          <div class="col img-align-center"><img ng-src="../img/btn-move-frequency-not.png" style="width: 65px"></div>
+        </div>
+        <div class="row">
+          <div class="col img-align-center"><img ng-src="../img/btn-move-move-not.png" style="width: 65px"></div>
+          <div class="col img-align-center"><img ng-src="../img/btn-move-water-not.png" style="width: 65px"></div>
+          <div class="col img-align-center"><img ng-src="../img/btn-move-wire-not.png" style="width: 65px"></div>
+        </div>
       </div>
-      <div class="row">
-        <div class="col"><img src="../img/btn-move-move-not.png" width="65px" /></div>
-        <div class="col"><img src="../img/btn-move-water-not.png" width="65px" /></div>
-        <div class="col"><img src="../img/btn-move-wire-not.png" width="65px" /></div>
-      </div>
-    </li>
-  </ul>
+    </div>
   </ion-content>
 
 </ion-view>

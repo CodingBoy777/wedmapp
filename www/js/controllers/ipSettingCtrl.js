@@ -14,8 +14,10 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
     $scope.ipConnect = function () {
       var flagInfoConnect = 0;var flagCmdConnect = 0;
       resInfoWebSocket = new WebSocket(webIpAddress + ":8081");
+      document.getElementById("information").innerHTML += webIpAddress;
       resInfoWebSocket.onerror = function(event){
         console.log('ERROR: ' + event.message);
+        document.getElementById("information").innerHTML +="InfoWebSocket:"+event.message;
 
       };
       resInfoWebSocket.onopen = function(){

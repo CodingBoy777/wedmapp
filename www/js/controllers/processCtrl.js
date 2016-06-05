@@ -27,7 +27,7 @@ angular.module('ionicApp.processCtrl', ['ionic'])
           { text: 'Cancel' }
         ]
       });
-      console.log($rootScope.pulseWidthValue + "</br>" + $rootScope.ratioValue);
+
       if(!resCmdWebSocketOpen) return;
       resCmdWebSocket.send(JSON.stringify({'cmd': 'setPWM', ratio: ratioValue.value, pulseWidth: pulseWidthValue.value}));
     };
@@ -182,7 +182,16 @@ angular.module('ionicApp.processCtrl', ['ionic'])
         document.getElementById("currentValueDispaly").style.display = "none";
       }
     }
-
+    $scope.pulseAndRatioDispaly = function () {
+      if(document.getElementById("pulseAndRatioDispaly").style.display == "none"){
+        document.getElementById("pulseAndRatioDispaly").style.display = "block";
+        document.getElementById("pulseAndRatio").innerHTML = "脉宽与占空比";
+      }
+      else{
+        document.getElementById("pulseAndRatioDispaly").style.display = "none";
+        document.getElementById("pulseAndRatio").innerHTML = "脉宽："+$rootScope.pulseWidthValue+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"占空比："+$rootScope.pulseWidthValue;
+      }
+    }
 
 
 

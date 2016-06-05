@@ -6,6 +6,19 @@
 var toIdealShape = function(jsonData, layer, scale) {
     //layer.removeChildren();
     layer.destroyChildren();
+    var axisxLine = new Kinetic.Line({
+      points: [0,0,100,0],
+      stroke: 'blue',
+      strokeWidth: 1,
+      listening: false
+    })
+    var axisyLine = new Kinetic.Line({
+      points: [0,0,0,-100],
+      stroke: 'blue',
+      strokeWidth: 1,
+      listening: false
+     })
+    layer.add(axisxLine,axisyLine);
     for(var i = 0; i<jsonData.length; i++) {
         var current = jsonData[i];
         //console.log(current);
@@ -57,7 +70,7 @@ function drawLine(x0, y0, x1, y1 ,scale) {
     var line = new Kinetic.Line({
         points: [x0*scale,-y0*scale,x1*scale,-y1*scale],
         stroke: 'red',
-        strokeWidth: 1,
+        strokeWidth: 2,
         listening: false
     })
     return line;

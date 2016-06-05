@@ -295,40 +295,80 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
             });
         $state.go('app.fileModal');
 
+
+      paintScale = 1;
+
       $timeout(function(){
 
         var stage = new Kinetic.Stage({
           container: "graphicsStage", //<div>��id
           //container: "testImage", <div>��id
           colour: "red",
-          width: 1000, //��������̨���
-          height: 1000 //��������̨�߶�
+          //offsetX: -(window.screen.width-30)/2,//Math.floor(-stage.getWidth() / 2) - 0.5,
+          //offsetY: -150,
+          width: window.screen.width-30, //��������̨���
+          height: 300 //��������̨�߶�
         });
 
-//console.log(stage.getWidth(),stage.getHeight())
+
         var shape = new Kinetic.Layer({
-          offsetX: -100.5,//Math.floor(-stage.getWidth() / 2) - 0.5,
-          offsetY: -100.5,//Math.floor(-stage.getHeight() / 2) - 0.5,
+          //offsetX: -(window.screen.width-30)/2,//Math.floor(-stage.getWidth() / 2) - 0.5,
+          //offsetY: -150,//Math.floor(-stage.getHeight() / 2) - 0.5,
+
           id: "shape"
         });
         stage.add(shape);
-
 
         var str = $rootScope.fileContentUser;
         //highlight(str);
         var myInterpreter = new gcodeInterpreter(str);
         var result = myInterpreter.interpreter();
+
+        shape.setOffsetX((xValueMin+yValueMax)*paintScale/2-200);
+        shape.setOffsetY((yValueMin+yValueMax)*paintScale/2-150);
+        //shape.setOffsetX(-250);
+        //shape.setOffsetY(-150);
         toIdealShape(result, shape, paintScale);
 
         window.onresize = function(){
           stage.setWidth(100);
           stage.setHeight(100);
-        };
 
+        };
 
 
       },1000);
 
+      //$timeout(function () {
+      //  var stage2 = new Kinetic.Stage({
+      //    container: "graphicsStage2", //<div>��id
+      //    colour: "red",
+      //    //offsetX: -(window.screen.width-30)/2,//Math.floor(-stage.getWidth() / 2) - 0.5,
+      //    //offsetY: -150,
+      //    width: window.screen.width-30, //��������̨���
+      //    height: 200 //��������̨�߶�
+      //  });
+      //
+      //
+      //  var shape2 = new Kinetic.Layer({
+      //    offsetX: -(window.screen.width-30)/2,
+      //    offsetY: -150,
+      //    id: "shape"
+      //  });
+      //  stage2.add(shape2);
+      //
+      //  var str = $rootScope.fileContentUser;
+      //  //highlight(str);
+      //  var myInterpreter = new gcodeInterpreter(str);
+      //  var result = myInterpreter.interpreter();
+      //  toIdealShape(result, shape2, paintScale);
+      //
+      //  window.onresize = function(){
+      //    stage2.setWidth(100);
+      //    stage2.setHeight(100);
+      //
+      //  };
+      //},500);
 
     };
 

@@ -55,4 +55,6 @@ angular.module('ionicApp.mainCtrl', [])
       $ionicSideMenuDelegate.toggleLeft();
     };
 
+    console.log(window.screen.width);
+
   });

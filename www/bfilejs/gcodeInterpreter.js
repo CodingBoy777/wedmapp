@@ -31,7 +31,7 @@
  * 		myInterpreter.interpreter();
  * Done!!!
  */
-
+var codeContent;
 var xValueMax = 0, xValueMin = 0, yValueMax = 0, yValueMin = 0;
 
 xValueMax = parseFloat(xValueMax);
@@ -877,6 +877,7 @@ function codeToJson(array){
   else{
     paintScale = 110/(yValueMax - yValueMin);
   }
+  codeContent = jsonArray;
   return jsonArray;
 }
 

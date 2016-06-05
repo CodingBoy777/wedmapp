@@ -1,8 +1,7 @@
 /**
  * Created by allon on 2016/04/05
  */
-var findEdgeType = 0;
-var findEdgeDir = 0;
+
 var isfindEdgeStart = 0;
 
 var settings = {

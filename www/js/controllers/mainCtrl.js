@@ -12,11 +12,11 @@ angular.module('ionicApp.mainCtrl', [])
     $rootScope.pulseWidthValue = 0;
     $rootScope.ratioValue = 0;
 
-    $rootScope.toggleAxisUnlock = false;
+    /*$rootScope.toggleAxisUnlock = false;
     $rootScope.toggleStartWire = false;
     $rootScope.toggleWaterPump = false;
     $rootScope.toggleHighFrequence = false;
-    $rootScope.toggleWireTransport = false;
+    $rootScope.toggleWireTransport = false;*/
     $rootScope.wireSpeedValue = 0;
     $rootScope.currentValue = 0;
 

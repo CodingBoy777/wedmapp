@@ -85,39 +85,30 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
 
           setTimeout(function(){
             if(ioInfo.waterPump == 0){
-              $rootScope.toggleWaterPump = "false";
-              document.getElementById("waterPumpStatus").innerHTML = "已关闭";
+              // $rootScope.toggleWaterPump = "false";
+              $rootScope.img.watertemp = $rootScope.img.waternot;
             }
             else{
-              $rootScope.toggleWaterPump = true;
-              document.getElementById("waterPumpStatus").innerHTML = "已打开";
+              // $rootScope.toggleWaterPump = true;
+              $rootScope.img.watertemp = $rootScope.img.water;
             }
             if(ioInfo.highfrequence == 0){
-              $rootScope.toggleHighFrequence = false;
-              document.getElementById("highFrequenceStatus").innerHTML = "已关闭";
+              // $rootScope.toggleHighFrequence = false;
+              $rootScope.img.frequencytemp = $rootScope.img.frequencynot;
             }
             else{
-              $rootScope.toggleHighFrequence = true;
-              document.getElementById("highFrequenceStatus").innerHTML = "已打开";
+              // $rootScope.toggleHighFrequence = true;
+              $rootScope.img.frequencytemp = $rootScope.img.frequency;
             }
 
             if(ioInfo.wireTransport == 0){
-              $rootScope.toggleWireTransport = false;
-              document.getElementById("wireTransportStatus").innerHTML = "已关闭";
+              // $rootScope.toggleWireTransport = false;
+              $rootScope.img.movetemp = $rootScope.img.movenot;
             }
             else{
-              $rootScope.toggleWireTransport = true;
-              document.getElementById("wireTransportStatus").innerHTML = "已打开";
+              // $rootScope.toggleWireTransport = true;
+              $rootScope.img.movetemp = $rootScope.img.move;
             }
-            if($rootScope.toggleAxisUnlock == 0){
-              document.getElementById("axisUnlockStatus").innerHTML = "已关闭";
-            }
-            else{
-
-              document.getElementById("axisUnlockStatus").innerHTML = "已打开";
-            }
-
-
 
             $rootScope.wireSpeedValue = ioInfo.wireSpeed;
             document.getElementById("wireSpeedStatus").innerHTML = ioInfo.wireSpeed;

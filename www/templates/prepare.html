@@ -2,8 +2,8 @@
   <ion-content >
 
     <div id="coordinate" class="list">
-      <div class="item item-divider" style="margin-top:5px">机械坐标</div>
-      <div class="item item-text-wrap">
+      <div class="item item-divider" style="margin-top:5px"><b>机械坐标</b></div>
+      <div class="item">
         <div class="row">
           <div class="col col-10">X</div>
           <div class="col col-40">{{ $root.div_pos_x }}</div>
@@ -19,168 +19,107 @@
       </div>
 
       <div class="item item-divider" style="margin-top:5px">
-        <span>速度:</span>
-        <span>{{$root.getSpeed}}</span>
+        <b>速度</b>：{{$root.getSpeed}}
       </div>
       <div class="item range range-positive">
-        <i>2</i><i class="icon ion-minus-round"></i>
+        <i>2</i>
         <input type="range" id="speed" ng-model="$root.getSpeed"  min="2" max="400" onchange="speedChange();">
-        <i class="icon ion-plus"></i><i>400</i>
+        <i>400</i>
       </div>
-    </div>
-    <!--<div class="list" >-->
-      <!--<div class="item item-text-wrap">-->
-        <!--<div class="row">-->
 
-          <!--&lt;!&ndash; 正式版本&ndash;&gt;-->
-          <!--<div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"-->
-          <!--on-touch="xNegPointMove();" on-release="stopPointMove();">x-</button></div>-->
-          <!--<div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"-->
-          <!--on-touch="xPosPointMove();" on-release="stopPointMove();">x+</button></div>-->
-          <!--<div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"-->
-          <!--on-touch="yNegPointMove();" on-release="stopPointMove();">y-</button></div>-->
-          <!--<div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"-->
-          <!--on-touch="yPosPointMove();" on-release="stopPointMove();">y+</button></div>-->
+      <div class="item" style="margin-top:5px">
+        <div class="row">
 
-        <!--</div>-->
-        <!--<div class="row">-->
+          <!-- 正式版本-->
+          <div class="col align-center"><button class="button icon-left ion-chevron-left button-royal button-small" id="button01" on-touch="xNegPointMove();" on-release="stopPointMove();">x-</button></div>
+          <div class="col align-center"><button class="button icon-right ion-chevron-right button-calm button-small" id="button02" on-touch="xPosPointMove();" on-release="stopPointMove();">x+</button></div>
+          <div class="col align-center"><button class="button icon-left ion-chevron-left button-royal button-small" id="button03" on-touch="yNegPointMove();" on-release="stopPointMove();">y-</button></div>
+          <div class="col align-center"><button class="button icon-right ion-chevron-right button-calm button-small" id="button04" on-touch="yPosPointMove();" on-release="stopPointMove();">y+</button></div>
 
-          <!--&lt;!&ndash; 正式版本&ndash;&gt;-->
-          <!--<div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"-->
-          <!--on-touch="uNegPointMove();" on-release="stopPointMove();">u-</button></div>-->
-          <!--<div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"-->
-          <!--on-touch="uPosPointMove();" on-release="stopPointMove();">u+</button></div>-->
-          <!--<div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"-->
-          <!--on-touch="vNegPointMove();" on-release="stopPointMove();">v-</button></div>-->
-          <!--<div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"-->
-          <!--on-touch="vPosPointMove();" on-release="stopPointMove();">v+</button></div>-->
+        </div>
+        <div class="row">
+
+          <!-- 正式版本-->
+          <div class="col align-center"><button class="button icon-left ion-chevron-left button-royal button-small" id="button05" on-touch="uNegPointMove();" on-release="stopPointMove();">u-</button></div>
+          <div class="col align-center"><button class="button icon-right ion-chevron-right button-calm button-small" id="button06" on-touch="uPosPointMove();" on-release="stopPointMove();">u+</button></div>
+          <div class="col align-center"><button class="button icon-left ion-chevron-left button-royal button-small" id="button07" on-touch="vNegPointMove();" on-release="stopPointMove();">v-</button></div>
+          <div class="col align-center"><button class="button icon-right ion-chevron-right button-calm button-small" id="button08" on-touch="vPosPointMove();" on-release="stopPointMove();">v+</button></div>
+        </div>
+      </div>
+
+
+      <!-- <div class="row">
+        <div class="col"><ion-toggle id="toggleWaterPumpValue" ng-model="$root.toggleWaterPump" onchange="waterPumpChange();">水泵</ion-toggle></div>
+        <div class="col"><ion-toggle id="toggleHighFrequence" ng-model="$root.toggleHighFrequence" onchange="highFrequenceChange();">高频</ion-toggle></div>
+      </div>
+      <div class="row">
+        <div class="col"><ion-toggle id="toggleWireTransport" ng-model="$root.toggleWireTransport" onchange="wireTransportChange();">运丝</ion-toggle></div>
+        <div class="col"><ion-toggle id="toggleAxisUnlock" ng-model="$root.toggleAxisUnlock" onchange="axisUnlockChange();">解锁</ion-toggle></div>
+      </div>
+      <div class="row">
+        <div class="col col-50"><ion-toggle id="toggleStartWire" ng-model="$root.toggleStartWire" onchange="startWireChange();">上丝</ion-toggle></div>
+      </div> -->
+
+      <div class="item" style="margin-top:5px">
+        <div class="row">
+
+          <div class="col align-center"><img ng-src="{{img.watertemp}}" style="width: 50px; height: 50px"></div>
+          <div class="col align-center"><img ng-src="{{img.frequencytemp}}" style="width: 50px; height: 50px"></div>
+          <div class="col align-center"><img ng-src="{{img.movetemp}}" style="width: 50px; height: 50px"></div>
+        </div>
+        <div class="row">
+          <div class="col align-center"><img ng-src="{{img.axistemp}}" style="width: 50px; height: 50px"></div>
+          <div class="col align-center"><img ng-src="{{img.wiretemp}}" style="width: 50px; height: 50px"></div>
+          <div class="col text-center"><b>IO状态</b></div>
+        </div>
+      </div>
+
+      <!--<div class="list">-->
+        <!--<div class="item item-divider">工件找边</div>-->
+
+        <!--<div class="item">-->
+          <!--<div class="row">-->
+            <!--<div class="col"><button class="button  button-royal button-small" on-touch="xSubf();">X-</button></div>-->
+            <!--<div class="col"><button class="button  button-calm button-small" on-touch="xAddf();">X+</button></div>-->
+            <!--<div class="col"><button class="button  button-royal button-small" on-touch="ySubf();">Y-</button></div>-->
+            <!--<div class="col"><button class="button  button-calm button-small" on-touch="yAddf();">Y+</button></div>-->
+          <!--</div>-->
+
+          <!--<div class="row">-->
+            <!--<div class="col"><button class="button  button-royal button-small" on-touch="typeEdge();">找  边</button></div>-->
+            <!--<div class="col"><button class="button  button-royal button-small" on-touch="typeMid();">找中点</button></div>-->
+            <!--<div class="col"><button class="button  button-royal button-small" on-touch="typeCenter();">找圆心</button></div>-->
+          <!--</div>-->
+
+          <!--<div class="row">-->
+            <!--<div class="col"><button class="button" on-touch="findEdgeStart();">开始找边</button></div>-->
+            <!--<div class="col"><button class="button" on-touch="findEdgeStop();">停止找边</button></div>-->
+          <!--</div>-->
+
         <!--</div>-->
       <!--</div>-->
-    <!--</div>-->
 
-    <!--<div class="row">-->
-      <!--<div class="col"><ion-toggle id="toggleWaterPumpValue" ng-model="$root.toggleWaterPump" onchange="waterPumpChange();">水泵</ion-toggle></div>-->
-      <!--<div class="col"><ion-toggle id="toggleHighFrequence" ng-model="$root.toggleHighFrequence" onchange="highFrequenceChange();">高频</ion-toggle></div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-      <!--<div class="col"><ion-toggle id="toggleWireTransport" ng-model="$root.toggleWireTransport" onchange="wireTransportChange();">运丝</ion-toggle></div>-->
-      <!--<div class="col"><ion-toggle id="toggleAxisUnlock" ng-model="$root.toggleAxisUnlock" onchange="axisUnlockChange();">解锁</ion-toggle></div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-      <!--<div class="col col-50"><ion-toggle id="toggleStartWire" ng-model="$root.toggleStartWire" onchange="startWireChange();">上丝</ion-toggle></div>-->
-    <!--</div>-->
+      <div class="item item-divider" style="margin-top:5px">工件找边</div>
 
-    <!--<div class="list">-->
-      <!--<div class="item item-divider">工件找边</div>-->
-
-      <!--<div class="item">-->
-        <!--<div class="row">-->
-          <!--<div class="col"><button class="button  button-royal button-small" on-touch="xSubf();">X-</button></div>-->
-          <!--<div class="col"><button class="button  button-calm button-small" on-touch="xAddf();">X+</button></div>-->
-          <!--<div class="col"><button class="button  button-royal button-small" on-touch="ySubf();">Y-</button></div>-->
-          <!--<div class="col"><button class="button  button-calm button-small" on-touch="yAddf();">Y+</button></div>-->
-        <!--</div>-->
-
-        <!--<div class="row">-->
-          <!--<div class="col"><button class="button  button-royal button-small" on-touch="typeEdge();">找  边</button></div>-->
-          <!--<div class="col"><button class="button  button-royal button-small" on-touch="typeMid();">找中点</button></div>-->
-          <!--<div class="col"><button class="button  button-royal button-small" on-touch="typeCenter();">找圆心</button></div>-->
-        <!--</div>-->
-
-        <!--<div class="row">-->
-          <!--<div class="col"><button class="button" on-touch="findEdgeStart();">开始找边</button></div>-->
-          <!--<div class="col"><button class="button" on-touch="findEdgeStop();">停止找边</button></div>-->
-        <!--</div>-->
-
-      <!--</div>-->
-    <!--</div>-->
-
-    <div class="list" style="padding-left: 10px;padding-right: 10px">
       <div class="item">
-        <ion-slide-box on-slide-changed="slideHasChanged($index)">
-          <ion-slide>
-            <div>
+        <div class="row">
+          <div class="col"><button class="button  button-royal button-small" on-touch="xSubf();">X-</button></div>
+          <div class="col"><button class="button  button-calm button-small" on-touch="xAddf();">X+</button></div>
+          <div class="col"><button class="button  button-royal button-small" on-touch="ySubf();">Y-</button></div>
+          <div class="col"><button class="button  button-calm button-small" on-touch="yAddf();">Y+</button></div>
+        </div>
 
-              <div class="list" >
-                <div class="item item-text-wrap">
-                  <div class="row">
+        <div class="row">
+          <div class="col"><button class="button  button-royal button-small" on-touch="typeEdge();">找  边</button></div>
+          <div class="col"><button class="button  button-royal button-small" on-touch="typeMid();">找中点</button></div>
+          <div class="col"><button class="button  button-royal button-small" on-touch="typeCenter();">找圆心</button></div>
+        </div>
 
-                    <!-- 正式版本-->
-                    <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
-                                             on-touch="xNegPointMove();" on-release="stopPointMove();">x-</button></div>
-                    <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
-                                             on-touch="xPosPointMove();" on-release="stopPointMove();">x+</button></div>
-                    <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
-                                             on-touch="yNegPointMove();" on-release="stopPointMove();">y-</button></div>
-                    <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
-                                             on-touch="yPosPointMove();" on-release="stopPointMove();">y+</button></div>
-
-                  </div>
-                  <div class="row">
-
-                    <!-- 正式版本-->
-                    <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
-                                             on-touch="uNegPointMove();" on-release="stopPointMove();">u-</button></div>
-                    <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
-                                             on-touch="uPosPointMove();" on-release="stopPointMove();">u+</button></div>
-                    <div class="col"><button class="button icon-left ion-chevron-left button-royal button-small"
-                                             on-touch="vNegPointMove();" on-release="stopPointMove();">v-</button></div>
-                    <div class="col"><button class="button icon-right ion-chevron-right button-calm button-small"
-                                             on-touch="vPosPointMove();" on-release="stopPointMove();">v+</button></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col"><ion-toggle id="toggleWaterPumpValue" ng-model="$root.toggleWaterPump" onchange="waterPumpChange();">水泵</ion-toggle></div>
-                <div class="col"><ion-toggle id="toggleHighFrequence" ng-model="$root.toggleHighFrequence" onchange="highFrequenceChange();">高频</ion-toggle></div>
-              </div>
-              <div class="row">
-                <div class="col"><ion-toggle id="toggleWireTransport" ng-model="$root.toggleWireTransport" onchange="wireTransportChange();">运丝</ion-toggle></div>
-                <div class="col"><ion-toggle id="toggleAxisUnlock" ng-model="$root.toggleAxisUnlock" onchange="axisUnlockChange();">解锁</ion-toggle></div>
-              </div>
-              <div class="row">
-                <div class="col col-50"><ion-toggle id="toggleStartWire" ng-model="$root.toggleStartWire" onchange="startWireChange();">上丝</ion-toggle></div>
-              </div>
-            </div>
-          </ion-slide>
-
-          <ion-slide>
-            <div>
-              <div class="list" style="">
-                <div class="item item-divider">工件找边</div>
-
-                <div class="item">
-                  <div class="row">
-                    <div class="col"><button class="button  button-royal button-small" on-touch="xSubf();">X-</button></div>
-                    <div class="col"><button class="button  button-calm button-small" on-touch="xAddf();">X+</button></div>
-                    <div class="col"><button class="button  button-royal button-small" on-touch="ySubf();">Y-</button></div>
-                    <div class="col"><button class="button  button-calm button-small" on-touch="yAddf();">Y+</button></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col"><button class="button  button-royal button-small" on-touch="typeEdge();">找  边</button></div>
-                    <div class="col"><button class="button  button-royal button-small" on-touch="typeMid();">找中点</button></div>
-                    <div class="col"><button class="button  button-royal button-small" on-touch="typeCenter();">找圆心</button></div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col"><button class="button" on-touch="findEdgeStart();">开始找边</button></div>
-                    <div class="col"><button class="button" on-touch="findEdgeStop();">停止找边</button></div>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-          </ion-slide>
-
-
-
-
-        </ion-slide-box>
+        <div class="row">
+          <div class="col"><button class="button" on-touch="findEdgeStart();">开始找边</button></div>
+          <div class="col"><button class="button" on-touch="findEdgeStop();">停止找边</button></div>
+        </div>
       </div>
-    </div>
 
 
 

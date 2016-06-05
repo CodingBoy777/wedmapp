@@ -85,7 +85,7 @@
 }
 
 /*图片水平居中*/
-.img-align-center
+.align-center
 {
     display: inline;
     text-align: center;
@@ -96,3 +96,9 @@
     margin: auto;
     text-align: center;
 }
+/*自定义button-small样式*/
+/*.button-small
+{
+    width: 34px;
+    height: 32px;
+}*/

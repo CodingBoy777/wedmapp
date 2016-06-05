@@ -44,50 +44,66 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
 
     //x轴正向移动
     $scope.xPosPointMove=function(){
+      document.getElementById("button02").style.width = "40px";
       //var socket = io.connect($rootScope.ipLocation);
       resCmdWebSocket.send(JSON.stringify({'cmd':'pointMove','axis':'x','dir': 1}));
     };
     //x轴负向移动
     $scope.xNegPointMove=function(){
+      document.getElementById("button01").style.width = "40px";
       //socket.send("x-Move is done contraller!!");
       resCmdWebSocket.send(JSON.stringify({'cmd':'pointMove','axis':'x','dir': -1}));
     };
 
     //y轴正向移动
     $scope.yPosPointMove=function(){
+      document.getElementById("button04").style.width = "40px";
       //socket.send("y+Move is done contraller!!");
       resCmdWebSocket.send(JSON.stringify({'cmd':'pointMove','axis':'y','dir': 1}));
     };
     //y轴负向移动
     $scope.yNegPointMove=function(){
+      document.getElementById("button03").style.width = "40px";
       //socket.send("y-Move is done contraller!!");
       resCmdWebSocket.send(JSON.stringify({'cmd':'pointMove','axis':'y','dir': -1}));
     };
 
     //u轴正向移动
     $scope.uPosPointMove=function(){
+      document.getElementById("button06").style.width = "40px";
       //socket.send("u+Move is done contraller!!");
       resCmdWebSocket.send(JSON.stringify({'cmd':'pointMove','axis':'u','dir': 1}));
     };
     //u轴负向移动
     $scope.uNegPointMove=function(){
+      document.getElementById("button05").style.width = "40px";
       //socket.send("u-Move is done contraller!!");
       resCmdWebSocket.send(JSON.stringify({'cmd':'pointMove','axis':'u','dir': -1}));
     };
 
     //v轴正向移动
     $scope.vPosPointMove=function(){
+      document.getElementById("button08").style.width = "40px";
       //socket.send("v+Move is done contraller!!");
       resCmdWebSocket.send(JSON.stringify({'cmd':'pointMove','axis':'v','dir': 1}));
     };
     //v轴负向移动
     $scope.vNegPointMove=function(){
+      document.getElementById("button07").style.width = "40px";
       //socket.send("v-Move is done contraller!!");
       resCmdWebSocket.send(JSON.stringify({'cmd':'pointMove','axis':'v','dir': -1}));
     };
 
     //点动停止函数
     $scope.stopPointMove = function(){
+      document.getElementById("button01").style.width = "34px";
+      document.getElementById("button02").style.width = "34px";
+      document.getElementById("button03").style.width = "34px";
+      document.getElementById("button04").style.width = "34px";
+      document.getElementById("button05").style.width = "34px";
+      document.getElementById("button06").style.width = "34px";
+      document.getElementById("button07").style.width = "34px";
+      document.getElementById("button08").style.width = "34px";
       resCmdWebSocket.send(JSON.stringify({'cmd':'stopPointMove'}));
     };
 

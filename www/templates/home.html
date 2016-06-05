@@ -1,8 +1,8 @@
 <ion-view title="状态">
 
   <ion-content>
-    <div class="list card">
-      <div class="item item-divider">
+    <div class="list">
+      <div class="item item-divider" style="margin-top:5px">
         <b>机械坐标</b>
       </div>
       <div class="item">
@@ -19,6 +19,27 @@
           <div class="col col-40">{{$root.div_pos_v}}</div>
         </div>
       </div>
+
+      <div class="item" style="margin-top:5px">
+        <div class="row">
+          <div class="col col-12"><b>加工参数</b></div>
+          <div class="col col-38"></div>
+          <div class="col col-12">电流</div>
+          <div class="col col-38">{{$root.currentValue}}</div>
+        </div>
+        <div class="row">
+          <div class="col col-12">脉宽</div>
+          <div class="col col-38">{{$root.pulseWidthValue}}</div>
+          <div class="col col-12">占空比</div>
+          <div class="col col-38">{{$root.ratioValue}}</div>
+        </div>
+        <div class="row">
+          <div class="col col-12">速度</div>
+          <div class="col col-38">{{$root.machineSpeedLevel}}</div>
+          <div class="col col-12">丝速</div>
+          <div class="col col-38">{{$root.wireSpeedValue}}</div>
+          </div>
+        </div>
 
       <!-- <div class="list list-inset">
         <div class="item item-divider">
@@ -40,18 +61,19 @@
         </div>
       </div> -->
 
-      <div class="item">
+      <div class="item" style="margin-top:5px">
         <div class="row">
           <div class="col text-center"><b>IO状态</b></div>
-          <div class="col img-align-center"><img ng-src="{{img.watertemp}}" style="width: 65px; height: 65px"></div>
-          <div class="col img-align-center"><img ng-src="{{img.frequencytemp}}" style="width: 65px; height: 65px"></div>
+          <div class="col align-center"><img ng-src="{{img.watertemp}}" style="width: 65px; height: 65px"></div>
+          <div class="col align-center"><img ng-src="{{img.frequencytemp}}" style="width: 65px; height: 65px"></div>
         </div>
         <div class="row">
-          <div class="col img-align-center"><img ng-src="{{img.movetemp}}" style="width: 65px; height: 65px"></div>
-          <div class="col img-align-center"><img ng-src="{{img.axistemp}}" style="width: 65px; height: 65px"></div>
-          <div class="col img-align-center"><img ng-src="{{img.wiretemp}}" style="width: 65px; height: 65px"></div>
+          <div class="col align-center"><img ng-src="{{img.movetemp}}" style="width: 65px; height: 65px"></div>
+          <div class="col align-center"><img ng-src="{{img.axistemp}}" style="width: 65px; height: 65px"></div>
+          <div class="col align-center"><img ng-src="{{img.wiretemp}}" style="width: 65px; height: 65px"></div>
         </div>
       </div>
+
     </div>
   </ion-content>
 

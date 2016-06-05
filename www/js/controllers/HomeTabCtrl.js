@@ -6,17 +6,20 @@ angular.module('ionicApp.HomeTabCtrl', ['ionic'])
       $cordovaSplashscreen.show();
     }, 50);*/
 
-
-    //coordPaint = document.getElementById("coordPaint");
+    //for(var i=0;i<codeContent.length;i++){
+    //  document.getElementById("testCode").innerHTML += "spx:"+codeContent.cmd.sp.X+"&nbsp;&nbsp;&nbsp;"+"spx:"+codeContent.cmd.sp.X+
+    //  a;
+    //}
+    //
+    //coordPaint = document.getElementById("testCanvas");
     //if(coordPaint && coordPaint.getContext){
     //  contextCoord = coordPaint.getContext("2d");
     //
-    //  contextCoord.translate(5,5);
-    //
+    //  contextCoord.translate(150,75);
+    //  contextCoord.lineWidth = 1;
     //  contextCoord.beginPath();
     //  contextCoord.moveTo(0,0);
     //
-    //  contextCoord.lineWidth = 1;
     //
     //  contextCoord.stroke();
     //

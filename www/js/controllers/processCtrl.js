@@ -1,6 +1,7 @@
 angular.module('ionicApp.processCtrl', ['ionic'])
-  .controller('processCtrl', function ($scope, edmData, $rootScope, $ionicPopup) {
+  .controller('processCtrl', function ($scope, edmData, $rootScope, $ionicPopup, $timeout) {
     console.log('processCtrl');
+    var beginFlag = 0, stopFlag = 0;
 
     $scope.setPWM = function () {
       var myPopup = $ionicPopup.show({
@@ -191,8 +192,59 @@ angular.module('ionicApp.processCtrl', ['ionic'])
         document.getElementById("pulseAndRatioDispaly").style.display = "none";
         document.getElementById("pulseAndRatio").innerHTML = "脉宽："+$rootScope.pulseWidthValue+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"占空比："+$rootScope.pulseWidthValue;
       }
-    }
+    };
 
+
+    $scope.startTrackMove = function () {
+      if(!resCmdWebSocketOpen) {
+        alert("未连接机床！");
+        return;
+      }
+      if(beginFlag == 0){
+        resCmdWebSocket.send(JSON.stringify({'cmd':'setTrackMoveType', 'value': 1}));
+        resCmdWebSocket.send(JSON.stringify({'cmd':'sendTrack','content':codeContent}));
+        $timeout(function () {
+          resCmdWebSocket.send(JSON.stringify({'cmd':'startTrackMove'}));
+        },4000);
+        beginFlag = 1;
+      }
+      else{
+        $timeout(function () {
+          resCmdWebSocket.send(JSON.stringify({'cmd':'startTrackMove'}));
+        },2000);
+      }
+    };
+
+    $scope.pauseTrackMove = function () {
+      if(!resCmdWebSocketOpen) {
+        alert("未连接机床！");
+        return;
+      }
+      resCmdWebSocket.send(JSON.stringify({'cmd':'pauseTrackMove'}));
+    };
+
+    $scope.stopTrackMove = function () {
+      if(!resCmdWebSocketOpen) {
+        alert("未连接机床！");
+        return;
+      }
+
+      var confirm = $ionicPopup.confirm({
+        title: '请确认',
+        template: '真的要停止吗?'
+      });
+      confirm.then(function (res) {
+        if (res) {
+          console.log('Yes!');
+          if(!resCmdWebSocketOpen) return;
+          resCmdWebSocket.send(JSON.stringify({'cmd':'stopTrackMove'}));
+        } else {
+          console.log('Nooooo!!');
+        }
+      });
+
+
+    };
 
 
 

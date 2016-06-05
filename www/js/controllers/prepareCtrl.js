@@ -234,63 +234,80 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
         isfindEdgeStart = 1;
 
         if($scope.findEdgeType=="找边") {
-          $scope.findEdgeTypeValue = 0;
-        } else if($scope.findEdgeType=="找中点") {
           $scope.findEdgeTypeValue = 1;
-        } else if($scope.findEdgeType=="找圆心") {
+        } else if($scope.findEdgeType=="找中点") {
           $scope.findEdgeTypeValue = 2;
+        } else if($scope.findEdgeType=="找圆心") {
+          $scope.findEdgeTypeValue = 4;
         }
 
         var rollBack = settings.rollBack;
         var ignoreDistance = settings.ignoreDistance;
         if(!resCmdWebSocketOpen) return;
         outputValue= (CmdGPIOOutType.OUT12_SHORTEDGE_SW)|outputValue;
-        resCmdWebSocket.send(JSON.stringify({'cmd': 'setIOOutput','value': outputValue}));
+        setTimeout(function(){
+          resCmdWebSocket.send(JSON.stringify({'cmd': 'setIOOutput','value': outputValue}));
+        },10);
         setTimeout(function(){
           resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: settings.findEdgeSpeed[0]}));
-        },20);
+        },10);
         if($scope.findEdgeDir=="X+")
         {
-          resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: $scope.findEdgeTypeValue, axis: "x", dir: 1,
-            findEdgeFirstSpeed: settings.findEdgeSpeed[0], findEdgeSecondSpeed: settings.findEdgeSpeed[1],
-            rollBack: settings.rollBack, ignoreDistance: settings.ignoreDistance}));
+          setTimeout(function () {
+            resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: $scope.findEdgeTypeValue, axis: "x", dir: 1,
+              findEdgeFirstSpeed: settings.findEdgeSpeed[0], findEdgeSecondSpeed: settings.findEdgeSpeed[1],
+              rollBack: settings.rollBack, ignoreDistance: settings.ignoreDistance}));
+          },10);
+
         } else if($scope.findEdgeDir=="X-")
         {
-          resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: $scope.findEdgeTypeValue, axis: "x", dir: -1,
-            findEdgeFirstSpeed: settings.findEdgeSpeed[0], findEdgeSecondSpeed: settings.findEdgeSpeed[1],
-            rollBack: settings.rollBack, ignoreDistance: settings.ignoreDistance}));
+          setTimeout(function () {
+            resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: $scope.findEdgeTypeValue, axis: "x", dir: -1,
+              findEdgeFirstSpeed: settings.findEdgeSpeed[0], findEdgeSecondSpeed: settings.findEdgeSpeed[1],
+              rollBack: settings.rollBack, ignoreDistance: settings.ignoreDistance}));
+          },10);
+
         } else if($scope.findEdgeDir=="Y+")
         {
-          resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: $scope.findEdgeTypeValue, axis: "y", dir: 1,
-            findEdgeFirstSpeed: settings.findEdgeSpeed[0], findEdgeSecondSpeed: settings.findEdgeSpeed[1],
-            rollBack: settings.rollBack, ignoreDistance: settings.ignoreDistance}));
+          setTimeout(function () {
+            resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: $scope.findEdgeTypeValue, axis: "y", dir: 1,
+              findEdgeFirstSpeed: settings.findEdgeSpeed[0], findEdgeSecondSpeed: settings.findEdgeSpeed[1],
+              rollBack: settings.rollBack, ignoreDistance: settings.ignoreDistance}));
+          },10);
+
         } else if($scope.findEdgeDir=="Y-")
         {
-          resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: $scope.findEdgeTypeValue, axis: "y", dir: -1,
-            findEdgeFirstSpeed: settings.findEdgeSpeed[0], findEdgeSecondSpeed: settings.findEdgeSpeed[1],
-            rollBack: settings.rollBack, ignoreDistance: settings.ignoreDistance}));
+          setTimeout(function () {
+            resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: $scope.findEdgeTypeValue, axis: "y", dir: -1,
+              findEdgeFirstSpeed: settings.findEdgeSpeed[0], findEdgeSecondSpeed: settings.findEdgeSpeed[1],
+              rollBack: settings.rollBack, ignoreDistance: settings.ignoreDistance}));
+          },10);
+
         }
       }
       else
       {
         isfindEdgeStart = 0;
         if(!resCmdWebSocketOpen) return;
-        resCmdWebSocket.send(JSON.stringify({'cmd':'stopPointMove'}));
         setTimeout(function(){
           outputValue = outputValue & 0xffffefff;
           resCmdWebSocket.send(JSON.stringify({'cmd': 'setIOOutput','value': outputValue}));
         },20);
+        setTimeout(function () {
+          resCmdWebSocket.send(JSON.stringify({'cmd':'stopPointMove'}));
+        },10);
+
         setTimeout(function(){
           var value = $rootScope.getSpeed;
-          var speed = settings.innerSpeed[value-1];
-          resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: speed}));
+          //var speed = settings.innerSpeed[value-1];
+          resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: value}));
         },40);
       }
 
     };
 
     $scope.findEdgeStop = function(){
-
+      isfindEdgeStart=0;
       if(!resCmdWebSocketOpen) return;
       resCmdWebSocket.send(JSON.stringify({'cmd':'stopPointMove'}));
       setTimeout(function(){
@@ -299,8 +316,8 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
       },20);
       setTimeout(function(){
         var value = $rootScope.getSpeed;
-        var speed = settings.innerSpeed[value-1];
-        resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: speed}));
+        //var speed = settings.innerSpeed[value-1];
+        resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: value}));
       },40);
     };
 

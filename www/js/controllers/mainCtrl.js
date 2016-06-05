@@ -4,6 +4,7 @@ angular.module('ionicApp.mainCtrl', [])
     var coordPaint = null;
     var contextCoord = null;
 
+    $rootScope.fileTitle ="无文件";
     $rootScope.fileContentUser = null;
 
     $rootScope.machineSpeedLevel = 1;//加工速度
@@ -55,6 +56,5 @@ angular.module('ionicApp.mainCtrl', [])
       $ionicSideMenuDelegate.toggleLeft();
     };
 
-    console.log(window.screen.width);
 
   });

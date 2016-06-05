@@ -7,7 +7,7 @@
     <!--</div>-->
 
     <div class="list">
-      <div id="graphicsFileName" class="item item-divider">无文件</div>
+      <b><div id="graphicsFileName" class="item item-divider">{{fileTitle}}</div></b>
       <div class="item">
         <div id="graphicsStage2">
           <br><br><br><br><br><br><br><br>
@@ -17,30 +17,31 @@
 
 
     <div class="list ">
-      <div class="item item-divider" style="margin-top:5px">
-        脉宽与占空比
+      <div class="item item-divider" style="margin-top:5px" ng-click="pulseAndRatioDispaly();">
+        <b><span id="pulseAndRatio">脉宽：{{$root.pulseWidthValue}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;占空比：{{$root.ratioValue}}</span></b>
       </div>
-      <div class="item" on-touch="setPWM();">
-        <div class="row">
-          <div class="col">脉宽：{{$root.pulseWidthValue}}</div>
-          <div class="col">占空比：{{$root.ratioValue}}</div>
+      <div id="pulseAndRatioDispaly" style="display: none">
+        <div class="item" ng-click="setPWM();">
+          <div class="row">
+            <div class="col">脉宽：{{$root.pulseWidthValue}}</div>
+            <div class="col">占空比：{{$root.ratioValue}}</div>
+          </div>
         </div>
       </div>
 
       <div class="item item-divider" style="margin-top:10px" ng-click="machineSpeedDispaly();">
-        <span>加工速度:</span>
-        <span>{{$root.machineSpeedLevel}}</span>
+        <b><span>速度：</span><span>{{$root.machineSpeedLevel}}</span></b>
       </div>
-      <div id="machineSpeedDispaly" style="">
+      <div id="machineSpeedDispaly" style="display: none">
         <div class="item range range-positive">
-          <i>1</i><i class="icon ion-minus-round"></i>
+          <i>1</i>
           <input type="range" id="machineSpeed" ng-model="$root.machineSpeedLevel"  min="1" max="10" onchange="machineSpeedLevelChange();">
-          <i class="icon ion-plus"></i><i>10</i>
+          </i><i>10</i>
         </div>
       </div>
 
-      <div class="item item-divider" style="margin-top:10px" ng-click="wireSpeedDisplay();">运丝速度:<span>{{$root.wireSpeedValue}}</span></div>
-      <div id="wireSpeedDispaly" style="">
+      <div class="item item-divider" style="margin-top:10px" ng-click="wireSpeedDisplay();"><b><span>丝速：</span><span>{{$root.wireSpeedValue}}</span></b></div>
+      <div id="wireSpeedDispaly" style="display: none">
         <div  class="item range range-positive" >
           <i>0</i>
           <input type="range" id="wireSpeed" ng-model="$root.wireSpeedValue"  min="0" max="3" onchange="wireSpeedChange();">
@@ -48,8 +49,8 @@
         </div>
       </div>
 
-      <div class="item item-divider" style="margin-top:10px" ng-click="currentValueDispaly();">电流:<span>{{$root.currentValue}}</span></div>
-      <div id="currentValueDispaly" style="">
+      <div class="item item-divider" style="margin-top:10px" ng-click="currentValueDispaly();"><b><span>电流：</span><span>{{$root.currentValue}}</span></b></div>
+      <div id="currentValueDispaly" style="display: none">
         <div class="item range range-positive">
           <i>0</i>
           <input type="range" id="current" ng-model="$root.currentValue"  min="0" max="15" onchange="currentChange();">

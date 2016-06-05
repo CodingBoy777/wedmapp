@@ -110,6 +110,15 @@ angular.module('ionicApp', ['ionicApp.mainCtrl', 'ionicApp.HomeTabCtrl', 'ionicA
           }
         }
       })
+      //.state('app.tabs.test', {
+      //  url: "/test",
+      //  views: {
+      //    'test-tab': {
+      //      templateUrl: "templates/test.html",
+      //      controller: 'testCtrl'
+      //    }
+      //  }
+      //})
 
 
 

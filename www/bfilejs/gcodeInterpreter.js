@@ -31,6 +31,15 @@
  * 		myInterpreter.interpreter();
  * Done!!!
  */
+
+var xValueMax = 0, xValueMin = 0, yValueMax = 0, yValueMin = 0;
+
+xValueMax = parseFloat(xValueMax);
+xValueMin = parseFloat(xValueMin);
+yValueMax = parseFloat(yValueMax);
+yValueMin = parseFloat(yValueMin);
+
+
 var gcodeInterpreter = function(gcode) {
 	this.gcode = gcode;
 }
@@ -64,12 +73,7 @@ function codeToJson(array){
 	var lines = array;
 	var len = array.length;
 
-  var xValueMax = 0, xValueMin = 0, yValueMax = 0, yValueMin = 0;
 
-  xValueMax = parseFloat(xValueMax);
-  xValueMin = parseFloat(xValueMin);
-  yValueMax = parseFloat(yValueMax);
-  yValueMin = parseFloat(yValueMin);
 
 	for(var i = 0; i < len; i++ ){
 		var str = lines[i];
@@ -865,13 +869,15 @@ function codeToJson(array){
 	}
   console.log(jsonArray);
 
+
   if((xValueMax - xValueMin) > (yValueMax - yValueMin)){
-    paintScale = (xValueMax - xValueMin)/100000*0.003;
+    //paintScale = (xValueMax - xValueMin)/100000*0.003;
+    paintScale = 110/(xValueMax - xValueMin);
   }
   else{
-    paintScale = (yValueMax - yValueMin)/100000*0.003;
+    paintScale = 110/(yValueMax - yValueMin);
   }
-
+  alert("xValueMax:"+xValueMax+"xValueMin:"+xValueMin+"yValueMax:"+yValueMax+"yValueMin:"+yValueMin);
   return jsonArray;
 }
 

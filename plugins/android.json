@@ -36,6 +36,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
+        },
+        "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         }
     },
     "dependent_plugins": {}

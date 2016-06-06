@@ -9,6 +9,21 @@
     "installed_plugins": {
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.ionicframework.edmapp920414"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.ionicframework.edmapp920414"
         }
     },
     "dependent_plugins": {

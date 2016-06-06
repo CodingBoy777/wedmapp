@@ -216,19 +216,29 @@ angular.module('ionicApp.processCtrl', ['ionic'])
       }
     };
 
+    $scope.connectPopup = function() {
+      $ionicPopup.alert({
+        title: '未连接机床',
+        template: '请检查是否已连接板卡',
+        buttons: [{
+          text: '好的',
+          type: 'button-positive'
+        }]
+      });
+    };
 
     $scope.startTrackMove = function () {
       $scope.vibration(200);
       if(!resCmdWebSocketOpen) {
-        alert("未连接机床！");
+        $scope.connectPopup();
         return;
       }
       beginFlag =1;
       document.getElementById("startTrackMove").style.display = "none";
       document.getElementById("pauseTrackMove").style.display = "";
       if(beginFlag == 0){
-        return;
         console.log("第一次开始");
+        return;       
         resCmdWebSocket.send(JSON.stringify({'cmd':'setTrackMoveType', 'value': 1}));
         resCmdWebSocket.send(JSON.stringify({'cmd':'sendTrack','content':codeContent}));
         $timeout(function () {
@@ -247,7 +257,7 @@ angular.module('ionicApp.processCtrl', ['ionic'])
     $scope.pauseTrackMove = function () {
       $scope.vibration(200);
       if(!resCmdWebSocketOpen) {
-        alert("未连接机床！");
+        $scope.connectPopup();
         return;
       }
       document.getElementById("startTrackMove").style.display = "";
@@ -258,7 +268,7 @@ angular.module('ionicApp.processCtrl', ['ionic'])
     $scope.stopTrackMove = function () {
       $scope.vibration(200);
       if(!resCmdWebSocketOpen) {
-        alert("未连接机床！");
+        $scope.connectPopup();
         return;
       }
 

@@ -4,6 +4,9 @@ angular.module('ionicApp.mainCtrl', [])
     var coordPaint = null;
     var contextCoord = null;
 
+    $rootScope.findEdgeDir = "X+";
+    $rootScope.findEdgeType = "找边";
+
     $rootScope.fileTitle ="无文件";
     $rootScope.fileContentUser = null;
 

@@ -326,7 +326,7 @@ angular.module('ionicApp.filesCtrl', ['ionic'])
         var myInterpreter = new gcodeInterpreter(str);
         var result = myInterpreter.interpreter();
 
-        shape.setOffsetX((xValueMin+xValueMax)*paintScale/2-160);
+        shape.setOffsetX((xValueMin+xValueMax)*paintScale/2-(window.screen.width-30)/2);
         shape.setOffsetY(-80-(yValueMin+yValueMax)*paintScale/2);
         //shape.setOffsetX(-250);
         //shape.setOffsetY(-150);

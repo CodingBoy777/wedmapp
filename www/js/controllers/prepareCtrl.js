@@ -223,8 +223,8 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
       findEdgeType = 2;
     };*/
 
-    $scope.findEdgeDir = "X+";
-    $scope.findEdgeType = "找边";
+    //$scope.findEdgeDir = "X+";
+    //$scope.findEdgeType = "找边";
 
 
     $scope.findEdgeStart = function(){
@@ -233,12 +233,12 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
       {
         isfindEdgeStart = 1;
 
-        if($scope.findEdgeType=="找边") {
-          $scope.findEdgeTypeValue = 1;
-        } else if($scope.findEdgeType=="找中点") {
-          $scope.findEdgeTypeValue = 2;
-        } else if($scope.findEdgeType=="找圆心") {
-          $scope.findEdgeTypeValue = 4;
+        if($rootScope.findEdgeType=="找边") {
+          $rootScope.findEdgeTypeValue = 1;
+        } else if($rootScope.findEdgeType=="找中点") {
+          $rootScope.findEdgeTypeValue = 2;
+        } else if($rootScope.findEdgeType=="找圆心") {
+          $rootScope.findEdgeTypeValue = 4;
         }
 
         var rollBack = settings.rollBack;
@@ -251,7 +251,8 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
         setTimeout(function(){
           resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: settings.findEdgeSpeed[0]}));
         },10);
-        if($scope.findEdgeDir=="X+")
+
+        if($rootScope.findEdgeDir=="X+")
         {
           setTimeout(function () {
             resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: $scope.findEdgeTypeValue, axis: "x", dir: 1,
@@ -259,7 +260,7 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
               rollBack: settings.rollBack, ignoreDistance: settings.ignoreDistance}));
           },10);
 
-        } else if($scope.findEdgeDir=="X-")
+        } else if($rootScope.findEdgeDir=="X-")
         {
           setTimeout(function () {
             resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: $scope.findEdgeTypeValue, axis: "x", dir: -1,
@@ -267,7 +268,7 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
               rollBack: settings.rollBack, ignoreDistance: settings.ignoreDistance}));
           },10);
 
-        } else if($scope.findEdgeDir=="Y+")
+        } else if($rootScope.findEdgeDir=="Y+")
         {
           setTimeout(function () {
             resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: $scope.findEdgeTypeValue, axis: "y", dir: 1,
@@ -275,7 +276,7 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
               rollBack: settings.rollBack, ignoreDistance: settings.ignoreDistance}));
           },10);
 
-        } else if($scope.findEdgeDir=="Y-")
+        } else if($rootScope.findEdgeDir=="Y-")
         {
           setTimeout(function () {
             resCmdWebSocket.send(JSON.stringify({'cmd':'findEdge', type: $scope.findEdgeTypeValue, axis: "y", dir: -1,
@@ -285,24 +286,24 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
 
         }
       }
-      else
-      {
-        isfindEdgeStart = 0;
-        if(!resCmdWebSocketOpen) return;
-        setTimeout(function(){
-          outputValue = outputValue & 0xffffefff;
-          resCmdWebSocket.send(JSON.stringify({'cmd': 'setIOOutput','value': outputValue}));
-        },20);
-        setTimeout(function () {
-          resCmdWebSocket.send(JSON.stringify({'cmd':'stopPointMove'}));
-        },10);
-
-        setTimeout(function(){
-          var value = $rootScope.getSpeed;
-          //var speed = settings.innerSpeed[value-1];
-          resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: value}));
-        },40);
-      }
+      //else
+      //{
+      //  isfindEdgeStart = 0;
+      //  if(!resCmdWebSocketOpen) return;
+      //  setTimeout(function(){
+      //    outputValue = outputValue & 0xffffefff;
+      //    resCmdWebSocket.send(JSON.stringify({'cmd': 'setIOOutput','value': outputValue}));
+      //  },20);
+      //  setTimeout(function () {
+      //    resCmdWebSocket.send(JSON.stringify({'cmd':'stopPointMove'}));
+      //  },10);
+      //
+      //  setTimeout(function(){
+      //    var value = $rootScope.getSpeed;
+      //    //var speed = settings.innerSpeed[value-1];
+      //    resCmdWebSocket.send(JSON.stringify({'cmd':'setInnerSpeed', level: value}));
+      //  },40);
+      //}
 
     };
 

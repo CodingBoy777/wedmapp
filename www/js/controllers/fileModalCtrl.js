@@ -46,7 +46,7 @@ angular.module('ionicApp.fileModalCtrl', ['ionic'])
           //offsetX: -(window.screen.width-30)/2,//Math.floor(-stage.getWidth() / 2) - 0.5,
           //offsetY: -150,
           width: window.screen.width-30, //��������̨���
-          height: 180 //��������̨�߶�
+          height: 160 //��������̨�߶�
         });
 
 
@@ -63,7 +63,7 @@ angular.module('ionicApp.fileModalCtrl', ['ionic'])
         var myInterpreter = new gcodeInterpreter(str);
         var result = myInterpreter.interpreter();
 
-        shape2.setOffsetX((xValueMin+xValueMax)*paintScale/2-160);
+        shape2.setOffsetX((xValueMin+xValueMax)*paintScale/2-(window.screen.width-30)/2);
         shape2.setOffsetY(-80-(yValueMin+yValueMax)*paintScale/2);
         //shape.setOffsetX(-250);
         //shape.setOffsetY(-150);

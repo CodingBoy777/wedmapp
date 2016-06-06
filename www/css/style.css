@@ -7,16 +7,16 @@
 /*文件模块编辑区样式*/
 #fileTextarea {
     background-color: #f8f8f8;
-    
-    width: 95%;
+
+    width: 100%;
     height: 198px;
 
-    margin-top: 5px;
-    margin-right: 5px;
-    margin-bottom: 2px;
-    margin-left: 5px;
-    
-    border: solid 1px #886aea;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+
+    border: solid 1px #808080;
 
     color: black;
 }

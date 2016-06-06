@@ -61,7 +61,7 @@
           <div class="col col-50"><ion-toggle id="toggleStartWire" ng-model="$root.toggleStartWire" onchange="startWireChange();">上丝</ion-toggle></div>
         </div> -->
 
-      
+
         <div class="item" style="margin-top:5px">
           <div class="row">
 
@@ -119,7 +119,9 @@
           <div class="input-label">
             请选择方向
           </div>
-          <select ng-model="findEdgeDir">
+          <!--<select ng-model="findEdgeDir">-->
+          <select ng-model="$root.findEdgeDir">
+
             <option>X-</option>
             <option>X+</option>
             <option>Y-</option>
@@ -130,7 +132,7 @@
           <div class="input-label">
             请选择类型
           </div>
-          <select  ng-model="findEdgeType">
+          <select  ng-model="$root.findEdgeType">
             <option>找边</option>
             <option>找中点</option>
             <option>找圆心</option>

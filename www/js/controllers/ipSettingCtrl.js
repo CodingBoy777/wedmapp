@@ -60,7 +60,7 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
             }]
           });
         }
-      }, 1000);
+      }, 4000);
 
       resCmdWebSocket.onmessage = function(event){
         var data = JSON.parse(event.data);

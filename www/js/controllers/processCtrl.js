@@ -1,7 +1,11 @@
 angular.module('ionicApp.processCtrl', ['ionic'])
-  .controller('processCtrl', function ($scope, edmData, $rootScope, $ionicPopup, $timeout) {
+  .controller('processCtrl', function ($scope, edmData, $rootScope, $ionicPopup, $timeout, $cordovaVibration) {
     console.log('processCtrl');
     var beginFlag = 0, stopFlag = 0;
+
+    $scope.vibration = function(time) {
+      $cordovaVibration.vibrate(time);
+    };
 
     $scope.setPWM = function () {
       var myPopup = $ionicPopup.show({
@@ -214,6 +218,7 @@ angular.module('ionicApp.processCtrl', ['ionic'])
 
 
     $scope.startTrackMove = function () {
+      $scope.vibration(200);
       if(!resCmdWebSocketOpen) {
         alert("未连接机床！");
         return;
@@ -240,6 +245,7 @@ angular.module('ionicApp.processCtrl', ['ionic'])
     };
 
     $scope.pauseTrackMove = function () {
+      $scope.vibration(200);
       if(!resCmdWebSocketOpen) {
         alert("未连接机床！");
         return;
@@ -250,6 +256,7 @@ angular.module('ionicApp.processCtrl', ['ionic'])
     };
 
     $scope.stopTrackMove = function () {
+      $scope.vibration(200);
       if(!resCmdWebSocketOpen) {
         alert("未连接机床！");
         return;

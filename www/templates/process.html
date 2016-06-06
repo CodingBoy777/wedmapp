@@ -6,17 +6,14 @@
       <!--<div class="item">显示当前文件的内容或者图形<br><br><br></div>-->
     <!--</div>-->
 
-    <div class="list">
+    <div class="list"  style="margin-top:5px">
       <div class="item item-divider"><b><span id="graphicsFileName">{{fileTitle}}</span></b></div>
       <div class="item">
         <div id="graphicsStage2">
           <br><br><br><br><br><br><br><br>
         </div>
       </div>
-    </div>
 
-
-    <div class="list ">
       <div class="item item-divider" style="margin-top:5px" ng-click="pulseAndRatioDispaly();">
         <b><span id="pulseAndRatio">脉宽：{{$root.pulseWidthValue}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;占空比：{{$root.ratioValue}}</span></b>
         <span id="pulseAndRatioDispalyIcon1" style="float: right" class="icon ion-chevron-down"></span>
@@ -31,7 +28,7 @@
         </div>
       </div>
 
-      <div class="item item-divider" style="margin-top:10px" ng-click="machineSpeedDispaly();">
+      <div class="item item-divider" style="margin-top:5px" ng-click="machineSpeedDispaly();">
         <b><span>速度：</span><span>{{$root.machineSpeedLevel}}</span></b>
         <span id="machineSpeedDispalyIcon1" style="float: right" class="icon ion-chevron-down"></span>
         <span id="machineSpeedDispalyIcon2" style="display:none;float: right" class="icon ion-chevron-up"></span>
@@ -44,7 +41,7 @@
         </div>
       </div>
 
-      <div class="item item-divider" style="margin-top:10px" ng-click="wireSpeedDisplay();">
+      <div class="item item-divider" style="margin-top:5px" ng-click="wireSpeedDisplay();">
         <b><span>丝速：</span><span>{{$root.wireSpeedValue}}</span></b>
         <span id="wireSpeedDisplayIcon1" style="float: right" class="icon ion-chevron-down"></span>
         <span id="wireSpeedDisplayIcon2" style="display:none;float: right" class="icon ion-chevron-up"></span>
@@ -57,7 +54,7 @@
         </div>
       </div>
 
-      <div class="item item-divider" style="margin-top:10px" ng-click="currentValueDispaly();">
+      <div class="item item-divider" style="margin-top:5px" ng-click="currentValueDispaly();">
         <b><span>电流：</span><span>{{$root.currentValue}}</span></b>
         <span id="currentValueDispalyIcon1" style="float: right" class="icon ion-chevron-down"></span>
         <span id="currentValueDispalyIcon2" style="display:none;float: right" class="icon ion-chevron-up"></span>

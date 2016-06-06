@@ -27,59 +27,60 @@
         <i>400</i>
       </div>
 
-      <div class="item" style="margin-top:5px">
-        <div class="row">
-
-          <!-- 正式版本-->
-          <div class="col align-center"><button class="button icon-left ion-chevron-left button-royal button-small" id="button01" on-touch="xNegPointMove();" on-release="stopPointMove();">x-</button></div>
-          <div class="col align-center"><button class="button icon-right ion-chevron-right button-calm button-small" id="button02" on-touch="xPosPointMove();" on-release="stopPointMove();">x+</button></div>
-          <div class="col align-center"><button class="button icon-left ion-chevron-left button-royal button-small" id="button03" on-touch="yNegPointMove();" on-release="stopPointMove();">y-</button></div>
-          <div class="col align-center"><button class="button icon-right ion-chevron-right button-calm button-small" id="button04" on-touch="yPosPointMove();" on-release="stopPointMove();">y+</button></div>
-
-        </div>
-        <div class="row">
-
-          <!-- 正式版本-->
-          <div class="col align-center"><button class="button icon-left ion-chevron-left button-royal button-small" id="button05" on-touch="uNegPointMove();" on-release="stopPointMove();">u-</button></div>
-          <div class="col align-center"><button class="button icon-right ion-chevron-right button-calm button-small" id="button06" on-touch="uPosPointMove();" on-release="stopPointMove();">u+</button></div>
-          <div class="col align-center"><button class="button icon-left ion-chevron-left button-royal button-small" id="button07" on-touch="vNegPointMove();" on-release="stopPointMove();">v-</button></div>
-          <div class="col align-center"><button class="button icon-right ion-chevron-right button-calm button-small" id="button08" on-touch="vPosPointMove();" on-release="stopPointMove();">v+</button></div>
-        </div>
-      </div>
-
-
-      <!-- <div class="row">
-        <div class="col"><ion-toggle id="toggleWaterPumpValue" ng-model="$root.toggleWaterPump" onchange="waterPumpChange();">水泵</ion-toggle></div>
-        <div class="col"><ion-toggle id="toggleHighFrequence" ng-model="$root.toggleHighFrequence" onchange="highFrequenceChange();">高频</ion-toggle></div>
-      </div>
-      <div class="row">
-        <div class="col"><ion-toggle id="toggleWireTransport" ng-model="$root.toggleWireTransport" onchange="wireTransportChange();">运丝</ion-toggle></div>
-        <div class="col"><ion-toggle id="toggleAxisUnlock" ng-model="$root.toggleAxisUnlock" onchange="axisUnlockChange();">解锁</ion-toggle></div>
-      </div>
-      <div class="row">
-        <div class="col col-50"><ion-toggle id="toggleStartWire" ng-model="$root.toggleStartWire" onchange="startWireChange();">上丝</ion-toggle></div>
-      </div> -->
-
       <div id="IOSetting">
         <div class="item" style="margin-top:5px">
           <div class="row">
 
+            <!-- 正式版本-->
+            <div class="col align-center"><button class="button icon-left ion-chevron-left button-royal button-small" id="button01" on-touch="xNegPointMove();" on-release="stopPointMove();">x-</button></div>
+            <div class="col align-center"><button class="button icon-right ion-chevron-right button-calm button-small" id="button02" on-touch="xPosPointMove();" on-release="stopPointMove();">x+</button></div>
+            <div class="col align-center"><button class="button icon-left ion-chevron-left button-royal button-small" id="button03" on-touch="yNegPointMove();" on-release="stopPointMove();">y-</button></div>
+            <div class="col align-center"><button class="button icon-right ion-chevron-right button-calm button-small" id="button04" on-touch="yPosPointMove();" on-release="stopPointMove();">y+</button></div>
+
+          </div>
+          <div class="row">
+
+            <!-- 正式版本-->
+            <div class="col align-center"><button class="button icon-left ion-chevron-left button-royal button-small" id="button05" on-touch="uNegPointMove();" on-release="stopPointMove();">u-</button></div>
+            <div class="col align-center"><button class="button icon-right ion-chevron-right button-calm button-small" id="button06" on-touch="uPosPointMove();" on-release="stopPointMove();">u+</button></div>
+            <div class="col align-center"><button class="button icon-left ion-chevron-left button-royal button-small" id="button07" on-touch="vNegPointMove();" on-release="stopPointMove();">v-</button></div>
+            <div class="col align-center"><button class="button icon-right ion-chevron-right button-calm button-small" id="button08" on-touch="vPosPointMove();" on-release="stopPointMove();">v+</button></div>
+          </div>
+        </div>
+
+
+        <!-- <div class="row">
+          <div class="col"><ion-toggle id="toggleWaterPumpValue" ng-model="$root.toggleWaterPump" onchange="waterPumpChange();">水泵</ion-toggle></div>
+          <div class="col"><ion-toggle id="toggleHighFrequence" ng-model="$root.toggleHighFrequence" onchange="highFrequenceChange();">高频</ion-toggle></div>
+        </div>
+        <div class="row">
+          <div class="col"><ion-toggle id="toggleWireTransport" ng-model="$root.toggleWireTransport" onchange="wireTransportChange();">运丝</ion-toggle></div>
+          <div class="col"><ion-toggle id="toggleAxisUnlock" ng-model="$root.toggleAxisUnlock" onchange="axisUnlockChange();">解锁</ion-toggle></div>
+        </div>
+        <div class="row">
+          <div class="col col-50"><ion-toggle id="toggleStartWire" ng-model="$root.toggleStartWire" onchange="startWireChange();">上丝</ion-toggle></div>
+        </div> -->
+
+      
+        <div class="item" style="margin-top:5px">
+          <div class="row">
+
             <div class="col align-center">
-              <a ng-click="waterPumpChange()"><img ng-src="{{img.watertemp}}" style="width: 50px; height: 50px"></a>
+              <a ng-click="waterPumpChange()"><img ng-src="{{img.watertemp}}" style="width: 40px; height: 40px"></a>
             </div>
             <div class="col align-center">
-              <a ng-click="highFrequenceChange()"><img ng-src="{{img.frequencytemp}}" style="width: 50px; height: 50px"></a>
+              <a ng-click="highFrequenceChange()"><img ng-src="{{img.frequencytemp}}" style="width: 40px; height: 40px"></a>
             </div>
             <div class="col align-center">
-              <a ng-click="wireTransportChange()"><img ng-src="{{img.movetemp}}" style="width: 50px; height: 50px"></a>
+              <a ng-click="wireTransportChange()"><img ng-src="{{img.movetemp}}" style="width: 40px; height: 40px"></a>
             </div>
           </div>
           <div class="row">
             <div class="col align-center">
-              <a ng-click="axisUnlockChange()"><img ng-src="{{img.axistemp}}" style="width: 50px; height: 50px"></a>
+              <a ng-click="axisUnlockChange()"><img ng-src="{{img.axistemp}}" style="width: 40px; height: 40px"></a>
             </div>
             <div class="col align-center">
-              <a ng-click="startWireChange()"><img ng-src="{{img.wiretemp}}" style="width: 50px; height: 50px"></a>
+              <a ng-click="startWireChange()"><img ng-src="{{img.wiretemp}}" style="width: 40px; height: 40px"></a>
             </div>
             <div class="col text-center"><button class="button button-small button-outline button09" ng-click="showFindEdge()">工件找边</button></div>
           </div>
@@ -152,7 +153,7 @@
         <div class="row">
           <div class="col align-center"><button class="button button-small button-royal" ng-click="findEdgeStart();">开始找边</button></div>
           <div class="col align-center"><button class="button button-small button-balanced" ng-click="findEdgeStop();">停止找边</button></div>
-          <div class="col align-center"><button class="button button-small button-calm" ng-click="showIOSetting();">IO设置</button></div>
+          <div class="col align-center"><button class="button button-small button-calm" ng-click="showIOSetting();">点动 & IO</button></div>
         </div>
       </div>
     </div>

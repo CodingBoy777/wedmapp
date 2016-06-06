@@ -161,6 +161,7 @@
   width: 100%; }
 
 .mfb-component__wrap {
+  padding-bottom: 60px !important;
   padding: 25px;
   margin: -25px; }
 

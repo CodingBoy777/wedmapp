@@ -1,5 +1,5 @@
 angular.module('ionicApp.ipSettingCtrl', ['ionic'])
-  .controller('ipSettingCtrl', function ($scope, $rootScope, edmData, $timeout, $ionicPopup,$state) {
+  .controller('ipSettingCtrl', function($scope, $rootScope, edmData, $timeout, $ionicPopup, $state) {
 
     console.log("ipSettingCtrl");
     var paintFlag = 0;
@@ -12,9 +12,10 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
 
     //连接至写好的ip，监听信息
     $scope.ipConnect = function () {
-      var flagInfoConnect = 0;var flagCmdConnect = 0;
+      var flagInfoConnect = 0;
+      var flagCmdConnect = 0;
       resInfoWebSocket = new WebSocket(webIpAddress + ":8081");
-      document.getElementById("information").innerHTML += webIpAddress;
+      // document.getElementById("information").innerHTML += webIpAddress;
       resInfoWebSocket.onerror = function(event){
         console.log('ERROR: ' + event.message);
         document.getElementById("information").innerHTML +="InfoWebSocket:"+event.message;
@@ -48,7 +49,6 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
         if (flagInfoConnect == 1 && flagCmdConnect == 1) {
           console.log("connection success");
           document.getElementById("information").innerHTML += "全部连接成功"+ "<br />";
-          document.getElementById("machineStatus").innerHTML = "已连接";
         }
         else {
           $ionicPopup.alert({
@@ -136,7 +136,7 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
               $rootScope.getSpeed = parseInt(div);
               console.log(div);
             }
-          }, 20)
+          }, 20);
 
         }//存在疑问  留待检查！！！
 

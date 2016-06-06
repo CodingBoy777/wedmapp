@@ -1,5 +1,5 @@
 angular.module('ionicApp.speedSettingCtrl', ['ionic'])
-  .controller('speedSettingCtrl', function ($scope, $rootScope, $timeout, $ionicPopup,$state) {
+  .controller('speedSettingCtrl', function($scope, $rootScope, $timeout, $ionicPopup,$state) {
     console.log('speedSettingCtrl');
 
     innerSpeed1Change = function () {

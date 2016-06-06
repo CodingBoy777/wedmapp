@@ -11,10 +11,11 @@
     width: 95%;
     height: 198px;
 
-    margin: auto;
-    margin-top: 10px;
-    margin-bottom: 5px;
-
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 2px;
+    margin-left: 5px;
+    
     border: solid 1px #886aea;
 
     color: black;

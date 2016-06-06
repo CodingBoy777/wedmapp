@@ -1,7 +1,7 @@
 <ion-side-menus>
 
   <ion-side-menu-content edge-drag-threshold="true">
-    <ion-nav-bar class="bar-positive">
+    <ion-nav-bar class="bar-positive" id="bar03">
       <ion-nav-back-button >
       </ion-nav-back-button>
       <!--<ion-nav-buttons side="left">-->
@@ -19,15 +19,19 @@
     </ion-header-bar>
     <ion-content>
       <ul class="list">
-        <ion-item ui-sref="app.ipSetting" class="item item-icon-right" menu-close >
+        <ion-item ui-sref="app.ipSetting" class="item item-icon-right" menu-close>
           <i class="icon ion-chevron-right"></i>
-          IP连接
+          连接
         </ion-item>
-        <ion-item ui-sref="app.speedSetting" class="item item-icon-right" menu-close >
+        <ion-item ui-sref="app.speedSetting" class="item item-icon-right" menu-close>
           <i class="icon ion-chevron-right"></i>
           对边
         </ion-item>
-        <ion-item href="" class="item item-icon-right" menu-toggle="left" >
+        <ion-item ui-sref="app.uiSetting" class="item item-icon-right" menu-close>
+          <i class="icon ion-chevron-right"></i>
+          外观
+        </ion-item>
+        <ion-item ui-sref="app.about" class="item item-icon-right" menu-close>
           <i class="icon ion-chevron-right"></i>
           关于
         </ion-item>

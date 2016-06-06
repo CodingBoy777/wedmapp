@@ -1,6 +1,6 @@
 angular.module('ionicApp', ['ionicApp.mainCtrl', 'ionicApp.HomeTabCtrl', 'ionicApp.prepareCtrl','ionicApp.processCtrl',
-  'ionicApp.filesCtrl', 'ionicApp.fileModalCtrl','ionicApp.ipSettingCtrl','ionicApp.speedSettingCtrl',
-  'ionicApp.testCtrl','ionicApp.checkCtrl', 'ionic', 'ngCordova', 'ng-mfb', 'ionicApp.services', 'ionicApp.directives'])
+  'ionicApp.filesCtrl', 'ionicApp.fileModalCtrl', 'ionicApp.ipSettingCtrl', 'ionicApp.speedSettingCtrl', 'ionicApp.uiSettingCtrl',
+  'ionicApp.testCtrl', 'ionicApp.checkCtrl', 'ionic', 'ngCordova', 'ng-mfb', 'ionicApp.services', 'ionicApp.directives'])
   .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -59,6 +59,24 @@ angular.module('ionicApp', ['ionicApp.mainCtrl', 'ionicApp.HomeTabCtrl', 'ionicA
           }
         }
       })
+      .state('app.uiSetting', {
+        url: "/uiSetting",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/uiSetting.html",
+            controller: 'uiSettingCtrl'
+          }
+        }
+      })
+      .state('app.about', {
+        url: "/about",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/about.html",
+            controller: ''
+          }
+        }
+      })
       .state('app.fileModal', {
         cache: false,
         url: "/fileModal",
@@ -109,38 +127,7 @@ angular.module('ionicApp', ['ionicApp.mainCtrl', 'ionicApp.HomeTabCtrl', 'ionicA
             controller: 'processCtrl'
           }
         }
-      })
-      //.state('app.tabs.test', {
-      //  url: "/test",
-      //  views: {
-      //    'test-tab': {
-      //      templateUrl: "templates/test.html",
-      //      controller: 'testCtrl'
-      //    }
-      //  }
-      //})
-
-
-
-
-      .state('app.events', {
-        url: "/event",
-        abstract: true,
-        templateUrl: "templates/events.html"
-      })
-
-
-      //.state('app.events.fileModal', {
-      //  cache: false,
-      //  url: "/fileModal",
-      //  views: {
-      //    'fileModal-event': {
-      //      templateUrl: "templates/fileModal.html",
-      //      controller: 'fileModalCtrl'
-      //    }
-      //  }
-      //})
-    ;
+      });
 
     $urlRouterProvider.otherwise("/app/tabs/home");
 

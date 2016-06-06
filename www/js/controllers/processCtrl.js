@@ -38,40 +38,40 @@ angular.module('ionicApp.processCtrl', ['ionic'])
     machineSpeedLevelChange = function () {
       console.log($rootScope.machineSpeedLevel);
 
-      var resMachineSpeedValue;
-      if($rootScope.machineSpeedLevel == 1){
-        resMachineSpeedValue=40;
-      }
-      else if($rootScope.machineSpeedLevel == 2){
-        resMachineSpeedValue=76;
-      }
-      else if($rootScope.machineSpeedLevel == 3){
-        resMachineSpeedValue=112;
-      }
-      else if($rootScope.machineSpeedLevel == 4){
-        resMachineSpeedValue=148;
-      }
-      else if($rootScope.machineSpeedLevel == 5){
-        resMachineSpeedValue=184;
-      }
-      else if($rootScope.machineSpeedLevel == 6){
-        resMachineSpeedValue=220;
-      }
-      else if($rootScope.machineSpeedLevel == 7){
-        resMachineSpeedValue=292;
-      }
-      else if($rootScope.machineSpeedLevel == 8){
-        resMachineSpeedValue=328;
-      }
-      else if($rootScope.machineSpeedLevel == 9){
-        resMachineSpeedValue=364;
-      }
-      else if($rootScope.machineSpeedLevel == 10){
-        resMachineSpeedValue=400;
-      }
+      //var resMachineSpeedValue;
+      //if($rootScope.machineSpeedLevel == 1){
+      //  resMachineSpeedValue=40;
+      //}
+      //else if($rootScope.machineSpeedLevel == 2){
+      //  resMachineSpeedValue=76;
+      //}
+      //else if($rootScope.machineSpeedLevel == 3){
+      //  resMachineSpeedValue=112;
+      //}
+      //else if($rootScope.machineSpeedLevel == 4){
+      //  resMachineSpeedValue=148;
+      //}
+      //else if($rootScope.machineSpeedLevel == 5){
+      //  resMachineSpeedValue=184;
+      //}
+      //else if($rootScope.machineSpeedLevel == 6){
+      //  resMachineSpeedValue=220;
+      //}
+      //else if($rootScope.machineSpeedLevel == 7){
+      //  resMachineSpeedValue=292;
+      //}
+      //else if($rootScope.machineSpeedLevel == 8){
+      //  resMachineSpeedValue=328;
+      //}
+      //else if($rootScope.machineSpeedLevel == 9){
+      //  resMachineSpeedValue=364;
+      //}
+      //else if($rootScope.machineSpeedLevel == 10){
+      //  resMachineSpeedValue=400;
+      //}
 
       if(!resCmdWebSocketOpen) return;
-      resCmdWebSocket.send(JSON.stringify({'cmd':'setOuterSpeed', level: resMachineSpeedValue}));
+      resCmdWebSocket.send(JSON.stringify({'cmd':'setOuterSpeed', level: $rootScope.machineSpeedLevel}));
 
     };
 
@@ -161,36 +161,54 @@ angular.module('ionicApp.processCtrl', ['ionic'])
     $scope.wireSpeedDisplay = function () {
       if(document.getElementById("wireSpeedDispaly").style.display == "none"){
         document.getElementById("wireSpeedDispaly").style.display = "block";
+        document.getElementById("wireSpeedDisplayIcon1").style.display = "none";
+        document.getElementById("wireSpeedDisplayIcon2").style.display = "";
       }
       else{
         document.getElementById("wireSpeedDispaly").style.display = "none";
+        document.getElementById("wireSpeedDisplayIcon1").style.display = "";
+        document.getElementById("wireSpeedDisplayIcon2").style.display = "none";
       }
     };
 
     $scope.machineSpeedDispaly = function () {
       if(document.getElementById("machineSpeedDispaly").style.display == "none"){
         document.getElementById("machineSpeedDispaly").style.display = "block";
+        document.getElementById("machineSpeedDispalyIcon1").style.display = "none";
+        document.getElementById("machineSpeedDispalyIcon2").style.display = "";
+
       }
       else{
         document.getElementById("machineSpeedDispaly").style.display = "none";
+        document.getElementById("machineSpeedDispalyIcon1").style.display = "";
+        document.getElementById("machineSpeedDispalyIcon2").style.display = "none";
+
       }
     };
     $scope.currentValueDispaly = function () {
       if(document.getElementById("currentValueDispaly").style.display == "none"){
         document.getElementById("currentValueDispaly").style.display = "block";
+        document.getElementById("currentValueDispalyIcon1").style.display = "none";
+        document.getElementById("currentValueDispalyIcon2").style.display = "";
       }
       else{
         document.getElementById("currentValueDispaly").style.display = "none";
+        document.getElementById("currentValueDispalyIcon1").style.display = "";
+        document.getElementById("currentValueDispalyIcon2").style.display = "none";
       }
     }
     $scope.pulseAndRatioDispaly = function () {
       if(document.getElementById("pulseAndRatioDispaly").style.display == "none"){
         document.getElementById("pulseAndRatioDispaly").style.display = "block";
         document.getElementById("pulseAndRatio").innerHTML = "脉宽与占空比";
+        document.getElementById("pulseAndRatioDispalyIcon1").style.display = "none";
+        document.getElementById("pulseAndRatioDispalyIcon2").style.display = "";
       }
       else{
         document.getElementById("pulseAndRatioDispaly").style.display = "none";
         document.getElementById("pulseAndRatio").innerHTML = "脉宽："+$rootScope.pulseWidthValue+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"占空比："+$rootScope.pulseWidthValue;
+        document.getElementById("pulseAndRatioDispalyIcon1").style.display = "";
+        document.getElementById("pulseAndRatioDispalyIcon2").style.display = "none";
       }
     };
 
@@ -200,7 +218,12 @@ angular.module('ionicApp.processCtrl', ['ionic'])
         alert("未连接机床！");
         return;
       }
+      beginFlag =1;
+      document.getElementById("startTrackMove").style.display = "none";
+      document.getElementById("pauseTrackMove").style.display = "";
       if(beginFlag == 0){
+        return;
+        console.log("第一次开始");
         resCmdWebSocket.send(JSON.stringify({'cmd':'setTrackMoveType', 'value': 1}));
         resCmdWebSocket.send(JSON.stringify({'cmd':'sendTrack','content':codeContent}));
         $timeout(function () {
@@ -209,6 +232,7 @@ angular.module('ionicApp.processCtrl', ['ionic'])
         beginFlag = 1;
       }
       else{
+        console.log("暂停后开始");
         $timeout(function () {
           resCmdWebSocket.send(JSON.stringify({'cmd':'startTrackMove'}));
         },2000);
@@ -220,6 +244,8 @@ angular.module('ionicApp.processCtrl', ['ionic'])
         alert("未连接机床！");
         return;
       }
+      document.getElementById("startTrackMove").style.display = "";
+      document.getElementById("pauseTrackMove").style.display = "none";
       resCmdWebSocket.send(JSON.stringify({'cmd':'pauseTrackMove'}));
     };
 

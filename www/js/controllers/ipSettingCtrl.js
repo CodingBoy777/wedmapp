@@ -133,7 +133,11 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
               //内分速度
               var div = 72000/dataview.getInt32(8,true);
               console.log((dataview.getInt32(8,true)));
-              $rootScope.getSpeed = parseInt(div);
+              if(div == "Infinity"){
+              }
+              else{
+                $rootScope.getSpeed = parseInt(div);
+              }
               console.log(div);
             }
           }, 20);

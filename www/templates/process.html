@@ -19,6 +19,8 @@
     <div class="list ">
       <div class="item item-divider" style="margin-top:5px" ng-click="pulseAndRatioDispaly();">
         <b><span id="pulseAndRatio">脉宽：{{$root.pulseWidthValue}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;占空比：{{$root.ratioValue}}</span></b>
+        <span id="pulseAndRatioDispalyIcon1" style="float: right" class="icon ion-chevron-down"></span>
+        <span id="pulseAndRatioDispalyIcon2" style="display:none;float: right" class="icon ion-chevron-up"></span>
       </div>
       <div id="pulseAndRatioDispaly" style="display: none">
         <div class="item" ng-click="setPWM();">
@@ -31,16 +33,22 @@
 
       <div class="item item-divider" style="margin-top:10px" ng-click="machineSpeedDispaly();">
         <b><span>速度：</span><span>{{$root.machineSpeedLevel}}</span></b>
+        <span id="machineSpeedDispalyIcon1" style="float: right" class="icon ion-chevron-down"></span>
+        <span id="machineSpeedDispalyIcon2" style="display:none;float: right" class="icon ion-chevron-up"></span>
       </div>
       <div id="machineSpeedDispaly" style="display: none">
         <div class="item range range-positive">
           <i>1</i>
-          <input type="range" id="machineSpeed" ng-model="$root.machineSpeedLevel"  min="1" max="10" onchange="machineSpeedLevelChange();">
-          </i><i>10</i>
+          <input type="range" id="machineSpeed" ng-model="$root.machineSpeedLevel"  min="1" max="400" onchange="machineSpeedLevelChange();">
+          </i><i>400</i>
         </div>
       </div>
 
-      <div class="item item-divider" style="margin-top:10px" ng-click="wireSpeedDisplay();"><b><span>丝速：</span><span>{{$root.wireSpeedValue}}</span></b></div>
+      <div class="item item-divider" style="margin-top:10px" ng-click="wireSpeedDisplay();">
+        <b><span>丝速：</span><span>{{$root.wireSpeedValue}}</span></b>
+        <span id="wireSpeedDisplayIcon1" style="float: right" class="icon ion-chevron-down"></span>
+        <span id="wireSpeedDisplayIcon2" style="display:none;float: right" class="icon ion-chevron-up"></span>
+      </div>
       <div id="wireSpeedDispaly" style="display: none">
         <div  class="item range range-positive" >
           <i>0</i>
@@ -49,7 +57,11 @@
         </div>
       </div>
 
-      <div class="item item-divider" style="margin-top:10px" ng-click="currentValueDispaly();"><b><span>电流：</span><span>{{$root.currentValue}}</span></b></div>
+      <div class="item item-divider" style="margin-top:10px" ng-click="currentValueDispaly();">
+        <b><span>电流：</span><span>{{$root.currentValue}}</span></b>
+        <span id="currentValueDispalyIcon1" style="float: right" class="icon ion-chevron-down"></span>
+        <span id="currentValueDispalyIcon2" style="display:none;float: right" class="icon ion-chevron-up"></span>
+      </div>
       <div id="currentValueDispaly" style="display: none">
         <div class="item range range-positive">
           <i>0</i>
@@ -63,8 +75,8 @@
   </ion-content>
   <ion-footer-bar align-title="left" class="bar-stable">
     <div class="button-bar">
-      <button class="button button-balanced icon ion-play" ng-click="startTrackMove();"></button>
-      <button class="button button-energized icon ion-pause" ng-click="pauseTrackMove();" ></button>
+      <button style="" id="startTrackMove" class="button button-balanced icon ion-play" ng-click="startTrackMove();"></button>
+      <button style="display: none" id="pauseTrackMove" class="button button-energized icon ion-pause" ng-click="pauseTrackMove();" ></button>
       <button class="button button-assertive icon ion-stop" ng-click="stopTrackMove();"></button>
     </div>
   </ion-footer-bar>

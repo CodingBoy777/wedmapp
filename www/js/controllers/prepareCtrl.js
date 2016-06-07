@@ -1,7 +1,12 @@
 angular.module('ionicApp.prepareCtrl', ['ionic'])
-  .controller('prepareCtrl', function ($scope, $rootScope, edmData, $timeout) {
+  .controller('prepareCtrl', function ($scope, $rootScope, edmData, $timeout, $cordovaToast) {
 
     console.log('prepareCtrl');
+
+    $scope.showToast = function(message) {
+      $cordovaToast.showShortBottom(message);
+    };
+
     speedChange = function(){
       //var resSpeedValue;
 
@@ -16,7 +21,7 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
       //}
       //else if(speed.value == 4){
       //  resSpeedValue=148;
-      //}
+      //}start
       //else if(speed.value == 5){
       //  resSpeedValue=184;
       //}
@@ -173,12 +178,13 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
         resCmdWebSocket.send(JSON.stringify({'cmd': 'UnlockCmd','value': 1}));
       }*/
     };
+
     $scope.startWireChange = function(){
-      if($rootScope.wire.axistemp == $rootScope.wire.axis) {
-        $rootScope.wire.axistemp = $rootScope.wire.axisnot;
+      if($rootScope.img.wiretemp == $rootScope.img.wire) {
+        $rootScope.img.wiretemp = $rootScope.img.wirenot;
         resCmdWebSocket.send(JSON.stringify({'cmd': 'SetWireReplace','value': 1}));
       } else {
-        $rootScope.wire.axistemp = $rootScope.wire.axis;
+        $rootScope.img.wiretemp = $rootScope.img.wire;
         resCmdWebSocket.send(JSON.stringify({'cmd': 'SetWireReplace','value': 0}));
       }
       if(!resCmdWebSocketOpen) return;
@@ -231,6 +237,7 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
 
       if(isfindEdgeStart==0)
       {
+        $scope.showToast('已开始向' + $rootScope.findEdgeDir + '方向' +$rootScope.findEdgeType);
         isfindEdgeStart = 1;
 
         if($rootScope.findEdgeType=="找边") {
@@ -309,6 +316,7 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
 
     $scope.findEdgeStop = function(){
       isfindEdgeStart=0;
+      $scope.showToast('已停止向' + $rootScope.findEdgeDir + '方向' +$rootScope.findEdgeType);
       if(!resCmdWebSocketOpen) return;
       resCmdWebSocket.send(JSON.stringify({'cmd':'stopPointMove'}));
       setTimeout(function(){

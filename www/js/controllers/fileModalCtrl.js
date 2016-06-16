@@ -32,6 +32,7 @@ angular.module('ionicApp.fileModalCtrl', ['ionic'])
 
     $scope.processFileContent = function () {
 
+      beginFlag = 0;
       $state.go('app.tabs.process');
 
       $timeout(function(){

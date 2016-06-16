@@ -200,15 +200,15 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
               $rootScope.div_pos_u = numFormat(posInfo.u);
               $rootScope.div_pos_v = numFormat(posInfo.v);
 
-              //if(paintFlag == 0){
-              //  contextCoord.moveTo($rootScope.div_pos_x,$rootScope.div_pos_y);
-              //  paintFlag =1;
-              //}
-              //if(paintFlag == 1){
-              //  contextCoord.lineTo($rootScope.div_pos_x,$rootScope.div_pos_y);
-              //  console.log($rootScope.div_pos_x,$rootScope.div_pos_y);
-              //  contextCoord.stroke();
-              //}
+              if(paintFlag == 0){
+                contextCoord.moveTo($rootScope.div_pos_x,$rootScope.div_pos_y);
+                paintFlag =1;
+              }
+              if(paintFlag == 1){
+                contextCoord.lineTo($rootScope.div_pos_x,$rootScope.div_pos_y);
+                console.log($rootScope.div_pos_x,$rootScope.div_pos_y);
+                contextCoord.stroke();
+              }
 
 
               $scope.$apply();
@@ -224,6 +224,9 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
           } else if (type == INFO.FRAME_EMG_WIRECUT_CASE) {
             document.getElementById("information").innerHTML += "断丝异常";
           }
+        }
+        else if(data.type =="done"){
+          console.log(data.data);
         }
       };
       resInfoWebSocket.onclose = function(){

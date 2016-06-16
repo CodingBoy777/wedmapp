@@ -7,7 +7,17 @@ angular.module('ionicApp.testCtrl', ['ionic'])
 
 
 
-    //var testPaint = document.getElementById("testPaint");
+    var testPaint = document.getElementById("testPaint");
+
+    if(testPaint && testPaint.getContext){
+      contextCoord = testPaint.getContext("2d");
+      contextCoord.translate(125,125);
+      contextCoord.beginPath();
+      contextCoord.strokeStyle = "red";
+      contextCoord.lineWidth = 1;
+    }
+
+
     //if(testPaint && testPaint.getContext){
     //  var context = testPaint.getContext("2d");
     //
@@ -125,6 +135,8 @@ angular.module('ionicApp.testCtrl', ['ionic'])
         var reader = new FileReader();
         reader.onload = function()
         {
+          beginFlag = 0;
+
           xValueMin = 0;xValueMax =0;
           yValueMin = 0;yValueMax = 0;
           paintScale = 1;
@@ -139,9 +151,10 @@ angular.module('ionicApp.testCtrl', ['ionic'])
 
           toIdealShape(result, shape, paintScale);
 
-          console.log(((xValueMin+xValueMax)*paintScale/2-160)+"<br>"+((yValueMin+yValueMax)*paintScale/2));
+          console.log(codeContent);
         };
         reader.readAsText(file);
+
       }
     }
 

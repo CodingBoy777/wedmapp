@@ -2,6 +2,8 @@
  * Created by allon on 2016/04/05
  */
 
+var beginFlag = 0, stopFlag = 0;
+
 var isfindEdgeStart = 0;
 
 var settings = {
@@ -28,8 +30,8 @@ var resCmdWebSocket;
 var resCmdWebSocketOpen;
 var resInfoWebSocket;
 var resInfoWebSocketOpen;
-var ipAddress = "192.168.5.100";
-var webIpAddress = "ws://192.168.5.100";
+var ipAddress = "192.168.5.103";
+var webIpAddress = "ws://192.168.5.103";
 
 var ioInfo={
   highfrequence: 0,

@@ -1,7 +1,7 @@
 angular.module('ionicApp.processCtrl', ['ionic'])
   .controller('processCtrl', function ($scope, edmData, $rootScope, $ionicPopup, $timeout, $cordovaVibration) {
     console.log('processCtrl');
-    var beginFlag = 0, stopFlag = 0;
+
 
     $scope.vibration = function(time) {
       $cordovaVibration.vibrate(time);
@@ -228,19 +228,24 @@ angular.module('ionicApp.processCtrl', ['ionic'])
     };
 
     $scope.startTrackMove = function () {
-      $scope.vibration(200);
+      console.log(beginFlag);
+      //$scope.vibration(200);
       if(!resCmdWebSocketOpen) {
         $scope.connectPopup();
         return;
       }
-      beginFlag =1;
+      //beginFlag =1;
       document.getElementById("startTrackMove").style.display = "none";
       document.getElementById("pauseTrackMove").style.display = "";
       if(beginFlag == 0){
         console.log("第一次开始");
-        return;       
-        resCmdWebSocket.send(JSON.stringify({'cmd':'setTrackMoveType', 'value': 1}));
-        resCmdWebSocket.send(JSON.stringify({'cmd':'sendTrack','content':codeContent}));
+        //return;
+        $timeout(function () {
+          resCmdWebSocket.send(JSON.stringify({'cmd':'setTrackMoveType', 'value': 1}));
+        },100);
+        $timeout(function () {
+          resCmdWebSocket.send(JSON.stringify({'cmd':'sendTrack','content':codeContent}));
+        },100);
         $timeout(function () {
           resCmdWebSocket.send(JSON.stringify({'cmd':'startTrackMove'}));
         },4000);
@@ -255,7 +260,7 @@ angular.module('ionicApp.processCtrl', ['ionic'])
     };
 
     $scope.pauseTrackMove = function () {
-      $scope.vibration(200);
+      //$scope.vibration(200);
       if(!resCmdWebSocketOpen) {
         $scope.connectPopup();
         return;
@@ -266,7 +271,7 @@ angular.module('ionicApp.processCtrl', ['ionic'])
     };
 
     $scope.stopTrackMove = function () {
-      $scope.vibration(200);
+      //$scope.vibration(200);
       if(!resCmdWebSocketOpen) {
         $scope.connectPopup();
         return;
@@ -281,6 +286,7 @@ angular.module('ionicApp.processCtrl', ['ionic'])
           console.log('Yes!');
           if(!resCmdWebSocketOpen) return;
           resCmdWebSocket.send(JSON.stringify({'cmd':'stopTrackMove'}));
+          console.log('stopTrackMove!');
         } else {
           console.log('Nooooo!!');
         }

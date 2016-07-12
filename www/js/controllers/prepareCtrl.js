@@ -120,11 +120,7 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
         $rootScope.img.watertemp = $rootScope.img.water;
         outputValue = CmdGPIOOutType.OUT4_PUMP_SW | outputValue;
       }
-      /*if($rootScope.toggleWaterPump) {
-        outputValue = CmdGPIOOutType.OUT4_PUMP_SW | outputValue;
-      }else{
-        outputValue= outputValue&0xffffffef;
-      }*/
+
       console.log("outputValue",outputValue);
       if(!resCmdWebSocketOpen) return;
       resCmdWebSocket.send(JSON.stringify({'cmd': 'setIOOutput','value': outputValue}));
@@ -137,11 +133,7 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
         $rootScope.img.frequencytemp = $rootScope.img.frequency;
         outputValue= (CmdGPIOOutType.OUT13_VF_SW)|outputValue;
       }
-      /*if($rootScope.toggleHighFrequence) {
-        outputValue= (CmdGPIOOutType.OUT13_VF_SW)|outputValue;
-      }else{
-        outputValue= outputValue&0xffffdfff;
-      }*/
+
       console.log("outputValue",outputValue);
       if(!resCmdWebSocketOpen) return;
       resCmdWebSocket.send(JSON.stringify({'cmd': 'setIOOutput','value': outputValue}));
@@ -154,11 +146,7 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
         $rootScope.img.movetemp = $rootScope.img.move;
         outputValue = CmdGPIOOutType.OUT5_WIRE_SW | outputValue;
       }
-      /*if($rootScope.toggleWireTransport) {
-        outputValue = CmdGPIOOutType.OUT5_WIRE_SW | outputValue;
-      }else{
-        outputValue= outputValue&0xffffffdf;
-      }*/
+
       console.log("outputValue",outputValue);
       if(!resCmdWebSocketOpen) return;
       resCmdWebSocket.send(JSON.stringify({'cmd': 'setIOOutput','value': outputValue}));
@@ -172,11 +160,7 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
         resCmdWebSocket.send(JSON.stringify({'cmd': 'UnlockCmd','value': 0}));
       }
       if(!resCmdWebSocketOpen) return;
-      /*if($rootScope.toggleAxisUnlock) {
-        resCmdWebSocket.send(JSON.stringify({'cmd': 'UnlockCmd','value': 0}));
-      }else{
-        resCmdWebSocket.send(JSON.stringify({'cmd': 'UnlockCmd','value': 1}));
-      }*/
+
     };
 
     $scope.startWireChange = function(){
@@ -188,11 +172,7 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
         resCmdWebSocket.send(JSON.stringify({'cmd': 'SetWireReplace','value': 0}));
       }
       if(!resCmdWebSocketOpen) return;
-      /*if($rootScope.toggleStartWire) {
-        resCmdWebSocket.send(JSON.stringify({'cmd': 'SetWireReplace','value': 0}));
-      }else{
-        resCmdWebSocket.send(JSON.stringify({'cmd': 'SetWireReplace','value': 1}));
-      }*/
+
     };
 
     $scope.showFindEdge = function() {
@@ -205,36 +185,10 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
       document.getElementById("IOSetting").style.display = "block";
     };
 
-    /*$scope.xSubf = function () {
-      findEdgeDir = 1;
-    };
-    $scope.xAddf = function () {
-      findEdgeDir = 0;
-    };
-    $scope.ySubf = function () {
-      findEdgeDir = 3;
-    };
-    $scope.yAddf = function () {
-      findEdgeDir = 2;
-    };
-
-
-    $scope.typeEdge = function () {
-      findEdgeType = 0;
-    };
-    $scope.typeMid = function () {
-      findEdgeType = 1;
-    };
-    $scope.typeCenter = function () {
-      findEdgeType = 2;
-    };*/
-
-    //$scope.findEdgeDir = "X+";
-    //$scope.findEdgeType = "找边";
-
 
     $scope.findEdgeStart = function(){
-
+      document.getElementById("startFind").style.display = "none";
+      document.getElementById("stopFind").style.display = "block";
       if(isfindEdgeStart==0)
       {
         $scope.showToast('已开始向' + $rootScope.findEdgeDir + '方向' +$rootScope.findEdgeType);
@@ -315,6 +269,8 @@ angular.module('ionicApp.prepareCtrl', ['ionic'])
     };
 
     $scope.findEdgeStop = function(){
+      document.getElementById("stopFind").style.display = "none";
+      document.getElementById("startFind").style.display = "block";
       isfindEdgeStart=0;
       $scope.showToast('已停止向' + $rootScope.findEdgeDir + '方向' +$rootScope.findEdgeType);
       if(!resCmdWebSocketOpen) return;

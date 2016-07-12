@@ -48,20 +48,6 @@
           </div>
         </div>
 
-
-        <!-- <div class="row">
-          <div class="col"><ion-toggle id="toggleWaterPumpValue" ng-model="$root.toggleWaterPump" onchange="waterPumpChange();">水泵</ion-toggle></div>
-          <div class="col"><ion-toggle id="toggleHighFrequence" ng-model="$root.toggleHighFrequence" onchange="highFrequenceChange();">高频</ion-toggle></div>
-        </div>
-        <div class="row">
-          <div class="col"><ion-toggle id="toggleWireTransport" ng-model="$root.toggleWireTransport" onchange="wireTransportChange();">运丝</ion-toggle></div>
-          <div class="col"><ion-toggle id="toggleAxisUnlock" ng-model="$root.toggleAxisUnlock" onchange="axisUnlockChange();">解锁</ion-toggle></div>
-        </div>
-        <div class="row">
-          <div class="col col-50"><ion-toggle id="toggleStartWire" ng-model="$root.toggleStartWire" onchange="startWireChange();">上丝</ion-toggle></div>
-        </div> -->
-
-
         <div class="item" style="margin-top:5px">
           <div class="row">
 
@@ -87,30 +73,6 @@
         </div>
       </div>
 
-      <!--<div class="list">-->
-        <!--<div class="item item-divider">工件找边</div>-->
-
-        <!--<div class="item">-->
-          <!--<div class="row">-->
-            <!--<div class="col"><button class="button  button-royal button-small" on-touch="xSubf();">X-</button></div>-->
-            <!--<div class="col"><button class="button  button-calm button-small" on-touch="xAddf();">X+</button></div>-->
-            <!--<div class="col"><button class="button  button-royal button-small" on-touch="ySubf();">Y-</button></div>-->
-            <!--<div class="col"><button class="button  button-calm button-small" on-touch="yAddf();">Y+</button></div>-->
-          <!--</div>-->
-
-          <!--<div class="row">-->
-            <!--<div class="col"><button class="button  button-royal button-small" on-touch="typeEdge();">找  边</button></div>-->
-            <!--<div class="col"><button class="button  button-royal button-small" on-touch="typeMid();">找中点</button></div>-->
-            <!--<div class="col"><button class="button  button-royal button-small" on-touch="typeCenter();">找圆心</button></div>-->
-          <!--</div>-->
-
-          <!--<div class="row">-->
-            <!--<div class="col"><button class="button" on-touch="findEdgeStart();">开始找边</button></div>-->
-            <!--<div class="col"><button class="button" on-touch="findEdgeStop();">停止找边</button></div>-->
-          <!--</div>-->
-
-        <!--</div>-->
-      <!--</div>-->
 
       <div id="findEdge" style="display: none">
         <div class="item item-divider" style="margin-top:5px"><b>工件找边</b></div>
@@ -132,29 +94,17 @@
           <div class="input-label">
             请选择类型
           </div>
-          <select  ng-model="$root.findEdgeType">
+          <select ng-model="$root.findEdgeType">
             <option>找边</option>
             <option>找中点</option>
             <option>找圆心</option>
           </select>
         </div>
 
-        <!-- <div class="row">
-          <div class="col"><button class="button  button-royal button-small" on-touch="xSubf();">X-</button></div>
-          <div class="col"><button class="button  button-calm button-small" on-touch="xAddf();">X+</button></div>
-          <div class="col"><button class="button  button-royal button-small" on-touch="ySubf();">Y-</button></div>
-          <div class="col"><button class="button  button-calm button-small" on-touch="yAddf();">Y+</button></div>
-        </div>
 
         <div class="row">
-          <div class="col"><button class="button  button-royal button-small" on-touch="typeEdge();">找  边</button></div>
-          <div class="col"><button class="button  button-royal button-small" on-touch="typeMid();">找中点</button></div>
-          <div class="col"><button class="button  button-royal button-small" on-touch="typeCenter();">找圆心</button></div>
-        </div> -->
-
-        <div class="row">
-          <div class="col align-center"><button class="button button-small button-royal" ng-click="findEdgeStart();">开始找边</button></div>
-          <div class="col align-center"><button class="button button-small button-balanced" ng-click="findEdgeStop();">停止找边</button></div>
+          <div class="col align-center" id="startFind" style="display: block"><button class="button button-small button-royal" ng-click="findEdgeStart();">开始找边</button></div>
+          <div class="col align-center" id="stopFind" style="display: none"><button class="button button-small button-balanced" ng-click="findEdgeStop();">停止找边</button></div>
           <div class="col align-center"><button class="button button-small button-calm" ng-click="showIOSetting();">点动 & IO</button></div>
         </div>
       </div>

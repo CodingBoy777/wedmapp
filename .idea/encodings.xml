@@ -10,5 +10,6 @@
     <file url="file://$PROJECT_DIR$/www/templates/prepare.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/templates/process.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/templates/test.html" charset="UTF-8" />
+    <file url="file://F:/phonegap/tcptest/www/js/app.js" charset="UTF-8" />
   </component>
 </project>

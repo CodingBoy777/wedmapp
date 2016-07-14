@@ -25,13 +25,14 @@ var posInfo={
 
 var outputValue=0x00;//setIOOutput使用的变量
 
-
+var flagInfoConnect = 0;
+var flagCmdConnect = 0;
 var resCmdWebSocket;
 var resCmdWebSocketOpen;
 var resInfoWebSocket;
 var resInfoWebSocketOpen;
-var ipAddress = "192.168.5.103";
-var webIpAddress = "ws://192.168.5.103";
+var ipAddress = "192.168.5.104";
+var webIpAddress = "ws://192.168.5.104";
 
 var ioInfo={
   highfrequence: 0,

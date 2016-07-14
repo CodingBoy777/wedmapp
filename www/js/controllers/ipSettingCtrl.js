@@ -12,22 +12,24 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
 
     //连接至写好的ip，监听信息
     $scope.ipConnect = function () {
-      var flagInfoConnect = 0;
-      var flagCmdConnect = 0;
-      resInfoWebSocket = new WebSocket(webIpAddress + ":8081");
-      // document.getElementById("information").innerHTML += webIpAddress;
-      resInfoWebSocket.onerror = function(event){
-        console.log('ERROR: ' + event.message);
-        document.getElementById("information").innerHTML +="InfoWebSocket:"+event.message;
+      flagInfoConnect = 0;
+      flagCmdConnect = 0;
 
-      };
-      resInfoWebSocket.onopen = function(){
-        console.log('info succeed!');
-        resCmdWebSocketOpen = true;
-        document.getElementById("information").innerHTML += "状态端口连接成功"+ "<br />" + webIpAddress + ":8081" + "</br>";
-        flagInfoConnect = 1;
-        //alert("connection success");
-      };
+      //为了worker注释掉
+      //resInfoWebSocket = new WebSocket(webIpAddress + ":8081");
+      //
+      //resInfoWebSocket.onerror = function(event){
+      //  console.log('ERROR: ' + event.message);
+      //  document.getElementById("information").innerHTML +="InfoWebSocket:"+event.message;
+      //
+      //};
+      //resInfoWebSocket.onopen = function(){
+      //  console.log('info succeed!');
+      //  resInfoWebSocketOpen = true;
+      //  document.getElementById("information").innerHTML += "状态端口连接成功"+ "<br />" + webIpAddress + ":8081" + "</br>";
+      //  flagInfoConnect = 1;
+      //  //alert("connection success");
+      //};
 
       resCmdWebSocket = new WebSocket(webIpAddress + ":8080");
       resCmdWebSocket.onerror = function(event){
@@ -36,7 +38,7 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
       };
       resCmdWebSocket.onopen = function(){
         console.log('cmd succeed!');
-        resInfoWebSocketOpen = true;
+        resCmdWebSocketOpen = true;
         document.getElementById("information").innerHTML += "命令端口连接成功"+ "<br />" + webIpAddress + ":8080" + "</br>";
         flagCmdConnect = 1;
         resCmdWebSocket.send(JSON.stringify({'cmd': 'getIOState'}));
@@ -60,7 +62,7 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
             }]
           });
         }
-      }, 4000);
+      }, 3000);
 
       resCmdWebSocket.onmessage = function(event){
         var data = JSON.parse(event.data);
@@ -152,13 +154,16 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
       };
 
 
-      //以下是info口的状态
 
-      //每隔n秒获取坐标
-      var resGetCoor = setInterval(function () {
-        if(!resInfoWebSocketOpen) return;
-        resInfoWebSocket.send(JSON.stringify({'cmd':'getUpdateInfo'}));
-      }, 300);
+      //为了worker注释掉
+
+      ////以下是info口的状态
+      //
+      ////每隔n秒获取坐标
+      //var resGetCoor = setInterval(function () {
+      //  if(!resInfoWebSocketOpen) return;
+      //  resInfoWebSocket.send(JSON.stringify({'cmd':'getUpdateInfo'}));
+      //}, 300);
 
       //每隔n秒获取一下IO状态
       setInterval(function () {
@@ -167,72 +172,117 @@ angular.module('ionicApp.ipSettingCtrl', ['ionic'])
         resCmdWebSocket.send(JSON.stringify({'cmd': 'getSelDiv'}));
       }, 5000);
 
-      //监听
-      resInfoWebSocket.onmessage = function (event) {
-        var data = JSON.parse(event.data);
-        var dataview = toDataView(data.data);
 
-        if (data.type == 'pos') {
-          //setTimeout(updataCoor(data.data),10)
+
+      //使用worker来获取info的信息
+      var infoWorkerUrl = "js/infoWorker.js";
+      var infoWorker = new Worker(infoWorkerUrl);
+      infoWorker.onmessage = function (event) {
+        if(event.data.type=="coor") {
+
+          setTimeout(function(){
+            $rootScope.div_pos_x = numFormat(event.data.data.x);
+            $rootScope.div_pos_y = numFormat(event.data.data.y);
+            $rootScope.div_pos_u = numFormat(event.data.data.u);
+            $rootScope.div_pos_v = numFormat(event.data.data.v);
+            $scope.$apply();
+
+
+            //这里有问题，添上这些坐标不能实时更新，需要一些刺激才能更新
+
+            if(paintFlag == 0){
+              contextCoord.moveTo($rootScope.div_pos_x,$rootScope.div_pos_y);
+              paintFlag =1;
+            }
+            if(paintFlag == 1){
+              contextCoord.lineTo($rootScope.div_pos_x,$rootScope.div_pos_y);
+              console.log($rootScope.div_pos_x,$rootScope.div_pos_y);
+              contextCoord.stroke();
+            }
+          },10);
         }
-        else if (data.type == 'updateinfo') {
-//if(data.error==0) {
-          //
-          //}else if(data.done){
-          //
-          //}else{
-          //    toArrayBuffer(data.data);
-          //
-          //}
-          var type = dataview.getUint8(2);
-
-          if (type == INFO.FRAME_UPDATE_STATE) {
-            var iostatus = dataview.getUint32(4, true); //低位开始读取
-            posInfo.x = dataview.getInt32(8, true);
-            posInfo.y = dataview.getInt32(12, true);
-            posInfo.u = dataview.getInt32(16, true);
-            posInfo.v = dataview.getInt32(20, true);
-
-
-            setTimeout(function () {
-              $rootScope.div_pos_x = numFormat(posInfo.x);
-              $rootScope.div_pos_y = numFormat(posInfo.y);
-              $rootScope.div_pos_u = numFormat(posInfo.u);
-              $rootScope.div_pos_v = numFormat(posInfo.v);
-
-              if(paintFlag == 0){
-                contextCoord.moveTo($rootScope.div_pos_x,$rootScope.div_pos_y);
-                paintFlag =1;
-              }
-              if(paintFlag == 1){
-                contextCoord.lineTo($rootScope.div_pos_x,$rootScope.div_pos_y);
-                console.log($rootScope.div_pos_x,$rootScope.div_pos_y);
-                contextCoord.stroke();
-              }
-
-
-              $scope.$apply();
-              //updataCoor(posInfo);
-              //updataIO(iostatus);
-            }, 10);
-          } else if (type == INFO.FRAME_MOVE_DONE) {
-
-          } else if (type == INFO.FRAME_EMG_HARDFAULT_CASE) {
-            document.getElementById("information").innerHTML += "硬件故障";
-          } else if (type == INFO.FRAME_EMG_POWERCUT_CASE) {
-            document.getElementById("information").innerHTML += "掉电异常";
-          } else if (type == INFO.FRAME_EMG_WIRECUT_CASE) {
-            document.getElementById("information").innerHTML += "断丝异常";
+        else if(event.data.type=="done")
+        {
+          if(event.data.data=="finishWork")
+          {
+            console.log(event.data.data)
           }
         }
-        else if(data.type =="done"){
-          console.log(data.data);
-        }
       };
-      resInfoWebSocket.onclose = function(){
-        resInfoWebSocketOpen = false;
-        console.log("resInfoWebSocket关闭" + "<br>");
-      };
+      infoWorker.postMessage({"cmd":"start", "host": webIpAddress});
+
+
+
+
+
+      //为了worker注释掉
+
+//      //监听
+//      resInfoWebSocket.onmessage = function (event) {
+//        var data = JSON.parse(event.data);
+//        var dataview = toDataView(data.data);
+//
+//        if (data.type == 'pos') {
+//          //setTimeout(updataCoor(data.data),10)
+//        }
+//        else if (data.type == 'updateinfo') {
+////if(data.error==0) {
+//          //
+//          //}else if(data.done){
+//          //
+//          //}else{
+//          //    toArrayBuffer(data.data);
+//          //
+//          //}
+//          var type = dataview.getUint8(2);
+//
+//          if (type == INFO.FRAME_UPDATE_STATE) {
+//            var iostatus = dataview.getUint32(4, true); //低位开始读取
+//            posInfo.x = dataview.getInt32(8, true);
+//            posInfo.y = dataview.getInt32(12, true);
+//            posInfo.u = dataview.getInt32(16, true);
+//            posInfo.v = dataview.getInt32(20, true);
+//
+//
+//            setTimeout(function () {
+//              $rootScope.div_pos_x = numFormat(posInfo.x);
+//              $rootScope.div_pos_y = numFormat(posInfo.y);
+//              $rootScope.div_pos_u = numFormat(posInfo.u);
+//              $rootScope.div_pos_v = numFormat(posInfo.v);
+//
+//              if(paintFlag == 0){
+//                contextCoord.moveTo($rootScope.div_pos_x,$rootScope.div_pos_y);
+//                paintFlag =1;
+//              }
+//              if(paintFlag == 1){
+//                contextCoord.lineTo($rootScope.div_pos_x,$rootScope.div_pos_y);
+//                console.log($rootScope.div_pos_x,$rootScope.div_pos_y);
+//                contextCoord.stroke();
+//              }
+//
+//
+//              $scope.$apply();
+//              //updataCoor(posInfo);
+//              //updataIO(iostatus);
+//            }, 10);
+//          } else if (type == infoType.FRAME_MOVE_DONE) {
+//
+//          } else if (type == infoType.FRAME_EMG_HARDFAULT_CASE) {
+//            document.getElementById("information").innerHTML += "硬件故障";
+//          } else if (type == infoType.FRAME_EMG_POWERCUT_CASE) {
+//            document.getElementById("information").innerHTML += "掉电异常";
+//          } else if (type == infoType.FRAME_EMG_WIRECUT_CASE) {
+//            document.getElementById("information").innerHTML += "断丝异常";
+//          }
+//        }
+//        else if(data.type =="done"){
+//          console.log(data.data);
+//        }
+//      };
+//      resInfoWebSocket.onclose = function(){
+//        resInfoWebSocketOpen = false;
+//        console.log("resInfoWebSocket关闭" + "<br>");
+//      };
     };
 
 

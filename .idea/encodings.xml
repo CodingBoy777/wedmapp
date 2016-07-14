@@ -5,11 +5,15 @@
     <file url="file://$PROJECT_DIR$/www/js/cmdType.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/js/controllers/HomeTabCtrl.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/js/functions.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/js/infoWorker.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/js/services.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/js/variables.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/js/workerTest.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/templates/prepare.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/templates/process.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/templates/test.html" charset="UTF-8" />
+    <file url="file://F:/phonegap/tcpplugin/www/js/app.js" charset="UTF-8" />
+    <file url="file://F:/phonegap/tcpplugin/www/js/controllers.js" charset="UTF-8" />
     <file url="file://F:/phonegap/tcptest/www/js/app.js" charset="UTF-8" />
   </component>
 </project>

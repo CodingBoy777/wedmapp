@@ -4,6 +4,17 @@ angular.module('ionicApp.testCtrl', ['ionic'])
     console.log('testCtrl');
 
 
+    //worker test
+    $scope.workerTest = function () {
+
+      var resUrl = "js/workerTest.js";
+      var worker = new Worker(resUrl);
+      worker.postMessage("hell worker");
+      worker.onmessage = function (event) {
+        console.log(event.data+"123");
+      }
+      console.log("zheshisha");
+    };
 
 
 
